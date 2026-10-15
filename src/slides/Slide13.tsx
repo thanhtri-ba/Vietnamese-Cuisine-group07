@@ -16,23 +16,23 @@ export default function Slide13() {
           <Photo src="bun-bo-hue.webp" alt="Bowl of bún bò Huế with herbs and lime" caption="Bún bò Huế" h="46vh" tilt="r" delay=".6s" />
         </div>
         <div className="copy">
-          <p className="eyebrow accent" data-a="fadeDown" style={{ "--d": ".4s" } as CSSProperties}>02 · Ẩm thực miền Trung</p>
-          <h2 id="t12" data-a="zoomIn" style={{ "--d": ".5s" } as CSSProperties}>Đậm đà và cay nồng</h2>
+          <p className="eyebrow accent" data-a="fadeDown" style={{ "--d": ".4s" } as CSSProperties}>02 · Central cuisine</p>
+          <h2 id="t12" data-a="zoomIn" style={{ "--d": ".5s" } as CSSProperties}>Bold and spicy</h2>
           <ul className="dishes" data-st="flipX" style={{ "--base": "1s" } as CSSProperties}>
             <li style={{ "--i": "0" } as CSSProperties}>
               <b>Bún bò Huế</b>
-              <span>nước dùng đậm đà, thơm nức mùi sả và mắm ruốc</span>
+              <span>a rich broth fragrant with lemongrass and shrimp paste</span>
             </li>
             <li style={{ "--i": "1" } as CSSProperties}>
               <b>Mì Quảng</b>
-              <span>sợi mì vàng óng ăn kèm tôm thịt đậm vị và bánh tráng giòn</span>
+              <span>golden noodles with savory shrimp, pork and crispy rice crackers</span>
             </li>
             <li style={{ "--i": "2" } as CSSProperties}>
               <b>Cơm hến</b>
-              <span>món ăn dân dã hòa quyện đủ vị cay mặn ngọt bùi</span>
+              <span>a humble dish of rice and baby clams that is spicy, salty, sweet and nutty</span>
             </li>
           </ul>
-          <p className="lede" data-a="fadeUp" style={{ "--d": "1.6s" } as CSSProperties}>Huế, vùng đất cố đô xưa, lưu giữ nền ẩm thực cung đình lẫn dân gian vô cùng phong phú với ớt, thảo mộc và các loại mắm đặc sản.</p>
+          <p className="lede" data-a="fadeUp" style={{ "--d": "1.6s" } as CSSProperties}>Huế, the former imperial capital, preserves a rich royal and folk food culture full of chili, herbs and special fermented sauces.</p>
         </div>
       </div>
     </Slide>

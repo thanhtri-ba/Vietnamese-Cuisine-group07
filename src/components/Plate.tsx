@@ -3,7 +3,7 @@ import type { CSSProperties } from 'react';
 /** Illustrated top-down plate of cơm tấm. Numbered badges show only inside a `.labeled` wrapper. */
 export default function Plate() {
   return (
-    <svg className="plate-art" viewBox="0 0 400 400" role="img" aria-label="Hình minh họa đĩa cơm tấm: cơm tấm, sườn nướng than hoa, trứng ốp la, chả trứng, bì, dưa leo cà chua đồ chua và chén nước mắm chua ngọt">
+    <svg className="plate-art" viewBox="0 0 400 400" role="img" aria-label="Illustration of a plate of cơm tấm: broken rice, charcoal-grilled pork, a fried egg, egg meatloaf, shredded pork skin, cucumber, tomato, pickles and a bowl of sweet-and-sour fish sauce">
       <g className="part" style={{ "--i": "0" } as CSSProperties}>
         <circle cx="200" cy="200" r="184" fill="#FFFFFF" stroke="#E7DFCB" strokeWidth="8"></circle>
         <circle cx="200" cy="200" r="150" fill="#FBF7EE"></circle>

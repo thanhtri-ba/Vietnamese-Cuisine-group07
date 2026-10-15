@@ -8,7 +8,7 @@ export default function Slide31() {
     <Slide index={30} className="band cream quiz-slide" t="up" who={6} labelledBy="t24f">
       <img className="sil" src="img/i12.webp" alt="" style={{ right: "2%", top: "10px" } as CSSProperties} />
       <div className="inner">
-        <h2 id="t24f" data-a="pop" style={{ "--d": ".4s" } as CSSProperties}>Câu đố vui ôn bài</h2>
+        <h2 id="t24f" data-a="pop" style={{ "--d": ".4s" } as CSSProperties}>Quick review quiz</h2>
         <Quiz data-st="dropIn" style={{ "--base": ".8s" } as CSSProperties} />
       </div>
     </Slide>

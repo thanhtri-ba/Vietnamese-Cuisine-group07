@@ -9,7 +9,7 @@ export type City = 'hn' | 'hue' | 'hcm';
 export const CITY: Record<City | 'sea', { x: number; y: number; name: string }> = {
   hn: { x: 122.4, y: 83.1, name: 'Hà Nội' },
   hue: { x: 172.2, y: 220.2, name: 'Huế' },
-  hcm: { x: 146.9, y: 390.6, name: 'TP.HCM' },
+  hcm: { x: 146.9, y: 390.6, name: 'HCMC' },
   sea: { x: 250, y: 150, name: '' },
 };
 
@@ -118,7 +118,7 @@ export default function VMap({ region = '' }: { region?: string }) {
   }, [active, region, legs, targets]);
 
   return (
-    <svg className={`vmap vn${region ? ' vn-mini' : ''}`} viewBox="0 0 390 475" role="img" aria-label="Bản đồ Việt Nam với đường bay Hà Nội – Huế – TP.HCM">
+    <svg className={`vmap vn${region ? ' vn-mini' : ''}`} viewBox="0 0 390 475" role="img" aria-label="Map of Vietnam with a flight route from Hà Nội to Huế to Ho Chi Minh City">
       <defs>
         <pattern id={`vn-hatch-${region || 'all'}`} width="6" height="6" patternUnits="userSpaceOnUse" patternTransform="rotate(45)">
           <line x1="0" y1="0" x2="0" y2="6" className="vn-hatch" />
@@ -134,15 +134,15 @@ export default function VMap({ region = '' }: { region?: string }) {
         <circle cx="299" cy="223" r="2" />
         <circle cx="304" cy="215" r="2.2" />
         <circle cx="296" cy="229" r="1.8" />
-        <text x="298" y="250" textAnchor="middle">Q.đ Hoàng Sa</text>
+        <text x="298" y="250" textAnchor="middle">Hoàng Sa Is.</text>
         <circle cx="350" cy="405" r="2" />
         <circle cx="360" cy="412" r="2.4" />
         <circle cx="355" cy="422" r="1.8" />
         <circle cx="368" cy="420" r="2" />
         <circle cx="346" cy="417" r="1.6" />
-        <text x="357" y="444" textAnchor="middle">Q.đ Trường Sa</text>
+        <text x="357" y="444" textAnchor="middle">Trường Sa Is.</text>
       </g>
-      <text className="vn-sea" x="268" y="330" textAnchor="middle">Biển Đông</text>
+      <text className="vn-sea" x="268" y="330" textAnchor="middle">East Sea</text>
 
       {legs.map(([a, b], i) => (
         <path

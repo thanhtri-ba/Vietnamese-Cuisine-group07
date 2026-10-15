@@ -10,9 +10,9 @@ interface Question {
 }
 
 const QUESTIONS: Question[] = [
-  { img: 'gao-tam.webp', q: '“Tấm” trong cơm tấm có nghĩa là gì?', options: ['Hạt gạo bị vỡ', 'Thịt sườn nướng', 'Nước mắm'], answer: 0, explain: 'Tấm là những hạt gạo bị vỡ trong quá trình xay xát lúa.' },
-  { img: 'suon-cay.webp', q: 'Nguyên liệu nào giúp sườn nướng mềm ngọt và vàng ươm?', options: ['Nước tương', 'Sữa đặc', 'Giấm ăn'], answer: 1, explain: 'Sữa đặc giúp làm mềm thớ thịt và tạo màu nâu cánh gián óng ả.' },
-  { img: 'com-tam-ve.webp', q: 'Khi muốn ăn thêm cơm, bạn sẽ gọi thế nào?', options: ['“Thêm trứng”', '“Nhiều mỡ hành”', '“Cơm thêm”'], answer: 2, explain: '“Cơm thêm” là cách gọi quen thuộc để xin thêm một phần cơm nữa.' },
+  { img: 'gao-tam.webp', q: 'What does “tấm” in cơm tấm mean?', options: ['Broken rice grains', 'Grilled pork ribs', 'Fish sauce'], answer: 0, explain: '“Tấm” means rice grains that broke during milling.' },
+  { img: 'suon-cay.webp', q: 'Which ingredient makes the grilled ribs tender, sweet and golden?', options: ['Soy sauce', 'Condensed milk', 'Vinegar'], answer: 1, explain: 'Condensed milk tenderizes the meat and gives it a glossy golden-brown color.' },
+  { img: 'com-tam-ve.webp', q: 'How do you ask for more rice?', options: ['“Thêm trứng”', '“Nhiều mỡ hành”', '“Cơm thêm”'], answer: 2, explain: '“Cơm thêm” is the usual way to ask for another serving of rice.' },
 ];
 
 type Props = { style?: CSSProperties; 'data-st'?: string };
@@ -53,7 +53,7 @@ export default function Quiz(props: Props) {
                   </button>
                 ))}
               </div>
-              {answered && <p className="ans">{(ok ? 'Chính xác! ' : 'Chưa đúng rồi. ') + q.explain}</p>}
+              {answered && <p className="ans">{(ok ? 'Correct! ' : 'Not quite. ') + q.explain}</p>}
             </div>
           );
         })}
@@ -69,11 +69,11 @@ export default function Quiz(props: Props) {
                 setRound((r) => r + 1);
               }}
             >
-              Làm lại
+              Try again
             </button>
           </>
         ) : (
-          'Trả lời cả 3 câu hỏi để xem điểm số.'
+          'Answer all 3 questions to see your score.'
         )}
       </p>
     </>

@@ -230,7 +230,7 @@ const shove =
       old: { tf: `translateX(${left ? -k * 104 : k * 104}%)`, shadow: '0 20px 60px rgba(0,0,0,.3)' },
       a: { x: m(ax), y: F, face, pose: t >= T0 - 60 && t < T1 ? 'push' : 'run' },
       b: { x: m(bx), y: F, face, pose: 'run' },
-      props: bubble('bb', 'Đợi tớ với!', m(bx), F - H - 30, t, 650, 1800),
+      props: bubble('bb', 'Wait for me!', m(bx), F - H - 30, t, 650, 1800),
     };
   };
 
@@ -250,7 +250,7 @@ const lift: Scene = (t, { vw, vh, F }) => {
     old: { tf: `translateY(${ty.toFixed(1)}px)`, shadow: '0 20px 60px rgba(0,0,0,.3)' },
     a: { x: lerp(lerp(-W, xa, inK), -W * 1.5, outK), y: F - jump - squat, face: t < 1950 ? 1 : -1, pose },
     b: { x: lerp(lerp(vw + W, xb, inK), vw + W * 1.5, outK), y: F - jump - squat, face: t < 1950 ? -1 : 1, pose },
-    props: bubble('bb', t < 1150 ? 'Một, hai, ba…' : 'Lên!', xa, F - H - 36, t, 300, 1400),
+    props: bubble('bb', t < 1150 ? 'One, two, three…' : 'Up!', xa, F - H - 36, t, 300, 1400),
   };
 };
 
@@ -282,7 +282,7 @@ const kick: Scene = (t, { vw, F }) => {
   return {
     old: { tf, shadow: '0 20px 60px rgba(0,0,0,.3)' },
     a: { x: ax, y: ay, face: 1, pose },
-    props: burst('k', 'BỐP!', xk + 70 + W * 0.55, F - 95 - H * 0.35, t, 700, 1100),
+    props: burst('k', 'POW!', xk + 70 + W * 0.55, F - 95 - H * 0.35, t, 700, 1100),
   };
 };
 
@@ -300,7 +300,7 @@ const stomp: Scene = (t, { vw, vh, F }) => {
       ty = lerp(level(i), level(i + 1), backOut(seg(t, land, land + 180)));
       y = t < land ? level(i) - bell(t, s, land) * 75 : ty;
       pose = t < land ? 'cheer' : 'stand';
-      if (on(t, land, land + 260)) props = burst('r', 'RẦM!', x + 80, ty - 20, t, land, land + 260);
+      if (on(t, land, land + 260)) props = burst('r', 'THUD!', x + 80, ty - 20, t, land, land + 260);
     }
   }
   if (t >= 1700) {
@@ -334,7 +334,7 @@ const tug: Scene = (t, { vw, F }) => {
   const props: Prop[] = [line('r1', 'rope', a.x + 26 * a.face, hy, knot.x, knot.y)];
   if (t < 1700) props.push(line('r2', 'rope', knot.x, knot.y, b.x - 26, hy));
   props.push({ id: 'kn', type: 'knot', x: knot.x, y: knot.y, w: 26, h: 26 });
-  props.push(...burst('h1', 'HỰ!', a.x, F - H - 20, t, 700, 950), ...burst('h2', 'HỰ!', b.x, F - H - 20, t, 1100, 1350), ...burst('h3', 'HỰ!', a.x, F - H - 20, t, 1500, 1750));
+  props.push(...burst('h1', 'HUFF!', a.x, F - H - 20, t, 700, 950), ...burst('h2', 'HUFF!', b.x, F - H - 20, t, 1100, 1350), ...burst('h3', 'HUFF!', a.x, F - H - 20, t, 1500, 1750));
   if (on(t, 1950, 2400)) props.push(...stars('st', b.x + 55, F - 22, t));
   return { old: { tf: `translateX(${slideX.toFixed(1)}px)`, shadow: '0 20px 60px rgba(0,0,0,.3)' }, a, b, props };
 };
@@ -351,7 +351,7 @@ const tear: Scene = (t, { vw, vh, F, R }) => {
     return side === 'l' ? `polygon(0 0, ${pts.join(', ')}, 0 100%)` : `polygon(100% 0, ${pts.join(', ')}, 100% 100%)`;
   };
   const shaking = on(t, 400, 900);
-  const props: Prop[] = [...burst('x', 'XOẸT!', vw / 2, vh * 0.4, t, 900, 1300), ...bubble('ug', 'Ư… Ư…!', W * 0.6, F - H - 30, t, 450, 900)];
+  const props: Prop[] = [...burst('x', 'RIIIP!', vw / 2, vh * 0.4, t, 900, 1300), ...bubble('ug', 'Nnngh…!', W * 0.6, F - H - 30, t, 450, 900)];
   if (on(t, 900, 1900))
     for (let i = 0; i < 12; i++) {
       const u = seg(t, 900, 1700);
@@ -397,7 +397,7 @@ const tape: Scene = (t, { vw, vh, F }) => {
   const ax = t < 800 ? lerp(-W, vw / 3 + (dx0 / 100) * vw + W * 0.28, enter) : lerp(vw / 3 + (dx0 / 100) * vw + W * 0.28, -W * 1.5, out);
   const bx = t < 800 ? lerp(vw + W, (2 * vw) / 3 + (dx2 / 100) * vw - W * 0.28, enter) : lerp((2 * vw) / 3 + (dx2 / 100) * vw - W * 0.28, vw + W * 1.5, out);
   const pose = (pullPose: string) => (t < 800 ? 'run' : t < 1400 ? pullPose : t < 1700 ? 'stand' : t < 2300 ? 'cheer' : 'run');
-  const props: Prop[] = [...burst('c', 'CỘP!', vw / 2, vh * 0.62, t, 1600, 1900)];
+  const props: Prop[] = [...burst('c', 'THUNK!', vw / 2, vh * 0.62, t, 1600, 1900)];
   const tapes: [number, number, number][] = [
     [vw / 3, vh * 0.3, -35],
     [vw / 3, vh * 0.72, 30],
@@ -494,7 +494,7 @@ const crumple: Scene = (t, { vw, vh, F }) => {
   }
   const props: Prop[] = [];
   if (on(t, 1300, 3000)) props.push({ id: 'bin', type: 'bin', x: binX, y: binY, w: 96, h: 116, sc: backOut(seg(t, 1300, 1550)), rot: on(t, 2300, 2600) ? Math.sin((t - 2300) / 30) * 8 : 0, op: 1 - seg(t, 2700, 3000) });
-  props.push(...bubble('v', 'Vào!', binX - 30, F - H - 30, t, 2300, 2800));
+  props.push(...bubble('v', 'Score!', binX - 30, F - H - 30, t, 2300, 2800));
   return {
     old: { tf: scaleTo(vw, vh, cx, cy, sx, sy, `rotate(${rot.toFixed(1)}deg)`), radius: `${(50 * s3).toFixed(1)}%`, filter: s3 > 0 ? `contrast(${(1 + s3 * 0.25).toFixed(2)}) saturate(${(1 - s3 * 0.3).toFixed(2)})` : 'none', op: t < 2300 ? 1 : 0, shadow: '0 10px 30px rgba(0,0,0,.3)' },
     a,
@@ -517,7 +517,7 @@ const curtain: Scene = (t, { vw, vh, F, to }) => {
     props: [
       { id: 'cl', type: 'curtain', x: wc / 2, y: vh / 2, w: Math.max(1, wc), h: vh },
       { id: 'cr', type: 'curtain', x: vw - wc / 2, y: vh / 2, w: Math.max(1, wc), h: vh },
-      ...bubble('cb', to === 31 ? 'Màn cuối!' : 'Mời xem tiếp!', vw / 2, F - H - 34, t, 950, 1450),
+      ...bubble('cb', to === 31 ? 'The final act!' : 'Up next…', vw / 2, F - H - 34, t, 950, 1450),
     ],
   };
 };
@@ -560,7 +560,7 @@ const carry: Scene = (t, { vw, vh, F }) => {
     neu: { tf: neuTf, shadow: t < 2600 ? '0 18px 40px rgba(0,0,0,.3)' : 'none' },
     a,
     b,
-    props: bubble('hz', 'Dô ta!', vw * 0.3, F - H - 30, t, 500, 1100),
+    props: bubble('hz', 'Heave-ho!', vw * 0.3, F - H - 30, t, 500, 1100),
   };
 };
 
@@ -599,7 +599,7 @@ const pancake: Scene = (t, { vw, vh, F }) => {
     old: { tf: scaleTo(vw, vh, cx, cy, sc, sc, persp(rx)), op: swapped ? 0 : 1, shadow: '0 14px 30px rgba(0,0,0,.3)' },
     neu: { tf: t >= 1600 ? scaleTo(vw, vh, ncx, ncy, ns, ns) : scaleTo(vw, vh, cx, cy, s, s, persp(rx - 540)), op: swapped ? 1 : 0, shadow: t < 2200 ? '0 14px 30px rgba(0,0,0,.3)' : 'none' },
     a: { x: ax, y: F, face: leave > 0 ? -1 : 1, pose: enter < 1 || leave > 0 ? 'run' : on(t, 650, 900) ? 'punch' : 'push' },
-    props: [{ id: 'pan', type: 'pan', x: panX - 40, y: panY, w: 400, h: 90 }, ...burst('xe', 'XÈO!', panX + 120, panY - 90, t, 1580, 1900)],
+    props: [{ id: 'pan', type: 'pan', x: panX - 40, y: panY, w: 400, h: 90 }, ...burst('xe', 'SIZZLE!', panX + 120, panY - 90, t, 1580, 1900)],
   };
 };
 
@@ -609,7 +609,7 @@ const wipe: Scene = (t, { vw, vh, F, R }) => {
   const props: Prop[] = [{ id: 'sq', type: 'squeegee', x: X, y: vh / 2, w: 26, h: vh }];
   if (t < 2100)
     for (let j = 0; j < 8; j++) props.push({ id: `fm${j}`, type: 'foam', x: X - 14 - (j % 3) * 12, y: ((j * 0.125 + R[j] * 0.1 + t / 4000) % 1) * vh, w: 18 + R[j + 8] * 22, h: 18 + R[j + 8] * 22 });
-  props.push(...bubble('sb', 'Sạch bong!', Math.min(vw - 120, X - 40), F - H - 30, t, 1900, 2400));
+  props.push(...bubble('sb', 'Squeaky clean!', Math.min(vw - 120, X - 40), F - H - 30, t, 1900, 2400));
   const run = easeIn(seg(t, 2000, 2500));
   return {
     old: { clip: `inset(0 0 0 ${X.toFixed(1)}px)`, op: t < 2000 ? 1 : 0 },
@@ -640,7 +640,7 @@ const zipper: Scene = (t, { vw, vh, F }) => {
           ]
         : [],
     a,
-    props: t < 1750 ? [{ id: 'zp', type: 'zip', x: vw / 2, y: zipShow, w: 44, h: 68 }, ...bubble('zb', 'Rẹẹẹt!', vw / 2 + 110, Math.min(zipShow, vh - 200), t, 600, 1400)] : [],
+    props: t < 1750 ? [{ id: 'zp', type: 'zip', x: vw / 2, y: zipShow, w: 44, h: 68 }, ...bubble('zb', 'ZZZIP!', vw / 2 + 110, Math.min(zipShow, vh - 200), t, 600, 1400)] : [],
   };
 };
 
@@ -650,7 +650,7 @@ const blow: Scene = (t, { vw, F, R }) => {
   const run = easeIn(seg(t, 2000, 2500));
   const ax = lerp(-W, vw * 0.12, enter) + run * (vw + 300);
   const pose = t < 400 ? 'run' : t < 900 ? 'inhale' : t < 1400 ? 'blow' : t < 2000 ? 'cheer' : 'run';
-  const props: Prop[] = [...burst('ph', 'PHÙ!', ax + 110, F - H * 0.8, t, 900, 1300)];
+  const props: Prop[] = [...burst('ph', 'WHOOSH!', ax + 110, F - H * 0.8, t, 900, 1300)];
   if (on(t, 900, 1600))
     for (let j = 0; j < 4; j++) {
       const u = seg(t, 900 + j * 80, 1500 + j * 80);
@@ -683,7 +683,7 @@ const scissors: Scene = (t, { vw, vh, F }) => {
   const ax = t < 1500 ? Math.max(-W, px - 60) : Math.min(vw - 160, px - 60) + run * 500;
   const props: Prop[] = [];
   if (t < 1500) props.push(line('ct', 'cut', 0, 0, px, py, 4), { id: 'sc', type: 'scissors', x: px, y: py, w: 190, h: 110, rot: ang });
-  props.push(...burst('xo', 'XOẸT!', vw / 2, vh * 0.45, t, 1500, 1850));
+  props.push(...burst('xo', 'RIIIP!', vw / 2, vh * 0.45, t, 1500, 1850));
   return {
     old: { op: t < 1500 ? 1 : 0 },
     pieces:
@@ -717,7 +717,7 @@ const smoke: Scene = (t, { vw, vh, F, R }) => {
     props.push({ id: 'fa', type: 'fan', x: ax + 52, y: F - H * 0.56, w: 50, h: 50, rot: Math.sin(t / 60) * 28 });
     props.push({ id: 'fb', type: 'fan', x: bx - 52, y: F - H * 0.56, w: 50, h: 50, rot: -Math.sin(t / 60) * 28 });
   }
-  props.push(...bubble('sm', 'Thơm quá!', bx, F - H - 30, t, 500, 1200));
+  props.push(...bubble('sm', 'Smells great!', bx, F - H - 30, t, 500, 1200));
   return {
     old: { op: t < 1500 ? 1 : 0 },
     a: { x: ax, y: F, face: out > 0 ? -1 : 1, pose: enter < 1 || out > 0 ? 'run' : 'fan' },
@@ -758,7 +758,7 @@ const plate: Scene = (t, { vw, vh, F }) => {
     old: { tf: scaleTo(vw, vh, cx, cy, sx, sy, `rotate(${rot.toFixed(1)}deg)`), radius: `${(50 * k).toFixed(1)}%`, shadow: k > 0.5 ? '0 0 0 14px #fff, 0 0 0 17px #165D3A, 0 12px 26px 17px rgba(0,0,0,.25)' : 'none' },
     a: { x: ax, y: F, face: aOut > 0 ? -1 : 1, pose: t < 400 ? 'run' : t < 1000 ? 'lift' : t < 1300 ? 'punch' : aOut > 0 ? 'run' : 'cheer' },
     b: { x: bx, y: F, face: 1 as const, pose: t < 400 ? 'run' : t < 1500 ? 'stand' : t < 1800 ? 'lift' : 'carry' },
-    props: [...bubble('cv', 'Đỡ nè!', xa, F - H - 30, t, 900, 1400), ...bubble('bt', 'Bắt được!', vw * 0.78, F - H - 30, t, 1700, 2150)],
+    props: [...bubble('cv', 'Catch!', xa, F - H - 30, t, 900, 1400), ...bubble('bt', 'Got it!', vw * 0.78, F - H - 30, t, 1700, 2150)],
   };
 };
 
@@ -772,7 +772,7 @@ const dust: Scene = (t, { vw, vh, F, R }) => {
   const ax = t < 500 ? lerp(-W, ax0, enter) : ax0 - run * (ax0 + 400);
   const s = 0.22;
   const k = inOut(seg(t, 2000, 2300));
-  const words = ['BỐP!', 'CHÁT!', 'HỰ!', 'BỐP!', 'ÁI!', 'CHÁT!'];
+  const words = ['POW!', 'WHACK!', 'HUFF!', 'POW!', 'OUCH!', 'WHACK!'];
   const props: Prop[] = [];
   if (on(t, 450, 2250)) props.push({ id: 'cloud', type: 'cloud', x: vw / 2, y: F - 120, w: 460, h: 320, sc: t < 2000 ? backOut(seg(t, 450, 650)) * (1 + Math.sin(t / 60) * 0.05) : 1 - seg(t, 2000, 2250) });
   words.forEach((w, i) => props.push(...burst(`w${i}`, w, vw / 2 + (R[i] - 0.5) * 420, F - 120 + (R[i + 6] - 0.5) * 260, t, 600 + i * 230, 850 + i * 230)));
@@ -835,7 +835,7 @@ const hp: Scene = (t, { vw, vh, F, R, from, to }) => {
         bPose = 'pull';
       }
     }
-    props.push(...burst(`hb${i}`, i === 1 ? 'CHÁT!' : 'BỐP!', (ax + bx) / 2, F - H * 0.62, t, h.t, h.t + 260));
+    props.push(...burst(`hb${i}`, i === 1 ? 'WHACK!' : 'POW!', (ax + bx) / 2, F - H * 0.62, t, h.t, h.t + 260));
   });
   // đòn kết liễu
   let ay = F;
@@ -916,7 +916,7 @@ const food: Scene = (t, { vw, vh, F }) => {
       props.push({ id: `fd${i}`, type: `food food-${th.f}`, x: lerp(x0, x1, u), y: lerp(y0, y1, u) - Math.sin(Math.PI * u) * 180, w: th.f === 'plate' ? 90 : 46, h: th.f === 'plate' ? 90 : 46, rot: u * 720 });
     }
     if (t >= th.t + dur && th.f !== 'plate') props.push({ id: `sp${i}`, type: `splat splat-${th.f}`, x: x1, y: y1 + fall * vh * 0.5, w: 120, h: 120, sc: backOut(seg(t, th.t + dur, th.t + dur + 150)) * (1 - fall * 0.6), op: 1 - fall });
-    const bt = th.f === 'plate' ? 'XOẢNG!' : 'BẸP!';
+    const bt = th.f === 'plate' ? 'CRASH!' : 'SPLAT!';
     props.push(...burst(`bb${i}`, bt, x1 + 40, y1 - 50, t, th.t + dur, th.t + dur + 260));
   });
   if (t >= 2600) {

@@ -228,35 +228,34 @@ export default function Deck() {
           <i className="s1" />
           <i className="s2" />
           <div className="card">
-            <small>Phần {stinger.who + 1} / {people.length}</small>
+            <small>Part {stinger.who + 1} / {people.length}</small>
             <b>{people[stinger.who].name}</b>
             <span>{people[stinger.who].part}</span>
           </div>
         </div>
       )}
 
-      <aside className={notesOpen ? 'notes open' : 'notes'} aria-label="Ghi chú người thuyết trình" aria-hidden={!notesOpen}>
+      <aside className={notesOpen ? 'notes open' : 'notes'} aria-label="Speaker notes" aria-hidden={!notesOpen}>
         <div className="wrap">
           <p className="hd">
             Slide {current + 1} · {who.name} · {who.part}
           </p>
-          <p className="vi">{notes[current]?.[1]}</p>
-          <p className="en" style={{ opacity: 0.7, fontSize: "0.9em" }}>Tiếng Anh: {notes[current]?.[0]}</p>
+          <p className="en">{notes[current]?.[0]}</p>
         </div>
       </aside>
 
-      <div className="controls" role="group" aria-label="Điều hướng slide">
-        <button type="button" aria-label="Slide trước" disabled={current === 0} onClick={() => step(-1)}>
+      <div className="controls" role="group" aria-label="Slide navigation">
+        <button type="button" aria-label="Previous slide" disabled={current === 0} onClick={() => step(-1)}>
           ←
         </button>
         <span id="count" aria-live="polite">
           {current + 1} / {total}
         </span>
-        <button type="button" aria-label="Slide tiếp theo" disabled={current === total - 1} onClick={() => step(1)}>
+        <button type="button" aria-label="Next slide" disabled={current === total - 1} onClick={() => step(1)}>
           →
         </button>
         <button type="button" className="txt" aria-pressed={notesOpen} onClick={() => setNotesOpen((o) => !o)}>
-          Ghi chú
+          Notes
         </button>
       </div>
     </NavContext.Provider>

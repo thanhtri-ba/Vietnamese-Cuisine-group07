@@ -7,44 +7,44 @@ export default function Slide03() {
     <Slide index={2} className="band cream" t="slide" who={0} labelledBy="t3">
       <div className="inner road-split">
         <div>
-          <h2 id="t3" data-a="slideL" style={{ "--d": ".3s", fontSize: "clamp(2rem,min(5vw,8.5vh),4rem)" } as CSSProperties}>Lộ trình thuyết trình</h2>
+          <h2 id="t3" data-a="slideL" style={{ "--d": ".3s", fontSize: "clamp(2rem,min(5vw,8.5vh),4rem)" } as CSSProperties}>Presentation roadmap</h2>
           <ol className="road v" data-st="pop" style={{ "--base": ".9s" } as CSSProperties}>
             <li style={{ "--i": "0" } as CSSProperties}>
               <em>Hải</em>
-              <b>Triết lý ẩm thực</b>
-              <span>Sự cân bằng, nước mắm, rau thơm</span>
+              <b>Food philosophy</b>
+              <span>Balance, fish sauce and fresh herbs</span>
             </li>
             <li style={{ "--i": "1" } as CSSProperties}>
               <em>Trung</em>
-              <b>Ẩm thực ba miền</b>
-              <span>Miền Bắc, miền Trung, miền Nam</span>
+              <b>Three regional cuisines</b>
+              <span>The North, the Center and the South</span>
             </li>
             <li style={{ "--i": "2" } as CSSProperties}>
               <em>Khoa</em>
-              <b>Câu chuyện cơm tấm</b>
-              <span>Nguồn gốc và các nguyên liệu</span>
+              <b>The story of cơm tấm</b>
+              <span>Its origins and ingredients</span>
             </li>
             <li style={{ "--i": "3" } as CSSProperties}>
               <em>Liên</em>
-              <b>Cân bằng & Chế biến</b>
-              <span>Cách nấu và các món ăn kèm</span>
+              <b>Balance & preparation</b>
+              <span>How it is cooked and what comes with it</span>
             </li>
             <li style={{ "--i": "4" } as CSSProperties}>
               <em>Trí</em>
-              <b>Sườn nướng than hoa</b>
-              <span>Ướp vị, nướng than và các loại sườn</span>
+              <b>Charcoal-grilled pork ribs</b>
+              <span>The marinade, the grill and the cuts of pork</span>
             </li>
             <li style={{ "--i": "5" } as CSSProperties}>
               <em>Đức</em>
-              <b>Thưởng thức đúng điệu</b>
-              <span>Cách gọi món, câu đố và tổng kết</span>
+              <b>Eat like a local</b>
+              <span>Ordering, a quiz and the conclusion</span>
             </li>
           </ol>
         </div>
         <figure className="frame">
           <span className="tape l" aria-hidden="true"></span>
           <span className="tape r" aria-hidden="true"></span>
-          <img src="img/comtam-plate.webp" alt="Hình minh họa đĩa cơm tấm Sài Gòn đầy đủ sườn bì chả trứng" />
+          <img src="img/comtam-plate.webp" alt="Illustration of a full plate of cơm tấm with grilled pork, shredded pork skin, egg meatloaf and a fried egg" />
           <figcaption>Cơm tấm Sài Gòn</figcaption>
         </figure>
       </div>

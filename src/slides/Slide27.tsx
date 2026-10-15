@@ -18,29 +18,29 @@ export default function Slide27() {
         <span className="flame" style={{ "--i": "6" } as CSSProperties}></span>
       </div>
       <div className="inner">
-        <h2 id="t24b" data-letters style={{ "--d": ".3s" } as CSSProperties} aria-label="Bí quyết nước sốt ướp sườn"><SplitText text="Bí quyết nước sốt ướp sườn" start={0} /></h2>
+        <h2 id="t24b" data-letters style={{ "--d": ".3s" } as CSSProperties} aria-label="Secrets of the marinade"><SplitText text="Secrets of the marinade" start={0} /></h2>
         <div className="marinade-grid">
         <div className="roles" data-st="slideR" style={{ "--base": "1s" } as CSSProperties}>
           <div style={{ "--i": "0" } as CSSProperties}>
-            <b>Sả · tỏi · hành tím</b>
-            <span>dậy mùi thơm lừng quyến rũ</span>
+            <b>Lemongrass · garlic · shallots</b>
+            <span>an irresistible aroma</span>
           </div>
           <div style={{ "--i": "1" } as CSSProperties}>
-            <b>Nước mắm ngon</b>
-            <span>vị đậm đà, hậu ngọt tự nhiên</span>
+            <b>Good fish sauce</b>
+            <span>a deep, savory taste with a natural sweet finish</span>
           </div>
           <div style={{ "--i": "2" } as CSSProperties}>
-            <b>Đường & mật ong</b>
-            <span>vị ngọt thanh và caramel hóa vàng óng khi nướng</span>
+            <b>Sugar & honey</b>
+            <span>a gentle sweetness that caramelizes to gold on the grill</span>
           </div>
           <div style={{ "--i": "3" } as CSSProperties}>
-            <b>Sữa đặc có đường</b>
-            <span>giúp thớ thịt mềm ngọt mọng nước và lên màu nâu cánh gián</span>
+            <b>Sweetened condensed milk</b>
+            <span>makes the meat tender and juicy with a deep golden-brown color</span>
           </div>
         </div>
-        <Photo src="uop-suon.webp" alt="Sườn đang ướp với tỏi, sả và gia vị trong thau" caption="Ướp sườn" sub="để qua đêm cho thấm" h="30vh" tilt="r" tape delay=".8s" />
+        <Photo src="uop-suon.webp" alt="Pork ribs marinating in a bowl with garlic, lemongrass and spices" caption="Marinating the ribs" sub="left overnight to soak in" h="30vh" tilt="r" tape delay=".8s" />
         </div>
-        <VideoLoader data-a="fadeUp" style={{ "--d": "1.8s" } as CSSProperties} note="Mật ong và sữa đặc chính là bí quyết giúp sườn mềm ngọt, lên màu nâu óng chuẩn vị Sài Gòn." />
+        <VideoLoader data-a="fadeUp" style={{ "--d": "1.8s" } as CSSProperties} note="Honey and condensed milk are the secret to tender, sweet ribs with that glossy, golden-brown Saigon style." />
       </div>
     </Slide>
   );

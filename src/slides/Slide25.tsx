@@ -6,9 +6,9 @@ export default function Slide25() {
   return (
     <Slide index={24} className="band leaf" t="wipe" who={4} labelledBy="t23">
       <div className="inner">
-        <h2 id="t23" data-a="slideL" style={{ "--d": ".5s" } as CSSProperties}>Nước mắm pha & mỡ hành</h2>
+        <h2 id="t23" data-a="slideL" style={{ "--d": ".5s" } as CSSProperties}>Dipping fish sauce & scallion oil</h2>
         <div className="recipe">
-          <svg className="glass" viewBox="0 0 120 170" role="img" aria-label="Tỷ lệ pha nước mắm: 6 nước ấm, 3 đường, 3 nước mắm, 1 nước cốt chanh" data-a="fadeUp" style={{ "--d": ".5s" } as CSSProperties}>
+          <svg className="glass" viewBox="0 0 120 170" role="img" aria-label="Sauce ratio: 6 parts warm water, 3 sugar, 3 fish sauce, 1 lime juice" data-a="fadeUp" style={{ "--d": ".5s" } as CSSProperties}>
             <defs>
               <clipPath id="glass-clip">
                 <path d="M14 10 h92 l-10 150 h-72z"></path>
@@ -23,24 +23,24 @@ export default function Slide25() {
             <path d="M14 10 h92 l-10 150 h-72z" fill="none" stroke="#165D3A" strokeWidth="3"></path>
           </svg>
           <div>
-            <p className="eyebrow">Công thức nước mắm chua ngọt chuẩn vị</p>
+            <p className="eyebrow">The classic sweet-and-sour fish sauce recipe</p>
             <ul className="measure" data-st="slideR" style={{ "--base": ".9s", marginTop: "10px" } as CSSProperties}>
-              <li style={{ "--i": "0" } as CSSProperties}><i style={{ background: "#E8F1F2", outline: "1px solid #165D3A" } as CSSProperties}></i><b>6 muỗng</b>nước ấm</li>
-              <li style={{ "--i": "1" } as CSSProperties}><i style={{ background: "#FFF6E2", outline: "1px solid #165D3A" } as CSSProperties}></i><b>3 muỗng</b>đường</li>
-              <li style={{ "--i": "2" } as CSSProperties}><i style={{ background: "#C98A2B" } as CSSProperties}></i><b>3 muỗng</b>nước mắm ngon</li>
-              <li style={{ "--i": "3" } as CSSProperties}><i style={{ background: "#A1CB47" } as CSSProperties}></i><b>1 muỗng</b>nước cốt chanh</li>
-              <li style={{ "--i": "4" } as CSSProperties}><i style={{ background: "#D93A2B" } as CSSProperties}></i><b>Tùy khẩu vị</b>tỏi và ớt băm nhuyễn</li>
+              <li style={{ "--i": "0" } as CSSProperties}><i style={{ background: "#E8F1F2", outline: "1px solid #165D3A" } as CSSProperties}></i><b>6 tbsp</b>warm water</li>
+              <li style={{ "--i": "1" } as CSSProperties}><i style={{ background: "#FFF6E2", outline: "1px solid #165D3A" } as CSSProperties}></i><b>3 tbsp</b>sugar</li>
+              <li style={{ "--i": "2" } as CSSProperties}><i style={{ background: "#C98A2B" } as CSSProperties}></i><b>3 tbsp</b>good fish sauce</li>
+              <li style={{ "--i": "3" } as CSSProperties}><i style={{ background: "#A1CB47" } as CSSProperties}></i><b>1 tbsp</b>lime juice</li>
+              <li style={{ "--i": "4" } as CSSProperties}><i style={{ background: "#D93A2B" } as CSSProperties}></i><b>To taste</b>finely minced garlic and chili</li>
             </ul>
           </div>
           <div className="oil" data-a="flipY" style={{ "--d": "1.6s" } as CSSProperties}>
             <img className="oil-photo" src="img/photos/nuoc-mam-hanh-phi.webp" alt="A bowl of fish sauce with chili next to a bowl of scallion oil" />
-            <h3>Mỡ hành béo ngậy</h3>
+            <h3>Rich scallion oil</h3>
             <ol>
-              <li>Đun sôi dầu ăn (hoặc mỡ heo).</li>
-              <li>Tắt bếp khi dầu vừa nóng già.</li>
-              <li>Đổ vào chén hành lá thái nhỏ cùng chút xíu muối để giữ sắc xanh.</li>
+              <li>Heat cooking oil (or pork fat).</li>
+              <li>Turn off the heat once the oil is very hot.</li>
+              <li>Pour it over chopped spring onions with a pinch of salt to keep them green.</li>
             </ol>
-            <p style={{ fontSize: ".9rem", color: "var(--sage)" } as CSSProperties}>Hai loại gia vị linh hồn này kết nối trọn vẹn mọi hương vị của đĩa cơm.</p>
+            <p style={{ fontSize: ".9rem", color: "var(--sage)" } as CSSProperties}>These two essential toppings tie together every flavor on the plate.</p>
           </div>
         </div>
       </div>

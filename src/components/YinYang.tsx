@@ -126,7 +126,7 @@ export default function YinYang() {
 
   return (
     <div className="yy-stage" ref={stage}>
-      <svg ref={wheel} className="yy yy-roll" viewBox="0 0 200 200" role="img" aria-label="Biểu tượng âm dương lăn qua lại giữa hàn và nhiệt — có thể kéo bằng chuột">
+      <svg ref={wheel} className="yy yy-roll" viewBox="0 0 200 200" role="img" aria-label="A yin-yang symbol rolling between cooling and warming; you can drag it with the mouse">
         <circle cx="100" cy="100" r="98" fill="var(--cream)" stroke="var(--forest)" strokeWidth="4"></circle>
         <path d="M100 2 A98 98 0 0 1 100 198 A49 49 0 0 1 100 100 A49 49 0 0 0 100 2Z" fill="var(--forest)"></path>
         <circle cx="100" cy="51" r="13" fill="var(--forest)"></circle>
@@ -137,7 +137,7 @@ export default function YinYang() {
         <i className="h" />
       </div>
       <div className="yy-fulcrum" aria-hidden="true" />
-      <p className="yy-hint" aria-hidden="true">kéo thử ⇆</p>
+      <p className="yy-hint" aria-hidden="true">drag me ⇆</p>
     </div>
   );
 }

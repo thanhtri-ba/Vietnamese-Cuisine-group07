@@ -7,26 +7,26 @@ export default function Slide23() {
     <Slide index={22} className="band cream" t="zoom" who={4} labelledBy="t21b">
       <img className="sil" src="img/i4.webp" alt="" style={{ right: "2%", top: "20px" } as CSSProperties} />
       <div className="inner">
-        <p className="eyebrow accent" data-a="fadeDown" style={{ "--d": ".3s" } as CSSProperties}>Chi tiết nhỏ làm nên khác biệt lớn</p>
-        <h2 id="t21b" data-a="skewIn" style={{ "--d": ".4s", marginTop: "8px" } as CSSProperties}>Các món ăn kèm đặc trưng</h2>
+        <p className="eyebrow accent" data-a="fadeDown" style={{ "--d": ".3s" } as CSSProperties}>Small details, big difference</p>
+        <h2 id="t21b" data-a="skewIn" style={{ "--d": ".4s", marginTop: "8px" } as CSSProperties}>The signature side dishes</h2>
         <div className="sides" data-st="swing" style={{ "--base": ".9s" } as CSSProperties}>
           <article style={{ "--i": "0" } as CSSProperties}>
             <img className="side-photo" src="img/photos/do-chua.webp" alt="A glass jar of pickled carrot and white radish" />
-            <h3>Đồ chua <span>Thanh mát & Giòn tan</span></h3>
+            <h3>Đồ chua <span>Pickles · fresh & crunchy</span></h3>
             <ul>
-              <li>Cà rốt và củ cải trắng bào sợi</li>
-              <li>Ngâm giấm đường chua ngọt dịu</li>
-              <li>Chua ngọt hài hòa, giòn rụm sảng khoái</li>
-              <li>Giải ngấy tuyệt đối khi ăn cùng sườn nướng</li>
+              <li>Shredded carrot and daikon</li>
+              <li>Soaked in a mild sweet-and-sour vinegar</li>
+              <li>Balanced, sweet, sour and refreshingly crunchy</li>
+              <li>Cuts through the richness of the grilled pork</li>
             </ul>
           </article>
           <article style={{ "--i": "1" } as CSSProperties}>
-            <img className="side-photo" src="img/photos/bi.webp" alt="Bì heo trộn thính trong chén" />
-            <h3>Bì heo <span>Thơm bùi & Dai giòn</span></h3>
+            <img className="side-photo" src="img/photos/bi.webp" alt="A bowl of shredded pork skin with toasted rice powder" />
+            <h3>Bì heo <span>Pork skin · nutty & chewy</span></h3>
             <ul>
-              <li>Da heo luộc chín, lạng mỏng thái sợi đều tay</li>
-              <li>Trộn đều cùng <i>thính gạo rang vàng</i> thơm nức</li>
-              <li>Sần sật, bùi béo và dậy mùi thơm dân dã</li>
+              <li>Boiled pork skin, sliced into thin, even strips</li>
+              <li>Mixed with fragrant, golden <i>thính</i> (toasted rice powder)</li>
+              <li>Chewy, rich and full of rustic aroma</li>
             </ul>
           </article>
         </div>

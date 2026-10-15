@@ -7,8 +7,8 @@ const SPOT: Record<Spot, { x: number; y: number; name: string }> = {
   hn: CITY.hn,
   hue: CITY.hue,
   hcm: CITY.hcm,
-  sea: { x: 330, y: 40, name: 'Biển Đông' },
-  world: { x: 470, y: 300, name: 'Thế giới' },
+  sea: { x: 330, y: 40, name: 'East Sea' },
+  world: { x: 470, y: 300, name: 'The world' },
 };
 
 export interface Flight {
@@ -20,13 +20,13 @@ export interface Flight {
 
 /** Chuyển cảnh giữa các slide vùng miền: from-to = chỉ số slide (0-based). */
 export const FLIGHTS: Record<string, Flight> = {
-  '10-11': { from: 'sea', to: 'hn', title: 'Miền Bắc' },
-  '11-12': { from: 'hn', to: 'hue', title: 'Miền Trung' },
-  '12-13': { from: 'hue', to: 'hcm', title: 'Miền Nam' },
-  '13-14': { from: 'hcm', to: 'world', title: 'Vươn ra thế giới' },
-  '12-11': { from: 'hue', to: 'hn', title: 'Miền Bắc' },
-  '13-12': { from: 'hcm', to: 'hue', title: 'Miền Trung' },
-  '14-13': { from: 'world', to: 'hcm', title: 'Miền Nam' },
+  '10-11': { from: 'sea', to: 'hn', title: 'The North' },
+  '11-12': { from: 'hn', to: 'hue', title: 'The Center' },
+  '12-13': { from: 'hue', to: 'hcm', title: 'The South' },
+  '13-14': { from: 'hcm', to: 'world', title: 'To the world' },
+  '12-11': { from: 'hue', to: 'hn', title: 'The North' },
+  '13-12': { from: 'hcm', to: 'hue', title: 'The Center' },
+  '14-13': { from: 'world', to: 'hcm', title: 'The South' },
 };
 
 /** Tổng thời gian & thời điểm đổi slide bên dưới (ms) — Deck dùng 2 số này. */

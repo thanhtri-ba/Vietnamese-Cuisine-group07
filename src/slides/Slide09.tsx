@@ -9,15 +9,15 @@ export default function Slide09() {
       <div className="inner split">
         <Photo src="nuoc-mam-phu-quoc.webp" alt="A bottle of Phú Quốc fish sauce with anchovies and chili by the sea" caption="Nước mắm Phú Quốc" h="58vh" tilt="l" tape delay=".3s" />
         <div className="copy">
-          <h2 id="t8" data-a="slideR" style={{ "--d": ".5s" } as CSSProperties}>Nước mắm: linh hồn ẩm thực Việt</h2>
+          <h2 id="t8" data-a="slideR" style={{ "--d": ".5s" } as CSSProperties}>Fish sauce: the soul of Vietnamese cooking</h2>
           <div className="chips" data-st="pop" style={{ "--base": "1s" } as CSSProperties}>
-            <span className="chip" style={{ "--i": "0" } as CSSProperties}>Ướp thịt<small>ngấm sâu vị ngọt</small></span>
-            <span className="chip" style={{ "--i": "1" } as CSSProperties}>Nêm nếm<small>đậm đà nước dùng</small></span>
-            <span className="chip" style={{ "--i": "2" } as CSSProperties}>Nước chấm<small>pha chua ngọt hài hòa</small></span>
+            <span className="chip" style={{ "--i": "0" } as CSSProperties}>Marinating<small>deep, savory sweetness</small></span>
+            <span className="chip" style={{ "--i": "1" } as CSSProperties}>Seasoning<small>richer broths</small></span>
+            <span className="chip" style={{ "--i": "2" } as CSSProperties}>Dipping<small>a balanced sweet-and-sour dip</small></span>
           </div>
           <div data-a="fadeUp" style={{ "--d": "1.5s" } as CSSProperties}>
             <p className="year">2012</p>
-            <p className="lede">Nước mắm Phú Quốc trở thành sản phẩm đầu tiên của Việt Nam được Liên minh Châu Âu (EU) công nhận và bảo hộ chỉ dẫn địa lý.</p>
+            <p className="lede">Phú Quốc fish sauce was the first Vietnamese product to receive geographical indication protection from the European Union (EU).</p>
           </div>
         </div>
       </div>
