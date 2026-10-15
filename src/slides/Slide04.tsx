@@ -221,7 +221,7 @@ export default function Slide04() {
         <rect width="1600" height="900" fill="url(#fl-vig)"></rect>
       </svg>
       <div className="inner">
-        <p className="eyebrow accent" data-a="fadeDown" style={{ "--d": ".5s" } as CSSProperties}>MICHELIN Guide · Hà Nội & Hồ Chí Minh City</p>
+        <p className="eyebrow accent" data-a="fadeDown" style={{ "--d": ".5s" } as CSSProperties}>MICHELIN Guide · Hanoi & Ho Chi Minh City</p>
         <h2 id="t4" data-a="skewIn" style={{ "--d": ".6s", marginTop: "10px" } as CSSProperties}>Vietnamese cuisine on the world map</h2>
         <div className="stats" data-st="zoomIn" style={{ "--base": "1s" } as CSSProperties}>
           <div className="stat" style={{ "--i": "0" } as CSSProperties}>
@@ -243,8 +243,8 @@ export default function Slide04() {
         <p className="closing-q" data-a="fadeUp" style={{ "--d": "2.2s" } as CSSProperties}>So what makes Vietnamese food so special?</p>
       </div>
       <div className="star-ex pinned">
-        <Photo src="tam-vi.webp" alt="The glowing round sign of Tầm Vị restaurant in Hanoi at night" h="15vh" tilt="l" delay="1.9s" />
-        <p data-a="fadeUp" style={{ "--d": "2s" } as CSSProperties}>One of the four restaurants awarded a Michelin star in 2023: <b>Tầm Vị</b> (Hà Nội).</p>
+        <Photo src="tam-vi.webp" alt="The glowing round sign of Tam Vi restaurant in Hanoi at night" h="15vh" tilt="l" delay="1.9s" />
+        <p data-a="fadeUp" style={{ "--d": "2s" } as CSSProperties}>One of the four restaurants awarded a Michelin star in 2023: <b>Tam Vi</b> (Hanoi).</p>
       </div>
     </Slide>
   );

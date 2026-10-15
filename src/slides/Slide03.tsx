@@ -21,7 +21,7 @@ export default function Slide03() {
             </li>
             <li style={{ "--i": "2" } as CSSProperties}>
               <em>Khoa</em>
-              <b>The story of cơm tấm</b>
+              <b>The story of broken rice</b>
               <span>Its origins and ingredients</span>
             </li>
             <li style={{ "--i": "3" } as CSSProperties}>
@@ -44,8 +44,8 @@ export default function Slide03() {
         <figure className="frame">
           <span className="tape l" aria-hidden="true"></span>
           <span className="tape r" aria-hidden="true"></span>
-          <img src="img/comtam-plate.webp" alt="Illustration of a full plate of cơm tấm with grilled pork, shredded pork skin, egg meatloaf and a fried egg" />
-          <figcaption>Cơm tấm Sài Gòn</figcaption>
+          <img src="img/comtam-plate.webp" alt="Illustration of a full plate of broken rice with grilled pork, shredded pork skin, egg meatloaf and a fried egg" />
+          <figcaption>Saigon broken rice</figcaption>
         </figure>
       </div>
     </Slide>

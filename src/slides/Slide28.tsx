@@ -12,7 +12,7 @@ export default function Slide28() {
           <article style={{ "--i": "0" } as CSSProperties}>
             <strong>Pork chop</strong>
             <em>The most popular</em>
-            <span>A wide cut with a little bone on the edge, grilled for that classic cơm tấm flavor.</span>
+            <span>A wide cut with a little bone on the edge, grilled for that classic broken rice flavor.</span>
           </article>
           <article style={{ "--i": "1" } as CSSProperties}>
             <strong>Baby ribs</strong>
@@ -27,10 +27,10 @@ export default function Slide28() {
         </div>
         <p className="eyebrow" data-a="fadeUp" style={{ "--d": "1.7s", marginTop: "clamp(16px,3vh,28px)" } as CSSProperties}>Extra toppings to complete your plate</p>
         <div className="chips" data-st="pop" style={{ "--base": "1.9s", marginTop: "10px" } as CSSProperties}>
-          <span className="chip" style={{ "--i": "0" } as CSSProperties}>Lạp xưởng (sausage)<small>fried until golden, sweet and fragrant</small></span>
-          <span className="chip" style={{ "--i": "1" } as CSSProperties}>Gà nướng (grilled chicken)<small>honey-marinated grilled chicken thigh</small></span>
-          <span className="chip" style={{ "--i": "2" } as CSSProperties}>Trứng ốp la (fried egg)<small>with a rich, runny yolk</small></span>
-          <span className="chip" style={{ "--i": "3" } as CSSProperties}>Chả trứng (egg meatloaf)<small>steamed until golden, soft and fragrant</small></span>
+          <span className="chip" style={{ "--i": "0" } as CSSProperties}>Chinese sausage<small>fried until golden, sweet and fragrant</small></span>
+          <span className="chip" style={{ "--i": "1" } as CSSProperties}>Grilled chicken<small>honey-marinated grilled chicken thigh</small></span>
+          <span className="chip" style={{ "--i": "2" } as CSSProperties}>Fried egg<small>with a rich, runny yolk</small></span>
+          <span className="chip" style={{ "--i": "3" } as CSSProperties}>Egg meatloaf<small>steamed until golden, soft and fragrant</small></span>
         </div>
       </div>
     </Slide>

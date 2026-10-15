@@ -3,10 +3,10 @@ import Slide from '../components/Slide';
 import SplitText from '../components/SplitText';
 import IntroRunner from '../components/IntroRunner';
 
-/** Slide 1: Vietnamese Cuisine: Cơm tấm Sài Gòn */
+/** Slide 1: Vietnamese Cuisine: Saigon Broken Rice */
 export default function Slide01() {
   return (
-    <Slide index={0} className="band cream cover" t="fade" who={0} label="Vietnamese Cuisine: Cơm tấm Sài Gòn">
+    <Slide index={0} className="band cream cover" t="fade" who={0} label="Vietnamese Cuisine: Saigon Broken Rice">
       <div className="cover-bg" aria-hidden="true">
         <img src="img/comtam-layers.webp" alt="" />
       </div>
@@ -14,7 +14,7 @@ export default function Slide01() {
         <div className="cover-text">
           <p className="eyebrow" data-a="fadeDown" style={{ "--d": ".2s" } as CSSProperties} aria-label="Introducing Vietnam · Group 7"><span><SplitText text="Introducing Vietnam · Group 7" start={0} /></span></p>
           <h1 data-letters style={{ "--d": ".35s", marginTop: "14px" } as CSSProperties} aria-label="Vietnamese Cuisine"><span><SplitText text="Vietnamese" start={0} /></span><span><SplitText text="Cuisine" start={11} /></span></h1>
-          <p className="sub" data-a="slideL" style={{ "--d": "1.1s" } as CSSProperties} aria-label="Cơm tấm Sài Gòn · Saigon broken rice"><SplitText text="Cơm tấm Sài Gòn" start={0} /></p>
+          <p className="sub" data-a="slideL" style={{ "--d": "1.1s" } as CSSProperties} aria-label="Saigon Broken Rice"><SplitText text="Saigon Broken Rice" start={0} /></p>
           <ul className="members" data-st="pop" style={{ "--base": "1.4s" } as CSSProperties}>
             <li style={{ "--i": "0" } as CSSProperties}>Group 7</li>
             <li style={{ "--i": "1" } as CSSProperties}>Hòa</li>

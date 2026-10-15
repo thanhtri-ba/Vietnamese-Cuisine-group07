@@ -30,7 +30,7 @@ export default function Slide08() {
             </div>
           </div>
           <div className="yy-row">
-            <Photo src="kho-qua.webp" alt="Watercolor of bitter melon soup and braised pork" caption="Canh khổ qua" h="12vh" w="20vh" tilt="r" delay="1.7s" />
+            <Photo src="kho-qua.webp" alt="Watercolor of bitter melon soup and braised pork" caption="Bitter melon soup" h="12vh" w="20vh" tilt="r" delay="1.7s" />
             <p className="lede" data-a="fadeUp" style={{ "--d": "2s" } as CSSProperties}>This folk wisdom shows how thoughtfully Vietnamese people care for their health through food.</p>
           </div>
         </div>

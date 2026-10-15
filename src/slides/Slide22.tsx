@@ -7,7 +7,7 @@ export default function Slide22() {
   return (
     <Slide index={21} className="band cream" t="slide" who={4} labelledBy="t21">
       <div className="inner">
-        <h2 id="t21" data-a="fadeDown" style={{ "--d": ".2s" } as CSSProperties}>Balance on a plate of cơm tấm</h2>
+        <h2 id="t21" data-a="fadeDown" style={{ "--d": ".2s" } as CSSProperties}>Balance on a plate of broken rice</h2>
         <div className="balance-grid">
         <div>
         <div className="pairs">
@@ -29,7 +29,7 @@ export default function Slide22() {
         </div>
         <p className="purpose" data-a="zoomIn" style={{ "--d": "1.8s" } as CSSProperties}>Every ingredient plays its part perfectly.</p>
         </div>
-        <Photo src="com-tam.webp" alt="Fish sauce being poured over a plate of cơm tấm with grilled pork and egg" h="46vh" tilt="r" tape delay=".6s" />
+        <Photo src="com-tam.webp" alt="Fish sauce being poured over a plate of broken rice with grilled pork and egg" h="46vh" tilt="r" tape delay=".6s" />
         </div>
       </div>
     </Slide>

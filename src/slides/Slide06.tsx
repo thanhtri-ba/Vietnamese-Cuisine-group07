@@ -9,7 +9,7 @@ export default function Slide06() {
     <Slide index={5} className="band cream" t="up" who={1} labelledBy="t6">
       <img className="sil" src="img/i12.webp" alt="" style={{ left: "2%", top: "40px" } as CSSProperties} />
       <div className="inner split split-photo">
-        <Photo src="bun-cha.webp" alt="Bún chả: grilled pork in dipping sauce with rice noodles and herbs" caption="Bún chả Hà Nội" h="60vh" tilt="l" tape delay=".4s" />
+        <Photo src="bun-cha.webp" alt="Grilled pork noodles: grilled pork in dipping sauce with rice noodles and herbs" caption="Hanoi grilled pork noodles" h="60vh" tilt="l" tape delay=".4s" />
         <div className="copy" style={{ textAlign: "center" } as CSSProperties}>
         <p className="eyebrow accent" data-a="fadeDown" style={{ "--d": ".2s" } as CSSProperties}>Vietnamese food in one word</p>
         <h2 id="t6" data-letters style={{ "--d": ".3s", marginTop: "10px", fontSize: "clamp(2rem,min(4.4vw,8vh),3.8rem)" } as CSSProperties} aria-label="The philosophy of balance"><SplitText text="The philosophy of balance" start={0} /></h2>
@@ -28,7 +28,7 @@ export default function Slide06() {
           </div>
           <div className="pivot"></div>
         </div>
-        <p className="example" data-a="fadeUp" style={{ "--d": "2.6s" } as CSSProperties}>Example: <b>bún chả</b> · grilled pork + fresh herbs + pickles + dipping sauce</p>
+        <p className="example" data-a="fadeUp" style={{ "--d": "2.6s" } as CSSProperties}>Example: <b>grilled pork noodles</b> · grilled pork + fresh herbs + pickles + dipping sauce</p>
         </div>
       </div>
     </Slide>

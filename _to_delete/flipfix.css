@@ -1,0 +1,8 @@
+
+/* slide 20: thẻ thành phần thẳng hàng — tiêu đề, ảnh, mô tả cùng một độ cao ở mọi thẻ */
+.flips .flip .f{justify-content:flex-start}
+.flips .flip .f strong{white-space:nowrap;font-size:clamp(1rem,min(1.6vw,4.2vh),2rem);line-height:1.12;min-height:1.12em}
+.flips .flip .f em{line-height:1.35;min-height:2.7em;display:block}
+.flips .flip .f small{margin-top:auto}
+.flips .flip .f > *{flex:none}
+.flips .flip .f .card-photo{height:clamp(64px,13vh,120px)}

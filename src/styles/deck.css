@@ -1087,3 +1087,55 @@ h1,h2,h3{line-height:1.1}
 .ctx .cp-scissors .bl.b{animation:snipB .18s ease-in-out infinite alternate}
 @keyframes snipA{from{rotate:-8deg}to{rotate:2deg}}
 @keyframes snipB{from{rotate:8deg}to{rotate:-2deg}}
+
+/* English title is longer: keep "VIETNAMESE" clear of the cover illustration */
+.cover h1{font-size:clamp(3.2rem,min(7.6vw,14vh),7.2rem)}
+
+/* slide 20: thẻ thành phần thẳng hàng — tiêu đề, ảnh, mô tả cùng một độ cao ở mọi thẻ */
+.flips .flip .f{justify-content:flex-start}
+.flips .flip .f strong{white-space:nowrap;font-size:clamp(1rem,min(1.6vw,4.2vh),2rem);line-height:1.12;min-height:1.12em}
+.flips .flip .f em{line-height:1.35;min-height:2.7em;display:block}
+.flips .flip .f small{margin-top:auto}
+.flips .flip .f > *{flex:none}
+.flips .flip .f .card-photo{height:clamp(64px,13vh,120px)}
+
+/* ================= slide 32: nhân vật ngồi trên ảnh/chữ + công an đuổi hộp chữ ================= */
+.finale-party{position:absolute;inset:0;z-index:6;pointer-events:none;overflow:hidden}
+.finale-party .yy-runner{transition:opacity .2s ease}
+.finale-party .cp{position:absolute;left:0;top:0;opacity:0;transition:opacity .15s ease}
+.finale-party .cp.on{opacity:1}
+.finale-party .yy-runner svg{filter:drop-shadow(0 0 1.5px var(--cream)) drop-shadow(0 4px 4px rgba(0,0,0,.35))}
+/* ngồi đung đưa chân, vẫy tay */
+.finale-party .sit .yr-leg.a{animation:fpSwing .7s ease-in-out infinite alternate}
+.finale-party .sit .yr-leg.b{animation:fpSwing .7s ease-in-out -.35s infinite alternate}
+@keyframes fpSwing{from{transform:rotate(-88deg)}to{transform:rotate(-52deg)}}
+.finale-party .sit .yr-arms-swing .sb{animation:fpWave .45s ease-in-out infinite alternate}
+@keyframes fpWave{from{transform:rotate(-140deg)}to{transform:rotate(-185deg)}}
+.finale-party .sit .yr-shadow,.finale-party .cheer .yr-shadow{display:none}
+.finale-party .cheer .yr-arms-swing{display:none}
+.finale-party .cheer .yr-arms-up{display:inline}
+/* công an */
+.yy-runner.police path,.yy-runner.police line{stroke:#4f6a2b}
+.yy-runner.police .yr-scarf{display:none}
+.yy-runner.police .yr-band{display:none}
+.yy-runner .yr-cap .crown{fill:#6f8c3a;stroke:#3c5220;stroke-width:1.8}
+.yy-runner .yr-cap .cband{stroke:#c62828;stroke-width:2.6}
+.yy-runner .yr-cap .visor{fill:#2f3d1a;stroke:#2f3d1a;stroke-width:1}
+.yy-runner .yr-cap .badge{fill:#f2c230;stroke:#c62828;stroke-width:.8}
+.yy-runner.police .yr-head{stroke:#3c5220}
+/* hộp chữ mọc chân */
+.band.finale-run .chips .chip{position:relative}
+.band.finale-run .chips .chip::before,.band.finale-run .chips .chip::after{content:"";position:absolute;bottom:-17px;width:5px;height:19px;background:var(--leaf);border-radius:3px;transform-origin:50% 0;animation:fpChipLeg .16s ease-in-out infinite alternate}
+.band.finale-run .chips .chip::before{left:32%}
+.band.finale-run .chips .chip::after{left:62%;animation-direction:alternate-reverse}
+@keyframes fpChipLeg{from{transform:rotate(-32deg)}to{transform:rotate(32deg)}}
+@media (prefers-reduced-motion:reduce){.finale-party{display:none}}
+/* người vác hộp chữ: giơ hai tay, chân chạy */
+.finale-party .lift .yr-arms-swing,.finale-party .carry .yr-arms-swing{display:none}
+.finale-party .lift .yr-arms-up,.finale-party .carry .yr-arms-up{display:inline}
+.finale-party .carry .yr-leg.a{animation:yrLeg .26s ease-in-out infinite alternate}
+.finale-party .carry .yr-leg.b{animation:yrLeg .26s ease-in-out infinite alternate-reverse}
+.finale-party .carry .yr-body{animation:yrBob .13s ease-in-out infinite alternate}
+
+/* slide cuối: gỡ chip người nói + thanh điều khiển */
+html.on-last .who,html.on-last .controls{opacity:0;visibility:hidden;pointer-events:none;transition:opacity .3s ease,visibility 0s linear .3s}

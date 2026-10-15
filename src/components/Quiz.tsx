@@ -10,9 +10,9 @@ interface Question {
 }
 
 const QUESTIONS: Question[] = [
-  { img: 'gao-tam.webp', q: 'What does “tấm” in cơm tấm mean?', options: ['Broken rice grains', 'Grilled pork ribs', 'Fish sauce'], answer: 0, explain: '“Tấm” means rice grains that broke during milling.' },
+  { img: 'gao-tam.webp', q: 'What is “broken rice”?', options: ['Rice grains broken during milling', 'Grilled pork ribs', 'Fish sauce'], answer: 0, explain: 'Broken rice is made from grains that break during milling.' },
   { img: 'suon-cay.webp', q: 'Which ingredient makes the grilled ribs tender, sweet and golden?', options: ['Soy sauce', 'Condensed milk', 'Vinegar'], answer: 1, explain: 'Condensed milk tenderizes the meat and gives it a glossy golden-brown color.' },
-  { img: 'com-tam-ve.webp', q: 'How do you ask for more rice?', options: ['“Thêm trứng”', '“Nhiều mỡ hành”', '“Cơm thêm”'], answer: 2, explain: '“Cơm thêm” is the usual way to ask for another serving of rice.' },
+  { img: 'com-tam-ve.webp', q: 'How do you ask for more rice?', options: ['“Thêm trứng” (Add an egg)', '“Nhiều mỡ hành” (More scallion oil)', '“Cơm thêm” (More rice)'], answer: 2, explain: '“Cơm thêm” is the usual way to ask for another serving of rice.' },
 ];
 
 type Props = { style?: CSSProperties; 'data-st'?: string };

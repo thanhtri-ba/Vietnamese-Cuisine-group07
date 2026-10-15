@@ -20,7 +20,7 @@ export default function Slide26() {
         <span className="flame" style={{ "--i": "8" } as CSSProperties}></span>
       </div>
       <div className="inner">
-        <p className="eyebrow accent" data-a="fadeDown" style={{ "--d": ".6s" } as CSSProperties}>The star of cơm tấm</p>
+        <p className="eyebrow accent" data-a="fadeDown" style={{ "--d": ".6s" } as CSSProperties}>The star of broken rice</p>
         <h2 id="t24" data-a="zoomOut" style={{ "--d": ".7s", marginTop: "8px" } as CSSProperties}>4 steps to perfect grilled ribs</h2>
         <ol className="steps4" data-st="flipX" style={{ "--base": "1.2s" } as CSSProperties}>
           <li style={{ "--i": "0" } as CSSProperties}>

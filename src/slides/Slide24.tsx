@@ -2,12 +2,12 @@ import type { CSSProperties } from 'react';
 import Slide from '../components/Slide';
 import SplitText from '../components/SplitText';
 
-/** Slide 24: How to prepare cơm tấm */
+/** Slide 24: How to prepare broken rice */
 export default function Slide24() {
   return (
     <Slide index={23} className="band forest" t="up" who={4} labelledBy="t22">
       <div className="inner">
-        <h2 id="t22" data-letters style={{ "--d": ".3s" } as CSSProperties} aria-label="How to prepare cơm tấm"><SplitText text="How to prepare cơm tấm" start={0} /></h2>
+        <h2 id="t22" data-letters style={{ "--d": ".3s" } as CSSProperties} aria-label="How to prepare broken rice"><SplitText text="How to prepare broken rice" start={0} /></h2>
         <ol className="steps4" data-st="dropIn" style={{ "--base": "1.1s" } as CSSProperties}>
           <li style={{ "--i": "0" } as CSSProperties}>
             <img className="step-thumb" src="img/photos/uop-suon.webp" alt="Pork ribs marinating with garlic, lemongrass and spices" />
@@ -25,7 +25,7 @@ export default function Slide24() {
             <span>Steam the broken rice until fluffy, and prepare the vegetables and pickles.</span>
           </li>
           <li style={{ "--i": "3" } as CSSProperties}>
-            <img className="step-thumb" src="img/photos/com-tam-suon-bi-cha.webp" alt="A finished plate of cơm tấm" />
+            <img className="step-thumb" src="img/photos/com-tam-suon-bi-cha.webp" alt="A finished plate of broken rice" />
             <b>Plate up</b>
             <span>Arrange the plate, drizzle with glossy scallion oil and serve with sticky fish sauce.</span>
           </li>

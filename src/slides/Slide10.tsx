@@ -18,7 +18,7 @@ export default function Slide10() {
             <span className="chip" style={{ "--i": "3" } as CSSProperties}>Bean sprouts<small>fresh and crisp</small></span>
             <span className="chip" style={{ "--i": "4" } as CSSProperties}>Fresh lime<small>a bright, zesty sourness</small></span>
           </div>
-          <p className="lede" data-a="fadeUp" style={{ "--d": "1.8s" } as CSSProperties}>Fresh, fragrant and crunchy. Herbs perfectly balance the richness of grilled and fried dishes. With phở or bún, everyone can add herbs and squeeze in lime to suit their own taste.</p>
+          <p className="lede" data-a="fadeUp" style={{ "--d": "1.8s" } as CSSProperties}>Fresh, fragrant and crunchy. Herbs perfectly balance the richness of grilled and fried dishes. With pho or other noodle soups, everyone can add herbs and squeeze in lime to suit their own taste.</p>
         </div>
       </div>
     </Slide>

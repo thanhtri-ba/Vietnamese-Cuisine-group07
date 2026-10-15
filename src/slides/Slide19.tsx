@@ -2,12 +2,12 @@ import type { CSSProperties } from 'react';
 import Slide from '../components/Slide';
 import Plate from '../components/Plate';
 
-/** Slide 19: What’s on a plate of cơm tấm? */
+/** Slide 19: What’s on a plate of broken rice? */
 export default function Slide19() {
   return (
     <Slide index={18} className="band leaf" t="zoom" who={3} labelledBy="t18">
       <div className="inner">
-        <h2 id="t18" data-a="fadeDown" style={{ "--d": ".2s", fontSize: "clamp(2rem,min(5vw,8.5vh),4rem)" } as CSSProperties}>What's on a plate of cơm tấm?</h2>
+        <h2 id="t18" data-a="fadeDown" style={{ "--d": ".2s", fontSize: "clamp(2rem,min(5vw,8.5vh),4rem)" } as CSSProperties}>What's on a plate of broken rice?</h2>
         <div className="plate-split" style={{ marginTop: "clamp(12px,3vh,28px)" } as CSSProperties}>
           <div className="plate-wrap labeled"><Plate /></div>
           <div className="legend" data-st="slideR" style={{ "--base": "1.9s" } as CSSProperties}>

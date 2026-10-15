@@ -1,7 +1,7 @@
 import type { CSSProperties } from 'react';
 import Slide from '../components/Slide';
 
-/** Slide 30: Cơm tấm, all day long */
+/** Slide 30: Broken rice, all day long */
 export default function Slide30() {
   return (
     <Slide index={29} className="band forest scene" t="fade" who={6} labelledBy="t24e">
@@ -9,15 +9,15 @@ export default function Slide30() {
         <img src="img/street-shop.webp" alt="" />
       </div>
       <div className="inner">
-        <h2 id="t24e" data-a="blurIn" style={{ "--d": ".5s" } as CSSProperties}>Cơm tấm, all day long</h2>
+        <h2 id="t24e" data-a="blurIn" style={{ "--d": ".5s" } as CSSProperties}>Broken rice, all day long</h2>
         <div className="times" data-st="dropIn" style={{ "--base": ".9s" } as CSSProperties}>
           <article style={{ "--i": "0" } as CSSProperties}>
-            <img className="time-photo" src="img/photos/com-sang.webp" alt="A street-side breakfast table with plates of cơm tấm" />
+            <img className="time-photo" src="img/photos/com-sang.webp" alt="A street-side breakfast table with plates of broken rice" />
             <b>Morning</b>
             <span>A quick, energizing plate before school or work</span>
           </article>
           <article style={{ "--i": "1" } as CSSProperties}>
-            <img className="time-photo" src="img/photos/com-trua.webp" alt="Diners inside a cơm tấm restaurant at lunchtime" />
+            <img className="time-photo" src="img/photos/com-trua.webp" alt="Diners inside a broken rice restaurant at lunchtime" />
             <b>Lunch</b>
             <span>A filling, affordable and tasty lunch</span>
           </article>

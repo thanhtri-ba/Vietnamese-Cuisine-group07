@@ -12,7 +12,7 @@ export default function Slide20() {
           <FlipCard>
             <span className="in">
               <span className="f">
-                <strong>Cơm tấm</strong>
+                <strong>Broken rice</strong>
                 <img className="card-photo" src="img/photos/com-nau.webp" alt="Broken rice topped with scallion oil" />
                 <em>Soft, nutty broken rice</em>
                 <small>Tap or hover</small>
@@ -23,7 +23,7 @@ export default function Slide20() {
           <FlipCard>
             <span className="in">
               <span className="f">
-                <strong>Sườn nướng</strong>
+                <strong>Grilled ribs</strong>
                 <img className="card-photo" src="img/photos/suon-cay.webp" alt="A grilled pork chop" />
                 <em>Fragrant and full of flavor</em>
                 <small>Tap or hover</small>
@@ -34,7 +34,7 @@ export default function Slide20() {
           <FlipCard>
             <span className="in">
               <span className="f">
-                <strong>Bì</strong>
+                <strong>Pork skin</strong>
                 <img className="card-photo" src="img/photos/bi.webp" alt="Shredded pork skin with toasted rice powder" />
                 <em>Shredded pork skin with toasted rice powder</em>
                 <small>Tap or hover</small>
@@ -45,7 +45,7 @@ export default function Slide20() {
           <FlipCard>
             <span className="in">
               <span className="f">
-                <strong>Chả trứng</strong>
+                <strong>Egg meatloaf</strong>
                 <img className="card-photo" src="img/photos/cha-trung.webp" alt="A slice of egg meatloaf" />
                 <em>Steamed egg and pork meatloaf</em>
                 <small>Tap or hover</small>
@@ -56,8 +56,8 @@ export default function Slide20() {
           <FlipCard>
             <span className="in">
               <span className="f">
-                <strong>Trứng ốp la</strong>
-                <img className="card-photo" src="img/photos/op-la.webp" alt="Trứng ốp la" />
+                <strong>Fried egg</strong>
+                <img className="card-photo" src="img/photos/op-la.webp" alt="Fried egg" />
                 <em>A runny, golden yolk</em>
                 <small>Tap or hover</small>
               </span>

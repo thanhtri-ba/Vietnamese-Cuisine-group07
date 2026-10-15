@@ -13,22 +13,22 @@ export default function Slide12() {
       <div className="inner map-wrap">
         <div className="region-media">
           <div className="mini-map corner" aria-hidden="true"><VMap region="n" /></div>
-          <Photo src="pho.webp" alt="Steaming bowl of beef phở" caption="Phở Hà Nội" h="46vh" tilt="l" delay=".6s" />
+          <Photo src="pho.webp" alt="Steaming bowl of beef pho" caption="Hanoi pho" h="46vh" tilt="l" delay=".6s" />
         </div>
         <div className="copy">
           <p className="eyebrow accent" data-a="fadeDown" style={{ "--d": ".4s" } as CSSProperties}>01 · Northern cuisine</p>
           <h2 id="t11" data-a="slideL" style={{ "--d": ".5s" } as CSSProperties}>Light and delicate</h2>
           <ul className="dishes" data-st="fadeUp" style={{ "--base": "1s" } as CSSProperties}>
             <li style={{ "--i": "0" } as CSSProperties}>
-              <b>Phở Hà Nội</b>
+              <b>Hanoi pho</b>
               <span>a clear broth, naturally sweet from slow-simmered bones</span>
             </li>
             <li style={{ "--i": "1" } as CSSProperties}>
-              <b>Bún chả</b>
+              <b>Grilled pork noodles</b>
               <span>fragrant charcoal-grilled pork served with fresh rice noodles</span>
             </li>
             <li style={{ "--i": "2" } as CSSProperties}>
-              <b>Bánh cuốn</b>
+              <b>Steamed rice rolls</b>
               <span>thin, silky rice sheets rolled around pork and wood-ear mushrooms</span>
             </li>
           </ul>

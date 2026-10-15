@@ -4,7 +4,7 @@ import RunnerFigure from './RunnerFigure';
 
 /**
  * Slide 1: mọi chữ (dòng nhỏ, tiêu đề, phụ đề) bay tán loạn khắp slide rồi ghép lại đúng chỗ;
- * tên các thành viên rơi lộn xộn; một người nhỏ đội đĩa cơm tấm chạy vào,
+ * tên các thành viên rơi lộn xộn; một người nhỏ đội đĩa broken rice chạy vào,
  * đẩy từng tên về đúng hàng (theo thứ tự thuyết trình), rồi tung đĩa ăn mừng và chạy đi.
  */
 
@@ -137,7 +137,7 @@ export default function IntroRunner() {
         keep(chips[i].animate([{ transform: 'scale(1.15)' }, { transform: 'none' }], { duration: 240, easing: 'ease-out' }));
       }
       if (dead) return;
-      // ăn mừng: nhảy cao tung đĩa cơm tấm
+      // ăn mừng: nhảy cao tung đĩa broken rice
       const last = finals[finals.length - 1];
       await moveTo(last.r + 40, rowY);
       runner.classList.add('cheer');
@@ -165,7 +165,7 @@ export default function IntroRunner() {
         height={H}
         cargo={
           <>
-            {/* đĩa cơm tấm */}
+            {/* đĩa broken rice */}
             <ellipse cx="32" cy="17" rx="17" ry="5.5" fill="var(--cream)" stroke="var(--forest)" strokeWidth="1.8" />
             <ellipse cx="29" cy="13.5" rx="8" ry="4.5" fill="#fff" stroke="var(--forest)" strokeWidth="1" />
             <path d="M34 11 C 40 8, 47 10, 46 14 C 44 17, 37 17, 34 15 Z" fill="#8a3b1d" stroke="var(--forest)" strokeWidth="1" />

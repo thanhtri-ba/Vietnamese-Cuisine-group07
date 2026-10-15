@@ -1,7 +1,7 @@
 import { createContext, useContext, type CSSProperties, type ReactNode } from 'react';
 import { useLocalStorage } from '../hooks/useLocalStorage';
 
-const DISHES = ['Phở', 'Bánh mì', 'Cơm tấm'] as const;
+const DISHES = ['Pho', 'Banh mi', 'Broken rice'] as const;
 
 type PickState = [string | null, (v: string | null) => void];
 const PickContext = createContext<PickState>([null, () => {}]);
@@ -48,8 +48,8 @@ export function PollRecall(props: Extra) {
   return (
     <p className="recall" {...props}>
       {pick
-        ? `On slide 2 you chose ${pick}. Would you still choose it now: phở, bánh mì or cơm tấm?`
-        : 'Back to Hòa’s question: phở, bánh mì or cơm tấm?'}
+        ? `On slide 2 you chose ${pick}. Would you still choose it now: pho, banh mi or broken rice?`
+        : 'Back to Hòa’s question: pho, banh mi or broken rice?'}
     </p>
   );
 }

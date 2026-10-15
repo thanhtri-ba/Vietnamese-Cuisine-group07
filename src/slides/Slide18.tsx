@@ -15,17 +15,17 @@ export default function Slide18() {
             <span>Cheap, filling and long-lasting</span>
           </li>
           <li style={{ "--i": "1" } as CSSProperties}>
-            <img className="journey-thumb" src="img/photos/com-tam-ve.webp" alt="Painting of a sidewalk cơm tấm stall" />
+            <img className="journey-thumb" src="img/photos/com-tam-ve.webp" alt="Painting of a sidewalk broken rice stall" />
             <b>Street stalls</b>
-            <span>Street vendors brought cơm tấm into daily life</span>
+            <span>Street vendors brought broken rice into daily life</span>
           </li>
           <li style={{ "--i": "2" } as CSSProperties}>
-            <img className="journey-thumb" src="img/photos/com-sang.webp" alt="A cơm tấm table in the morning" />
+            <img className="journey-thumb" src="img/photos/com-sang.webp" alt="A broken rice table in the morning" />
             <b>Street culture</b>
             <span>It became an essential part of Saigon life</span>
           </li>
           <li style={{ "--i": "3" } as CSSProperties}>
-            <img className="journey-thumb" src="img/photos/com-trua.webp" alt="A cơm tấm restaurant" />
+            <img className="journey-thumb" src="img/photos/com-trua.webp" alt="A broken rice restaurant" />
             <b>Restaurants</b>
             <span>From the sidewalk to upscale restaurants</span>
           </li>
@@ -33,7 +33,7 @@ export default function Slide18() {
         <div className="senses" data-st="flipX" style={{ "--base": "1.8s" } as CSSProperties}>
           <div style={{ "--i": "0" } as CSSProperties}><b>Smell</b>The irresistible smell of pork grilling over charcoal</div>
           <div style={{ "--i": "1" } as CSSProperties}><b>Sound</b>The sizzle of fat crackling over glowing coals</div>
-          <div style={{ "--i": "2" } as CSSProperties}><b>Sight</b>The familiar, colorful plate of cơm tấm</div>
+          <div style={{ "--i": "2" } as CSSProperties}><b>Sight</b>The familiar, colorful plate of broken rice</div>
         </div>
       </div>
     </Slide>
