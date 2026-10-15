@@ -1,0 +1,8 @@
+
+/* slide 32: ghế nhựa vỉa hè */
+.finale-party .fp-stool{position:absolute;left:0;top:0;filter:drop-shadow(0 4px 3px rgba(0,0,0,.35))}
+.finale-party .fp-stool svg{width:100%;height:100%;display:block;overflow:visible}
+.finale-party .fp-stool .seat{fill:#d83a2e;stroke:#8e1f17;stroke-width:1.5}
+.finale-party .fp-stool .leg,.finale-party .fp-stool .rim{fill:none;stroke:#c23126;stroke-width:4.5;stroke-linecap:round}
+.finale-party .fp-stool.blue .seat{fill:#2f6fd6;stroke:#1b4592}
+.finale-party .fp-stool.blue .leg,.finale-party .fp-stool.blue .rim{stroke:#2a62bf}

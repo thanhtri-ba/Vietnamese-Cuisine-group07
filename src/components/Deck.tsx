@@ -111,11 +111,6 @@ export default function Deck() {
     document.documentElement.classList.toggle('ui2', ui2);
   }, [ui2]);
 
-  // slide cuối: ẩn chip tên người nói và thanh điều khiển (phím tắt vẫn dùng được)
-  useEffect(() => {
-    document.documentElement.classList.toggle('on-last', current === total - 1);
-  }, [current, total]);
-
   // mouse parallax: photo frames drift slightly with the pointer (CSS reads --mx/--my)
   useEffect(() => {
     let raf = 0;
