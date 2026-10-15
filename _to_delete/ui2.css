@@ -1,0 +1,42 @@
+
+/* ================= giao diện v2 (html.ui2 — phím U để so sánh) ================= */
+.ui2 body{-webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility}
+
+/* chiều sâu cho nền: ánh sáng góc trên + viền tối nhẹ + vân giấy */
+.ui2 .band::after{content:"";position:absolute;inset:0;z-index:0;pointer-events:none;
+  background:
+    radial-gradient(ellipse 70% 55% at 15% 0%,rgba(255,255,255,.22),transparent 70%),
+    radial-gradient(ellipse 120% 90% at 50% 50%,transparent 60%,rgba(0,0,0,.1) 100%),
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='3' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 0  0 0 0 0 0  0 0 0 0 0  0 0 0 .55 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  opacity:.16;mix-blend-mode:multiply}
+.ui2 .band.forest::after{opacity:.6;mix-blend-mode:soft-light}
+
+/* tiêu đề: đổ bóng nhẹ trên nền tối, vạch nhấn dưới eyebrow */
+.ui2 .band.forest h2,.ui2 .band.forest h1{text-shadow:0 3px 0 rgba(0,0,0,.18)}
+.ui2 .band.cream h2,.ui2 .band.leaf h2{text-shadow:0 2px 0 rgba(22,93,58,.08)}
+.ui2 .eyebrow{display:inline-flex;align-items:center;gap:10px}
+.ui2 .eyebrow::before{content:"";width:28px;height:2px;background:currentColor;opacity:.8}
+
+/* thẻ nội dung: bóng cứng đồng bộ với khung ảnh + nhấc lên khi rê chuột */
+.ui2 :is(.stat,.flips .f,.steps4 li,.sides>*,.kinds>*,.times>*,.senses>*,.trio>*,.pair .l,.pair .r){
+  box-shadow:6px 6px 0 rgba(237,120,67,.9);transition:translate .25s var(--ease),box-shadow .25s var(--ease)}
+.ui2 .band.leaf :is(.stat,.flips .f,.steps4 li,.sides>*,.kinds>*,.times>*,.senses>*,.trio>*,.pair .l,.pair .r){box-shadow:6px 6px 0 rgba(22,93,58,.85)}
+.ui2 :is(.stat,.flips .f,.steps4 li,.sides>*,.kinds>*,.times>*,.senses>*,.trio>*,.pair .l,.pair .r):hover{translate:-3px -3px;box-shadow:9px 9px 0 var(--carrot)}
+.ui2 .chip{box-shadow:3px 3px 0 rgba(0,0,0,.14);transition:translate .2s var(--ease)}
+.ui2 .chip:hover{translate:0 -2px}
+
+/* khung ảnh: phóng nhẹ khi rê chuột */
+.ui2 .ph{transition:translate .6s cubic-bezier(.2,.7,.2,1),scale .35s var(--ease),box-shadow .35s var(--ease)}
+.ui2 .ph:hover{scale:1.03;box-shadow:14px 14px 0 var(--carrot)}
+
+/* thanh điều khiển & chip người nói: bóng cứng, dày hơn, dễ thấy trên máy chiếu */
+.ui2 .who,.ui2 .controls{box-shadow:4px 4px 0 var(--carrot);border-width:2px}
+.ui2 .who{padding:5px 14px 5px 5px;font-size:.88rem}
+.ui2 .who b{padding:4px 12px}
+.ui2 .controls button{transition:background .2s ease,color .2s ease}
+.ui2 .progress{height:6px;gap:4px}
+.ui2 .progress .seg{background:rgba(111,146,125,.28)}
+.ui2 .progress .seg span{background:linear-gradient(90deg,var(--carrot),#f59a5f);box-shadow:0 0 10px rgba(237,120,67,.65)}
+
+@media (hover:none){.ui2 .ph:hover,.ui2 .chip:hover,.ui2 :is(.stat,.flips .f,.steps4 li,.sides>*,.kinds>*,.times>*,.senses>*,.trio>*,.pair .l,.pair .r):hover{translate:none;scale:none}}
+@media (prefers-reduced-motion:reduce){.ui2 .ph:hover{scale:none}}

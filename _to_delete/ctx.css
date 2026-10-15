@@ -1,0 +1,17 @@
+
+/* ================= chuyển cảnh có người: đẩy / nâng / giậm / đá ================= */
+.ctx .yy-runner{transition:none}
+.ctx .yy-runner.push .yr-arms-swing,.ctx .yy-runner.lift .yr-arms-swing,.ctx .yy-runner.cheer .yr-arms-swing{display:none}
+.ctx .yy-runner.push .yr-arms-push{display:inline}
+.ctx .yy-runner.lift .yr-arms-up,.ctx .yy-runner.cheer .yr-arms-up{display:inline}
+.ctx .yy-runner.push .yr-leg.a,.ctx .yy-runner.push .yr-leg.b{animation:yrLeg .42s ease-in-out infinite alternate}
+.ctx .yy-runner.push .yr-leg.b{animation-direction:alternate-reverse}
+.ctx .yy-runner.push .yr-body{transform:rotate(16deg);transform-box:view-box;transform-origin:32px 96px}
+.ctx .yy-runner.lift .yr-body{animation:yrBob .3s ease-in-out infinite alternate}
+.ctx .yy-runner.kick .yr-leg.a{transform:rotate(-88deg)}
+.ctx .yy-runner.kick .yr-leg.b{transform:rotate(18deg)}
+.ctx .yy-runner.kick .yr-body{transform:rotate(-14deg);transform-box:view-box;transform-origin:32px 66px}
+.ctx .yy-runner.cheer .yr-leg.a{transform:rotate(-14deg)}
+.ctx .yy-runner.cheer .yr-leg.b{transform:rotate(14deg)}
+.ctx-burst{position:absolute;left:0;top:0;min-width:100px;text-align:center;font-family:var(--display);font-size:clamp(2rem,4vw,3.4rem);color:var(--cream);background:var(--carrot);padding:6px 16px;border:3px solid var(--forest);box-shadow:5px 5px 0 var(--forest);clip-path:polygon(0 18%,14% 0,30% 12%,50% 0,66% 14%,86% 0,100% 20%,92% 50%,100% 80%,84% 100%,64% 88%,46% 100%,30% 86%,12% 100%,0 80%,8% 50%);opacity:0;scale:.4;rotate:-8deg;transition:opacity .12s ease,scale .2s cubic-bezier(.3,1.8,.5,1)}
+.ctx-burst.on{opacity:1;scale:1}

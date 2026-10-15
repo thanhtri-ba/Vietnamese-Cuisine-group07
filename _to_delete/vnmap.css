@@ -1,0 +1,40 @@
+
+/* ================= bản đồ Việt Nam + máy bay ================= */
+.vmap.vn{width:min(100%,470px,76vh);overflow:visible}
+.vn .vn-land{fill:var(--leaf);stroke:var(--forest);stroke-width:2;stroke-linejoin:round}
+.vn .vn-land-hatch{stroke:none;pointer-events:none}
+.vn .vn-hatch{stroke:var(--forest);stroke-width:1;opacity:.12}
+.band.leaf .vn .vn-land{fill:var(--cream)}
+.band.forest .vn .vn-land{fill:rgba(203,230,145,.16);stroke:var(--leaf)}
+.band.forest .vn .vn-hatch{stroke:var(--leaf)}
+.vn .vn-isles circle{fill:var(--forest)}
+.band.forest .vn .vn-isles circle{fill:var(--leaf)}
+.vmap.vn text{font-family:var(--body);text-transform:none;font-size:12px;fill:var(--forest);opacity:.75}
+.vmap.vn .vn-sea{font-style:italic;font-size:15px;letter-spacing:.2em;opacity:.35}
+.band.forest .vmap.vn text{fill:var(--leaf)}
+.vn .vn-trail{fill:none;stroke:var(--carrot);stroke-width:3;stroke-linecap:round}
+.vn .vn-city .dot{fill:var(--cream);stroke:var(--forest);stroke-width:3;transition:fill .3s ease}
+.vn .vn-city .ring{fill:none;stroke:var(--carrot);stroke-width:2.5;opacity:0;transform-box:fill-box;transform-origin:center}
+.vn .vn-city text{font-family:var(--display);font-size:19px;text-transform:uppercase;opacity:1;fill:var(--forest)}
+.band.forest .vn .vn-city .dot{fill:var(--forest);stroke:var(--leaf)}
+.vn .vn-city.lit .dot{fill:var(--carrot);stroke:var(--carrot)}
+.vn .vn-city.lit .ring{animation:vnPing 1.6s ease-out infinite}
+.vn .vn-city.lit text{fill:var(--carrot)}
+@keyframes vnPing{0%{opacity:.9;transform:scale(.6)}100%{opacity:0;transform:scale(2.2)}}
+.vn .vn-plane path{fill:var(--forest);stroke:var(--cream);stroke-width:1.4;filter:drop-shadow(3px 5px 2px rgba(0,0,0,.25))}
+.band.forest .vn .vn-plane path{fill:var(--cream);stroke:var(--forest)}
+.vn .vn-plane{transition:opacity .25s ease}
+/* bản đồ nhỏ trên slide từng miền: chỉ hiện tên thành phố đích */
+.mini-map .vmap.vn text{display:none}
+.mini-map .vmap.vn .vn-city.target text{display:block;font-size:34px}
+.mini-map .vn .vn-isles,.mini-map .vn .vn-sea{display:none}
+.mini-map .vn .vn-plane path{stroke-width:2}
+.mini-map .vn .vn-trail{stroke-width:5}
+.mini-map.corner{left:auto;right:-30px;top:-34px;bottom:auto;width:clamp(120px,11vw,165px);padding:8px 6px;border-radius:12px;transform:rotate(3deg);box-shadow:5px 5px 0 var(--carrot)}
+.band.forest .mini-map{background:var(--forest);border-color:var(--leaf)}
+.band.leaf .mini-map{background:var(--cream)}
+.active .mini-map.corner{animation:pop .6s var(--ease) .9s both}
+.vn .vn-city text{paint-order:stroke;stroke:var(--cream);stroke-width:5px;stroke-linejoin:round}
+.band.forest .vn .vn-city text{stroke:var(--forest)}
+.band.leaf .vn .vn-city text{stroke:var(--leaf)}
+@media (max-width:820px){.mini-map.corner{width:110px;right:-10px;top:-20px}}

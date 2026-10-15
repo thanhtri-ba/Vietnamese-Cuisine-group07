@@ -1,5 +1,6 @@
 import type { CSSProperties } from 'react';
 import Slide from '../components/Slide';
+import Photo from '../components/Photo';
 import CountUp from '../components/CountUp';
 
 /** Slide 4: Vietnamese food around the world */
@@ -220,26 +221,30 @@ export default function Slide04() {
         <rect width="1600" height="900" fill="url(#fl-vig)"></rect>
       </svg>
       <div className="inner">
-        <p className="eyebrow accent" data-a="fadeDown" style={{ "--d": ".5s" } as CSSProperties}>MICHELIN Guide · Hanoi & Ho Chi Minh City</p>
-        <h2 id="t4" data-a="skewIn" style={{ "--d": ".6s", marginTop: "10px" } as CSSProperties}>Vietnamese food around the world</h2>
+        <p className="eyebrow accent" data-a="fadeDown" style={{ "--d": ".5s" } as CSSProperties}>Cẩm nang MICHELIN · Hà Nội & TP. Hồ Chí Minh</p>
+        <h2 id="t4" data-a="skewIn" style={{ "--d": ".6s", marginTop: "10px" } as CSSProperties}>Ẩm thực Việt Nam trên bản đồ thế giới</h2>
         <div className="stats" data-st="zoomIn" style={{ "--base": "1s" } as CSSProperties}>
           <div className="stat" style={{ "--i": "0" } as CSSProperties}>
             <span className="num"><CountUp to={103} /></span>
-            <span className="unit">restaurants</span>
-            <p>in the first selection, from street food to fine dining</p>
+            <span className="unit">nhà hàng</span>
+            <p>được vinh danh ngay trong kỳ công bố đầu tiên, từ quán ăn hè phố đến nhà hàng sang trọng</p>
           </div>
           <div className="stat" style={{ "--i": "1" } as CSSProperties}>
             <span className="num"><CountUp to={4} /></span>
-            <span className="unit">Michelin stars</span>
-            <p>awarded in the very first edition</p>
+            <span className="unit">sao Michelin</span>
+            <p>được trao cho các nhà hàng xuất sắc tại Việt Nam</p>
           </div>
           <div className="stat" style={{ "--i": "2" } as CSSProperties}>
             <span className="num"><CountUp to={2023} /></span>
-            <span className="unit">June · first edition</span>
-            <p>Vietnam’s first MICHELIN Guide, launched in June 2023</p>
+            <span className="unit">Tháng 6 · ấn bản đầu tiên</span>
+            <p>Cẩm nang MICHELIN Guide chính thức ra mắt tại Việt Nam vào tháng 6/2023</p>
           </div>
         </div>
-        <p className="closing-q" data-a="fadeUp" style={{ "--d": "2.2s" } as CSSProperties}>So what makes Vietnamese food so special?</p>
+        <p className="closing-q" data-a="fadeUp" style={{ "--d": "2.2s" } as CSSProperties}>Vậy điều gì làm nên sức hút đặc biệt của món ăn Việt?</p>
+      </div>
+      <div className="star-ex pinned">
+        <Photo src="tam-vi.webp" alt="The glowing round sign of Tầm Vị restaurant in Hanoi at night" h="15vh" tilt="l" delay="1.9s" />
+        <p data-a="fadeUp" style={{ "--d": "2s" } as CSSProperties}>Một trong bốn nhà hàng được gắn sao Michelin năm 2023: <b>Tầm Vị</b> (Hà Nội).</p>
       </div>
     </Slide>
   );

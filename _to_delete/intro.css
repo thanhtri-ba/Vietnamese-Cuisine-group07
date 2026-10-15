@@ -1,0 +1,6 @@
+
+/* ================= người nhỏ đội cơm tấm (slide 1) ================= */
+.band.intro-run .members li:not(:first-child){animation:none}
+.intro-runner .yr-cargo path.yr-steam{stroke-width:1;stroke:var(--sage)}
+.yy-runner.cheer .yr-cargo{animation:yrToss .52s ease-in-out}
+@keyframes yrToss{0%{transform:none}45%{transform:translateY(-26px) rotate(200deg)}100%{transform:rotate(360deg)}}

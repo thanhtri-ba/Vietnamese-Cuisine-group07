@@ -17,7 +17,7 @@ type Extra = { style?: CSSProperties; 'data-st'?: string; 'data-a'?: string };
 export function PollPicks(props: Extra) {
   const [pick, setPick] = useContext(PickContext);
   return (
-    <div className="picks" role="group" aria-label="Choose one dish" {...props}>
+    <div className="picks" role="group" aria-label="Chọn một món ăn" {...props}>
       {DISHES.map((dish, i) => (
         <button
           key={dish}
@@ -38,7 +38,7 @@ export function PollNote(props: Extra) {
   const [pick] = useContext(PickContext);
   return (
     <p className="note" {...props}>
-      {pick ? `Your pick: ${pick}. We come back to it at the end.` : 'Remember your answer. We come back to it at the end.'}
+      {pick ? `Lựa chọn của bạn: ${pick}. Chúng ta sẽ quay lại câu hỏi này ở phần cuối.` : 'Hãy ghi nhớ câu trả lời của bạn. Chúng ta sẽ quay lại ở phần cuối.'}
     </p>
   );
 }
@@ -48,8 +48,8 @@ export function PollRecall(props: Extra) {
   return (
     <p className="recall" {...props}>
       {pick
-        ? `On slide 2 you picked ${pick}. Would you still choose it: phở, bánh mì or cơm tấm?`
-        : 'Back to Hòa’s question: phở, bánh mì or cơm tấm?'}
+        ? `Ở slide 2 bạn đã chọn ${pick}. Bây giờ bạn vẫn sẽ chọn món này: phở, bánh mì hay cơm tấm?`
+        : 'Quay lại câu hỏi của Hòa: phở, bánh mì hay cơm tấm?'}
     </p>
   );
 }

@@ -1,0 +1,39 @@
+
+/* ================= người nhỏ vác âm dương (slide 8) ================= */
+.yy-runner{position:absolute;left:0;top:0;z-index:6;width:84px;height:131px;pointer-events:none;opacity:0;transition:opacity .25s ease}
+.yy-runner.show{opacity:1}
+.yr-flip{width:100%;height:100%}
+.yy-runner svg{display:block;overflow:visible}
+.yy-runner path,.yy-runner line{fill:none;stroke:var(--forest);stroke-width:5;stroke-linecap:round;stroke-linejoin:round}
+.yy-runner .yr-scarf{fill:var(--carrot);stroke:none;transform-box:view-box;transform-origin:29px 46px}
+.yy-runner .yr-head{fill:var(--cream);stroke:var(--forest);stroke-width:3}
+.yy-runner .yr-band{stroke:var(--carrot);stroke-width:3}
+.yy-runner .yr-shadow{fill:rgba(22,93,58,.22)}
+.yy-runner .yr-cargo{opacity:0;transform:translateY(14px) scale(.6);transform-box:view-box;transform-origin:32px 26px;transition:opacity .2s ease,transform .3s cubic-bezier(.3,1.5,.5,1)}
+.yy-runner.carry .yr-cargo{opacity:1;transform:none}
+.yy-runner .yr-arms-up,.yy-runner .yr-arms-push{display:none}
+.yy-runner.carry .yr-arms-up{display:inline}
+.yy-runner.carry .yr-arms-swing{display:none}
+.yy-runner.carry.push .yr-arms-up{display:none}
+.yy-runner.carry.push .yr-arms-push{display:inline}
+.yy-runner.carry.push .yr-cargo{transform:translate(-8px,22px) scale(.85)}
+.yy-runner .yr-leg,.yy-runner .yr-arms-swing path{transform-box:view-box}
+.yy-runner .yr-leg{transform-origin:32px 66px}
+.yy-runner .yr-arms-swing path{transform-origin:32px 49px}
+.yy-runner.run .yr-leg.a{animation:yrLeg .28s ease-in-out infinite alternate}
+.yy-runner.run .yr-leg.b{animation:yrLeg .28s ease-in-out infinite alternate-reverse}
+.yy-runner.run .yr-arms-swing .sa{animation:yrLeg .28s ease-in-out infinite alternate-reverse}
+.yy-runner.run .yr-arms-swing .sb{animation:yrLeg .28s ease-in-out infinite alternate}
+.yy-runner.run .yr-body{animation:yrBob .14s ease-in-out infinite alternate}
+.yy-runner.run .yr-scarf{animation:yrScarf .2s ease-in-out infinite alternate}
+.yy-runner.run .yr-cargo{animation:yrBob .14s ease-in-out infinite alternate}
+.yy-runner.push .yr-body{transform:rotate(12deg);transform-box:view-box;transform-origin:32px 96px;animation:none}
+@keyframes yrLeg{from{transform:rotate(-32deg)}to{transform:rotate(32deg)}}
+@keyframes yrBob{from{transform:translateY(0)}to{transform:translateY(-3px)}}
+@keyframes yrScarf{from{transform:rotate(-6deg) scaleX(1)}to{transform:rotate(8deg) scaleX(1.15)}}
+/* khi người đang vác: âm dương trên thanh ẩn đi; thẻ chữ do JS điều khiển */
+.band.yy-carried .yy.yy-roll{opacity:0}
+.yy.yy-roll{transition:opacity .15s ease}
+.band.yy-run .yy-pairs .l,.band.yy-run .yy-pairs .r,.band.yy-run .yy-pairs .plus{animation:none}
+.band.yy-hold .yy-hint{opacity:0}
+@media (prefers-reduced-motion:reduce){.yy-runner{display:none}}

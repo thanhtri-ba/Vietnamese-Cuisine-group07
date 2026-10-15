@@ -1,0 +1,83 @@
+
+/* ================= transitions v2 (đã thêm) ================= */
+/* slide vừa rời màn hình: vẫn hiện bên dưới để hiệu ứng mới "đè" lên */
+.band.leaving{visibility:visible;opacity:1;z-index:1;transition:none;pointer-events:none;animation:tOut .6s ease both}
+@keyframes tOut{to{opacity:0;transform:scale(.96)}}
+@keyframes tHold{to{filter:brightness(.55)}}
+.deck[data-exit="wipe"] .band.leaving,.deck[data-exit="circle"] .band.leaving,.deck[data-exit="blinds"] .band.leaving,
+.deck[data-exit="diamond"] .band.leaving,.deck[data-exit="curtain"] .band.leaving,.deck[data-exit="iris"] .band.leaving,
+.deck[data-exit="shutters"] .band.leaving{animation:tHold .9s ease both}
+
+/* đi lùi: đảo hướng các hiệu ứng có chiều */
+.deck[data-dir="back"] .band.active[data-t="slide"]{animation-name:tSlideBack}
+.deck[data-dir="back"] .band.active[data-t="wipe"]{animation-name:tWipeBack}
+@keyframes tSlideBack{from{opacity:0;transform:translateX(-10%)}}
+@keyframes tWipeBack{from{clip-path:inset(0 100% 0 0)}to{clip-path:inset(0 0 0 0)}}
+
+/* 1. flip — lật 3D như mở cửa */
+.band.active[data-t="flip"]{transform-origin:0 50%;animation:tFlip .9s cubic-bezier(.3,.8,.3,1) both}
+.deck[data-dir="back"] .band.active[data-t="flip"]{transform-origin:100% 50%;animation-name:tFlipBack}
+@keyframes tFlip{from{opacity:0;transform:perspective(1800px) rotateY(75deg)}40%{opacity:1}}
+@keyframes tFlipBack{from{opacity:0;transform:perspective(1800px) rotateY(-75deg)}40%{opacity:1}}
+.deck[data-exit="flip"] .band.leaving{animation:tHold .9s ease both}
+
+/* 2. cube — xoay khối lập phương */
+.band.active[data-t="cube"]{transform-origin:0 50%;animation:tCubeIn .9s cubic-bezier(.5,0,.25,1) both}
+.deck[data-exit="cube"] .band.leaving{transform-origin:100% 50%;animation:tCubeOut .9s cubic-bezier(.5,0,.25,1) both}
+.deck[data-dir="back"] .band.active[data-t="cube"]{transform-origin:100% 50%;animation-name:tCubeInBack}
+.deck[data-dir="back"][data-exit="cube"] .band.leaving{transform-origin:0 50%;animation-name:tCubeOutBack}
+@keyframes tCubeIn{from{transform:perspective(2000px) translateX(100%) rotateY(90deg);filter:brightness(.6)}to{transform:none;filter:none}}
+@keyframes tCubeOut{to{transform:perspective(2000px) translateX(-100%) rotateY(-90deg);filter:brightness(.5)}}
+@keyframes tCubeInBack{from{transform:perspective(2000px) translateX(-100%) rotateY(-90deg);filter:brightness(.6)}to{transform:none;filter:none}}
+@keyframes tCubeOutBack{to{transform:perspective(2000px) translateX(100%) rotateY(90deg);filter:brightness(.5)}}
+
+/* 3. diamond — hình thoi nở từ tâm */
+.band.active[data-t="diamond"]{animation:tDiamond .9s cubic-bezier(.6,0,.2,1) both}
+@keyframes tDiamond{from{clip-path:polygon(50% 50%,50% 50%,50% 50%,50% 50%)}to{clip-path:polygon(50% -60%,160% 50%,50% 160%,-60% 50%)}}
+
+/* 4. curtain — rèm mở từ giữa ra hai bên */
+.band.active[data-t="curtain"]{animation:tCurtain .9s cubic-bezier(.7,0,.2,1) both}
+@keyframes tCurtain{from{clip-path:inset(0 50% 0 50%)}to{clip-path:inset(0 0 0 0)}}
+
+/* 5. shutters — lá sách (8 lá dọc mở cùng lúc) */
+@property --sh{syntax:'<percentage>';inherits:false;initial-value:100%}
+.band.active[data-t="shutters"]{--sh:100%;-webkit-mask-image:linear-gradient(90deg,#000 var(--sh),transparent var(--sh));mask-image:linear-gradient(90deg,#000 var(--sh),transparent var(--sh));-webkit-mask-size:12.5% 100%;mask-size:12.5% 100%;-webkit-mask-repeat:repeat-x;mask-repeat:repeat-x;animation:tShutters .9s cubic-bezier(.6,0,.3,1) both}
+@keyframes tShutters{from{--sh:0%}to{--sh:100%}}
+
+/* 6. swirl — xoáy vào */
+.band.active[data-t="swirl"]{animation:tSwirl .9s cubic-bezier(.25,.9,.3,1.05) both}
+@keyframes tSwirl{from{opacity:0;transform:rotate(-14deg) scale(.55)}55%{opacity:1}}
+
+/* 7. blur — mờ như khói than tan dần */
+.band.active[data-t="blur"]{animation:tBlur 1s ease both}
+@keyframes tBlur{from{opacity:0;filter:blur(26px);transform:scale(1.06)}to{opacity:1;filter:none;transform:none}}
+
+/* 8. iris — vòng tròn mở từ góc */
+.band.active[data-t="iris"]{animation:tIris 1s cubic-bezier(.6,0,.2,1) both}
+.deck[data-dir="back"] .band.active[data-t="iris"]{animation-name:tIrisBack}
+@keyframes tIris{from{clip-path:circle(0% at 0% 100%)}to{clip-path:circle(145% at 0% 100%)}}
+@keyframes tIrisBack{from{clip-path:circle(0% at 100% 0%)}to{clip-path:circle(145% at 100% 0%)}}
+
+/* 9. push — đẩy slide cũ lên trên */
+.band.active[data-t="push"]{animation:tPushIn .8s cubic-bezier(.65,0,.25,1) both}
+.deck[data-exit="push"] .band.leaving{animation:tPushOut .8s cubic-bezier(.65,0,.25,1) both}
+.deck[data-dir="back"] .band.active[data-t="push"]{animation-name:tPushInBack}
+.deck[data-dir="back"][data-exit="push"] .band.leaving{animation-name:tPushOutBack}
+@keyframes tPushIn{from{transform:translateY(100%)}}
+@keyframes tPushOut{to{transform:translateY(-35%);filter:brightness(.5)}}
+@keyframes tPushInBack{from{transform:translateY(-100%)}}
+@keyframes tPushOutBack{to{transform:translateY(35%);filter:brightness(.5)}}
+
+/* stinger — chuyển người thuyết trình */
+.stinger{position:fixed;inset:0;z-index:25;pointer-events:none;overflow:hidden}
+.stinger i{position:absolute;top:-20%;bottom:-20%;left:0;width:60%;transform:translateX(-140%) skewX(-18deg);opacity:0}
+.stinger .s1{background:var(--carrot);animation:stSweep .75s cubic-bezier(.7,0,.3,1) both}
+.stinger .s2{background:var(--leaf);animation:stSweep .75s cubic-bezier(.7,0,.3,1) .1s both}
+@keyframes stSweep{0%{opacity:1;transform:translateX(-140%) skewX(-18deg)}100%{opacity:1;transform:translateX(260%) skewX(-18deg)}}
+.stinger .card{position:absolute;left:50%;bottom:calc(84px + env(safe-area-inset-bottom,0px));display:flex;flex-direction:column;align-items:center;gap:2px;padding:12px 28px 14px;background:var(--forest);color:var(--cream);border-bottom:5px solid var(--carrot);box-shadow:0 18px 40px rgba(0,0,0,.25);opacity:0;transform:translate(-50%,20px);animation:stCard 2.3s var(--ease) .35s both}
+.stinger .card small{font-size:.72rem;letter-spacing:.18em;text-transform:uppercase;color:var(--leaf)}
+.stinger .card b{font-family:var(--display);font-weight:400;font-size:clamp(1.8rem,4vw,2.8rem);line-height:1.15;text-transform:uppercase}
+.stinger .card span{font-size:.9rem;opacity:.85}
+@keyframes stCard{0%{opacity:0;transform:translate(-50%,24px) scale(.92)}14%{opacity:1;transform:translate(-50%,0) scale(1)}80%{opacity:1;transform:translate(-50%,0)}100%{opacity:0;transform:translate(-50%,-10px)}}
+
+@media (prefers-reduced-motion:reduce){.stinger{display:none}.band.leaving{visibility:hidden}}

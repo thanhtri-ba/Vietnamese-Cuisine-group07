@@ -7,60 +7,65 @@ export default function Slide20() {
   return (
     <Slide index={19} className="band forest" t="blinds" who={3} labelledBy="t19">
       <div className="inner">
-        <h2 id="t19" data-a="wipe" style={{ "--d": ".6s" } as CSSProperties}>The main ingredients</h2>
+        <h2 id="t19" data-a="wipe" style={{ "--d": ".6s" } as CSSProperties}>Các thành phần chính</h2>
         <div className="flips" data-st="flipY" style={{ "--base": "1s" } as CSSProperties}>
           <FlipCard>
             <span className="in">
               <span className="f">
                 <strong>Cơm tấm</strong>
-                <em>Broken rice</em>
-                <small>Tap or hover</small>
+                <img className="card-photo" src="img/photos/com-nau.webp" alt="Cơm tấm rắc mỡ hành" />
+                <em>Hạt tấm dẻo bùi</em>
+                <small>Chạm hoặc rê chuột</small>
               </span>
-              <span className="b"><b>The base</b>Soft rice that soaks up the sauce.</span>
+              <span className="b"><b>Nền tảng</b>Hạt cơm nhỏ xốp, ngấm trọn vẹn nước mắm và mỡ hành.</span>
             </span>
           </FlipCard>
           <FlipCard>
             <span className="in">
               <span className="f">
                 <strong>Sườn nướng</strong>
-                <em>Grilled pork ribs</em>
-                <small>Tap or hover</small>
+                <img className="card-photo" src="img/photos/suon-cay.webp" alt="Miếng sườn nướng" />
+                <em>Thơm lừng đậm vị</em>
+                <small>Chạm hoặc rê chuột</small>
               </span>
-              <span className="b"><b>The star</b>Smoky, savory and slightly sweet.</span>
+              <span className="b"><b>Ngôi sao của đĩa cơm</b>Mềm mọng, đậm đà vị ngọt mặn và thơm khói than hoa.</span>
             </span>
           </FlipCard>
           <FlipCard>
             <span className="in">
               <span className="f">
                 <strong>Bì</strong>
-                <em>Shredded pork skin</em>
-                <small>Tap or hover</small>
+                <img className="card-photo" src="img/photos/bi.webp" alt="Bì heo trộn thính" />
+                <em>Bì heo trộn thính</em>
+                <small>Chạm hoặc rê chuột</small>
               </span>
-              <span className="b"><b>The texture</b>Chewy strands mixed with toasted rice powder.</span>
+              <span className="b"><b>Độ dai giòn</b>Sợi da heo dai giòn trộn thính gạo rang vàng thơm phức.</span>
             </span>
           </FlipCard>
           <FlipCard>
             <span className="in">
               <span className="f">
                 <strong>Chả trứng</strong>
-                <em>Steamed egg meatloaf</em>
-                <small>Tap or hover</small>
+                <img className="card-photo" src="img/photos/cha-trung.webp" alt="Lát chả trứng" />
+                <em>Chả trứng thịt hấp</em>
+                <small>Chạm hoặc rê chuột</small>
               </span>
-              <span className="b"><b>The comfort</b>Soft and savory.</span>
+              <span className="b"><b>Đậm đà béo ngậy</b>Trứng, thịt băm, nấm mèo và miến hấp mềm thơm.</span>
             </span>
           </FlipCard>
           <FlipCard>
             <span className="in">
               <span className="f">
                 <strong>Trứng ốp la</strong>
-                <em>Fried egg</em>
-                <small>Tap or hover</small>
+                <img className="card-photo" src="img/photos/op-la.webp" alt="Trứng ốp la" />
+                <em>Lòng đào sóng sánh</em>
+                <small>Chạm hoặc rê chuột</small>
               </span>
-              <span className="b"><b>The extra</b>Makes the meal richer.</span>
+              <span className="b"><b>Mảnh ghép trọn vẹn</b>Lòng đỏ béo ngậy hòa quyện cùng hạt cơm nóng hổi.</span>
             </span>
           </FlipCard>
         </div>
-        <p className="lede" data-a="fadeUp" style={{ "--d": "2s", marginTop: "clamp(16px,3vh,28px)", maxWidth: "none" } as CSSProperties}>Together they create different textures in every bite.</p>
+        <p className="lede" data-a="fadeUp" style={{ "--d": "2s", marginTop: "clamp(16px,3vh,28px)", maxWidth: "none" } as CSSProperties}>Mỗi thành phần mang lại một tầng hương vị và cảm giác thích thú trong từng miếng ăn.</p>
       </div>
     </Slide>
   );

@@ -6,11 +6,11 @@ export interface Presenter {
 }
 
 export const people: Presenter[] = [
-  { name: "Hòa", part: "Introduction", slides: 5 },
-  { name: "Hải", part: "Food philosophy", slides: 5 },
-  { name: "Trung", part: "Three regions", slides: 5 },
-  { name: "Khoa", part: "The story of cơm tấm", slides: 6 },
-  { name: "Liên", part: "Balance and preparation", slides: 4 },
-  { name: "Trí", part: "Grilled pork ribs", slides: 3 },
-  { name: "Đức", part: "Eat like a local and conclusion", slides: 4 },
+  { name: "Hòa", part: "Giới thiệu", slides: 5 },
+  { name: "Hải", part: "Triết lý ẩm thực", slides: 5 },
+  { name: "Trung", part: "Ẩm thực ba miền", slides: 5 },
+  { name: "Khoa", part: "Câu chuyện cơm tấm", slides: 6 },
+  { name: "Liên", part: "Cân bằng & Chế biến", slides: 4 },
+  { name: "Trí", part: "Sườn nướng than hoa", slides: 3 },
+  { name: "Đức", part: "Thưởng thức & Tổng kết", slides: 4 },
 ];

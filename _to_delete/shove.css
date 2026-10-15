@@ -1,0 +1,17 @@
+
+/* ================= chuyển cảnh 1 → 2: người đẩy slide + người chạy theo ================= */
+.shove{position:fixed;inset:0;z-index:24;pointer-events:none;overflow:hidden}
+.shove .shove-runner{position:absolute;left:0;top:0;width:120px;height:187px;opacity:1}
+.shove .shove-runner .yr-cargo{display:none}
+.shove .chaser .yr-band{stroke:var(--leaf)}
+.shove .chaser .yr-scarf{fill:var(--leaf)}
+.shove .pusher.push .yr-arms-swing{display:none}
+.shove .pusher.push .yr-arms-push{display:inline}
+.shove .pusher.push .yr-body{transform:rotate(16deg);transform-box:view-box;transform-origin:32px 96px;animation:none}
+.shove .pusher.push .yr-leg.a{animation-duration:.42s}
+.shove .pusher.push .yr-leg.b{animation-duration:.42s}
+.shove-bubble{position:absolute;left:0;top:0;padding:8px 14px;background:var(--cream);color:var(--forest);border:2px solid var(--forest);box-shadow:4px 4px 0 var(--carrot);font-weight:700;font-size:1.05rem;white-space:nowrap;opacity:0;scale:.6;transition:opacity .2s ease,scale .25s cubic-bezier(.3,1.6,.5,1)}
+.shove-bubble::after{content:"";position:absolute;left:34px;bottom:-12px;border:6px solid transparent;border-top:8px solid var(--forest)}
+.shove-bubble.on{opacity:1;scale:1}
+.shove .yy-runner svg{filter:drop-shadow(0 0 1.5px var(--cream)) drop-shadow(0 0 3px var(--cream)) drop-shadow(0 6px 6px rgba(0,0,0,.35))}
+@media (prefers-reduced-motion:reduce){.shove{display:none}}

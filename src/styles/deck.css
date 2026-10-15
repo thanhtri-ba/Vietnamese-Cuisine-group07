@@ -501,21 +501,25 @@ button{font:inherit;color:inherit}
 .times b{font-family:var(--display);font-weight:400;text-transform:uppercase;font-size:clamp(1.5rem,min(2.8vw,5vh),2.2rem);color:var(--leaf);line-height:1}
 .times span{font-size:.98rem}
 .scene h2{text-shadow:0 2px 16px var(--veil-strong)}
-.quiz{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px;margin-top:clamp(18px,4vh,40px)}
-.qz{background:var(--forest);color:var(--cream);padding:clamp(14px,2.6vh,22px);display:grid;gap:12px;align-content:start;transition:background .3s}
-.qz p.st{font-size:1.08rem;font-weight:500}
-.qz .opts{display:grid;gap:8px}
-.qz .opts button{text-align:left;padding:9px 12px;border:2px solid var(--leaf);background:transparent;color:var(--cream);cursor:pointer;transition:background .2s,color .2s}
-.qz .opts button:hover:not(:disabled){background:var(--leaf);color:var(--forest)}
-.qz .opts button:disabled{cursor:default}
-.qz .opts button.correct{background:var(--leaf);color:var(--forest)}
-.qz .opts button.chosen-wrong{background:var(--carrot);border-color:var(--carrot)}
+/* ---------- slide 31 quiz ---------- */
+.quiz-slide .inner{padding-block:clamp(28px,4.5vh,48px) clamp(40px,6vh,60px);max-width:min(var(--wrap),1140px)}
+.quiz-slide h2{font-size:clamp(1.8rem,min(3.8vw,6vh),2.8rem);line-height:1.25;padding-top:6px;text-align:center;letter-spacing:.02em}
+.quiz{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:clamp(14px,2vw,24px);margin-top:clamp(16px,3vh,28px);align-items:stretch}
+.qz{background:var(--forest);color:var(--cream);padding:clamp(12px,2vh,18px);display:flex;flex-direction:column;border-radius:8px;box-shadow:0 8px 24px rgba(22,93,58,.12);transition:background .3s,transform .2s}
+.qz p.st{font-size:clamp(.96rem,1.1vw,1.1rem);font-weight:600;line-height:1.35;margin-bottom:12px;min-height:2.7em}
+.qz .opts{display:flex;flex-direction:column;gap:8px;margin-top:auto}
+.qz .opts button{text-align:left;padding:8px 12px;border:1.5px solid var(--leaf);background:rgba(255,250,238,.05);color:var(--cream);border-radius:6px;font-size:.95rem;cursor:pointer;transition:background .2s,color .2s,transform .15s}
+.qz .opts button:hover:not(:disabled){background:var(--leaf);color:var(--forest);transform:translateX(3px)}
+.qz .opts button:disabled{cursor:default;transform:none}
+.qz .opts button.correct{background:var(--leaf);color:var(--forest);font-weight:600}
+.qz .opts button.chosen-wrong{background:var(--carrot);border-color:var(--carrot);color:var(--cream)}
 .qz.right{animation:pop .5s var(--ease)}
 .qz.wrong{animation:shake .5s}
 @keyframes shake{20%,60%{transform:translateX(-8px)}40%,80%{transform:translateX(8px)}}
-.qz .ans{font-size:.9rem;color:var(--sage)}
-.score{margin-top:14px;font-size:.98rem}
-.score button{margin-left:10px;padding:6px 14px;background:var(--forest);color:var(--cream);border:0;cursor:pointer}
+.qz .ans{margin-top:10px;padding-top:8px;border-top:1px dashed rgba(203,230,145,.4);font-size:.88rem;line-height:1.35;color:var(--leaf)}
+.score{margin-top:clamp(14px,2.5vh,22px);text-align:center;font-size:1.05rem;font-weight:500;color:var(--forest)}
+.score button{margin-left:14px;padding:6px 16px;background:var(--carrot);color:var(--cream);border:0;border-radius:4px;font-weight:600;cursor:pointer;transition:transform .2s,opacity .2s}
+.score button:hover{transform:translateY(-2px);opacity:.92}
 @media (max-width:820px){.sides,.roles,.kinds,.times,.quiz{grid-template-columns:1fr}.yy-wrap{max-width:240px}}
 
 
@@ -547,3 +551,539 @@ button{font:inherit;color:inherit}
 @media (max-width:720px){.flatlay{opacity:.7}}
 
 @media (prefers-reduced-motion:reduce){*,*::before,*::after{animation:none!important;transition:none!important}}
+
+/* ---------- framed photos ---------- */
+.ph{position:relative;z-index:1;margin:0;justify-self:center;align-self:center;width:fit-content;max-width:100%;background:var(--paper);border:3px solid var(--forest);box-shadow:10px 10px 0 var(--carrot);padding:9px 9px 0}
+.ph.nocap{padding-bottom:9px}
+.ph img{display:block;height:var(--h,44vh);width:var(--w,auto);max-width:100%;object-fit:cover}
+.ph figcaption{font-family:var(--display);text-transform:uppercase;text-align:center;color:var(--forest);font-size:clamp(.95rem,1.5vw,1.25rem);line-height:1.05;padding:8px 4px 10px}
+.ph figcaption small{display:block;font-family:var(--body);text-transform:none;font-size:.78rem;color:var(--muted);margin-top:3px}
+.ph-r{transform:rotate(2deg)}
+.ph-l{transform:rotate(-2deg)}
+.band.forest .ph{border-color:var(--leaf)}
+.active .ph{animation:phIn .9s var(--ease) both;animation-delay:var(--d,.5s)}
+@keyframes phIn{from{opacity:0;transform:translateY(46px) rotate(-7deg) scale(.88)}}
+.split-photo{grid-template-columns:minmax(0,.85fr) minmax(0,1.15fr)}
+.star-ex{display:flex;align-items:center;justify-content:center;gap:18px;margin-top:clamp(12px,2.6vh,22px);text-align:left}
+.star-ex p{max-width:30ch;font-size:.98rem;text-shadow:0 2px 12px rgba(0,0,0,.5)}
+.yy-row{display:flex;align-items:center;gap:18px}
+.region-media{position:relative;justify-self:center}
+.mini-map{position:absolute;z-index:3;left:-20px;bottom:-18px;width:clamp(64px,7vw,92px);background:var(--cream);border:2px solid var(--forest);border-radius:10px;padding:6px 4px}
+.mini-map .vmap{width:100%}
+.mini-map .vmap text{display:none}
+.ph.float-tr{position:absolute;right:max(16px,3%);top:clamp(46px,9vh,90px);z-index:2}
+.rice-pair{display:flex;justify-content:center;align-items:center;gap:clamp(20px,5vw,64px);margin-top:clamp(14px,3vh,30px)}
+.ba-wrap{position:relative;justify-self:center}
+.ba-wrap .badge-big{position:absolute;z-index:2;right:-26px;bottom:-34px;width:min(170px,26vh)}
+.ba-wrap .badge-big .txt{font-size:clamp(1rem,2.4vh,1.5rem)}
+.ba-wrap .badge-big .txt small{display:none}
+.balance-grid{display:grid;grid-template-columns:minmax(0,1.45fr) minmax(0,1fr);gap:clamp(20px,4vw,48px);align-items:center}
+.side-photo{width:100%;height:clamp(90px,17vh,170px);object-fit:cover;border:2px solid var(--leaf)}
+.sides .side-art{height:clamp(90px,17vh,170px);width:auto}
+.oil-photo{width:100%;height:clamp(80px,15vh,150px);object-fit:cover;border:2px solid var(--leaf)}
+.suon-cut{position:absolute;z-index:2;right:max(16px,5%);top:clamp(30px,7vh,70px);width:clamp(150px,21vw,290px);filter:drop-shadow(0 14px 18px rgba(0,0,0,.28))}
+.time-photo{width:100%;height:clamp(80px,17vh,160px);object-fit:cover;border:1.5px solid var(--leaf)}
+.time-photo.icon{display:grid;place-items:center;background:rgba(203,230,145,.08)}
+.time-photo.icon svg{width:64px;height:64px}
+@media (max-width:820px){.split-photo,.balance-grid{grid-template-columns:1fr}.ph.float-tr{position:static;margin-bottom:12px}.rice-pair{flex-wrap:wrap}.star-ex{flex-direction:column}}
+@media (prefers-reduced-motion:reduce){.ph{animation:none!important}}
+.star-ex.pinned{position:absolute;z-index:2;left:max(16px,3%);bottom:clamp(64px,10vh,96px);margin:0;max-width:min(420px,40vw)}
+.split-photo .seesaw{padding-top:178px}
+.split-photo .pivot{top:183px}
+.split-photo .pan span{font-size:.85rem;padding:6px 10px}
+.balance-grid{margin-top:clamp(18px,4vh,36px)}
+.split-photo .seesaw{width:100%}
+.star-ex.pinned p{background:rgba(15,51,40,.85);padding:8px 12px;text-shadow:none}
+
+/* ---------- round 2: fixes + one picture per slide ---------- */
+/* centered plus sign drawn with two bars instead of a font glyph */
+.pair .plus{font-size:0;position:relative}
+.pair .plus::before,.pair .plus::after{content:"";position:absolute;left:50%;top:50%;width:18px;height:3px;border-radius:2px;background:var(--cream);transform:translate(-50%,-50%)}
+.pair .plus::after{transform:translate(-50%,-50%) rotate(90deg)}
+/* flip-card photos */
+.flip .f{gap:8px}
+.card-photo{display:block;width:100%;height:clamp(64px,13vh,120px);object-fit:cover;border:2px solid var(--forest)}
+/* slide 19: plate and legend sit together */
+.plate-split{grid-template-columns:auto minmax(0,auto);justify-content:center;gap:clamp(28px,5vw,80px)}
+.plate-split .plate-wrap{width:min(420px,56vh);max-width:none;margin:0}
+/* slides 12-14: mini map beside the eyebrow */
+.mini-map.inline{position:static;width:clamp(40px,4.5vw,56px);padding:4px 3px;margin-bottom:-4px}
+/* slide 7 */
+.harmony-row{display:flex;align-items:center;justify-content:center;gap:clamp(16px,3vw,36px);margin-top:clamp(14px,3vh,28px)}
+.harmony-row .harmony{margin:0;text-align:left;max-width:46ch}
+/* slide 11 */
+.region{grid-template-columns:minmax(0,9rem) minmax(0,1fr) auto;align-items:center}
+.region-thumb{width:clamp(72px,10vh,110px);height:clamp(52px,7.5vh,80px);object-fit:cover;border:2px solid var(--forest);box-shadow:4px 4px 0 var(--carrot)}
+/* slide 18 */
+.journey-thumb{display:block;width:100%;height:clamp(56px,10vh,100px);object-fit:cover;border:2px solid var(--forest)}
+/* slide 24 */
+.step-thumb{display:block;width:100%;height:clamp(56px,10vh,96px);object-fit:cover;border:2px solid var(--leaf)}
+.step-thumb.contain{object-fit:contain;background:var(--cream)}
+/* slide 27 */
+.marinade-grid{display:grid;grid-template-columns:minmax(0,1.7fr) minmax(0,1fr);gap:clamp(18px,3vw,40px);align-items:center}
+/* quiz */
+.qz-img{display:block;width:100%;height:clamp(84px,13vh,120px);object-fit:cover;border-radius:6px;border:1.5px solid var(--leaf);background:var(--cream);margin-bottom:12px}
+.qz-img[src$="suon-cay.webp"]{object-fit:cover;object-position:center 35%}
+/* slide 32 */
+.trio-photos{display:flex;justify-content:center;gap:clamp(14px,3vw,36px);margin-top:clamp(10px,2vh,18px)}
+.trio-photos .ph figcaption{padding:5px 2px 7px}
+@media (max-width:820px){.plate-split{grid-template-columns:1fr}.plate-split .plate-wrap{width:min(300px,80vw)}.marinade-grid{grid-template-columns:1fr}.region{grid-template-columns:minmax(0,7rem) minmax(0,1fr)}.region-thumb{display:none}}
+/* Vietnamese titles run longer: one step smaller */
+h2{font-size:clamp(2rem,min(5.2vw,9vh),4.4rem)}
+.big-word{font-size:clamp(2.6rem,min(7vw,12vh),6.4rem)}
+.finale .lead{font-size:clamp(1.3rem,min(2.8vw,5vh),2.4rem)}
+.finale h2{font-size:clamp(2.6rem,min(8.5vw,14vh),7.5rem)}
+.dishes b{font-size:clamp(1.25rem,min(2.6vw,5vh),2.2rem)}
+
+/* ---------- Vietnamese diacritics: give stacked marks (Â, Ằ, Ề, Ệ…) room ---------- */
+h1,h2,h3{line-height:1.1}
+.cover h1{line-height:1.05}
+.big-word{line-height:1.12;margin-top:.15em}
+.year,.stat .num{line-height:1.05}
+.badge-big .txt{line-height:1.08}
+.trio b,.region b,.facts b,.journey b,.flip .b b,.kinds strong,.times b,.dishes b,.flip .f strong,.steps4 b,.roles b,.sides h3{line-height:1.12}
+.marquee,.ticker,.take li{line-height:1.15}
+.trio-photos .ph img{height:11vh!important;width:11vh!important}
+.finale h2{margin-top:clamp(8px,2vh,18px)}
+/* pairs: both boxes in a row share one height, text centered vertically */
+.pair{align-items:stretch}
+.pair .plus{align-self:center}
+.pair .l,.pair .r{display:flex;flex-direction:column;justify-content:center}
+.pair .l{align-items:flex-end}
+/* keep two columns on mid-size windows (641–820px) so slides do not grow taller than the screen */
+@media (min-width:641px) and (max-width:820px){
+  .split,.split-photo,.map-wrap{grid-template-columns:minmax(0,1fr) minmax(0,1fr)}
+  .yy-wrap{max-width:min(100%,300px)}
+}
+/* mid-size windows (641–900px): keep card rows in one line instead of stacking */
+@media (min-width:641px) and (max-width:900px){
+  .flips{grid-template-columns:repeat(5,minmax(0,1fr));gap:10px}
+  .flip .f,.flip .b{padding:10px}
+  .flip .f strong{font-size:1.15rem}
+  .steps4{grid-template-columns:repeat(4,minmax(0,1fr));gap:10px}
+  .quiz{grid-template-columns:repeat(3,minmax(0,1fr));gap:10px}
+  .journey{grid-template-columns:repeat(4,minmax(0,1fr))}
+  .journey::after{left:0;right:0;top:19px;bottom:auto;width:auto;height:3px;transform-origin:left}
+  .journey li{grid-template-columns:none;align-items:start}
+  .journey li > *{grid-column:auto}
+  .journey li::before{grid-row:auto;grid-column:auto}
+  .senses,.times,.kinds,.ffc,.stats,.facts{grid-template-columns:repeat(3,minmax(0,1fr))}
+  .sides,.roles{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .recipe{grid-template-columns:minmax(0,.6fr) minmax(0,1.2fr) minmax(0,1fr);gap:14px}
+  .balance-grid,.marinade-grid{grid-template-columns:minmax(0,1.4fr) minmax(0,1fr)}
+  .plate-split{grid-template-columns:auto minmax(0,1fr)}
+  .plate-split .plate-wrap{width:min(320px,48vh)}
+}
+.marinade-grid{margin-top:clamp(22px,5vh,48px)}
+
+/* ================= transitions v2 (đã thêm) ================= */
+/* slide vừa rời màn hình: vẫn hiện bên dưới để hiệu ứng mới "đè" lên */
+.band.leaving{visibility:visible;opacity:1;z-index:1;transition:none;pointer-events:none;animation:tOut .6s ease both}
+@keyframes tOut{to{opacity:0;transform:scale(.96)}}
+@keyframes tHold{to{filter:brightness(.55)}}
+.deck[data-exit="wipe"] .band.leaving,.deck[data-exit="circle"] .band.leaving,.deck[data-exit="blinds"] .band.leaving,
+.deck[data-exit="diamond"] .band.leaving,.deck[data-exit="curtain"] .band.leaving,.deck[data-exit="iris"] .band.leaving,
+.deck[data-exit="shutters"] .band.leaving{animation:tHold .9s ease both}
+
+/* đi lùi: đảo hướng các hiệu ứng có chiều */
+.deck[data-dir="back"] .band.active[data-t="slide"]{animation-name:tSlideBack}
+.deck[data-dir="back"] .band.active[data-t="wipe"]{animation-name:tWipeBack}
+@keyframes tSlideBack{from{opacity:0;transform:translateX(-10%)}}
+@keyframes tWipeBack{from{clip-path:inset(0 100% 0 0)}to{clip-path:inset(0 0 0 0)}}
+
+/* 1. flip — lật 3D như mở cửa */
+.band.active[data-t="flip"]{transform-origin:0 50%;animation:tFlip .9s cubic-bezier(.3,.8,.3,1) both}
+.deck[data-dir="back"] .band.active[data-t="flip"]{transform-origin:100% 50%;animation-name:tFlipBack}
+@keyframes tFlip{from{opacity:0;transform:perspective(1800px) rotateY(75deg)}40%{opacity:1}}
+@keyframes tFlipBack{from{opacity:0;transform:perspective(1800px) rotateY(-75deg)}40%{opacity:1}}
+.deck[data-exit="flip"] .band.leaving{animation:tHold .9s ease both}
+
+/* 2. cube — xoay khối lập phương */
+.band.active[data-t="cube"]{transform-origin:0 50%;animation:tCubeIn .9s cubic-bezier(.5,0,.25,1) both}
+.deck[data-exit="cube"] .band.leaving{transform-origin:100% 50%;animation:tCubeOut .9s cubic-bezier(.5,0,.25,1) both}
+.deck[data-dir="back"] .band.active[data-t="cube"]{transform-origin:100% 50%;animation-name:tCubeInBack}
+.deck[data-dir="back"][data-exit="cube"] .band.leaving{transform-origin:0 50%;animation-name:tCubeOutBack}
+@keyframes tCubeIn{from{transform:perspective(2000px) translateX(100%) rotateY(90deg);filter:brightness(.6)}to{transform:none;filter:none}}
+@keyframes tCubeOut{to{transform:perspective(2000px) translateX(-100%) rotateY(-90deg);filter:brightness(.5)}}
+@keyframes tCubeInBack{from{transform:perspective(2000px) translateX(-100%) rotateY(-90deg);filter:brightness(.6)}to{transform:none;filter:none}}
+@keyframes tCubeOutBack{to{transform:perspective(2000px) translateX(100%) rotateY(90deg);filter:brightness(.5)}}
+
+/* 3. diamond — hình thoi nở từ tâm */
+.band.active[data-t="diamond"]{animation:tDiamond .9s cubic-bezier(.6,0,.2,1) both}
+@keyframes tDiamond{from{clip-path:polygon(50% 50%,50% 50%,50% 50%,50% 50%)}to{clip-path:polygon(50% -60%,160% 50%,50% 160%,-60% 50%)}}
+
+/* 4. curtain — rèm mở từ giữa ra hai bên */
+.band.active[data-t="curtain"]{animation:tCurtain .9s cubic-bezier(.7,0,.2,1) both}
+@keyframes tCurtain{from{clip-path:inset(0 50% 0 50%)}to{clip-path:inset(0 0 0 0)}}
+
+/* 5. shutters — lá sách (8 lá dọc mở cùng lúc) */
+@property --sh{syntax:'<percentage>';inherits:false;initial-value:100%}
+.band.active[data-t="shutters"]{--sh:100%;-webkit-mask-image:linear-gradient(90deg,#000 var(--sh),transparent var(--sh));mask-image:linear-gradient(90deg,#000 var(--sh),transparent var(--sh));-webkit-mask-size:12.5% 100%;mask-size:12.5% 100%;-webkit-mask-repeat:repeat-x;mask-repeat:repeat-x;animation:tShutters .9s cubic-bezier(.6,0,.3,1) both}
+@keyframes tShutters{from{--sh:0%}to{--sh:100%}}
+
+/* 6. swirl — xoáy vào */
+.band.active[data-t="swirl"]{animation:tSwirl .9s cubic-bezier(.25,.9,.3,1.05) both}
+@keyframes tSwirl{from{opacity:0;transform:rotate(-14deg) scale(.55)}55%{opacity:1}}
+
+/* 7. blur — mờ như khói than tan dần */
+.band.active[data-t="blur"]{animation:tBlur 1s ease both}
+@keyframes tBlur{from{opacity:0;filter:blur(26px);transform:scale(1.06)}to{opacity:1;filter:none;transform:none}}
+
+/* 8. iris — vòng tròn mở từ góc */
+.band.active[data-t="iris"]{animation:tIris 1s cubic-bezier(.6,0,.2,1) both}
+.deck[data-dir="back"] .band.active[data-t="iris"]{animation-name:tIrisBack}
+@keyframes tIris{from{clip-path:circle(0% at 0% 100%)}to{clip-path:circle(145% at 0% 100%)}}
+@keyframes tIrisBack{from{clip-path:circle(0% at 100% 0%)}to{clip-path:circle(145% at 100% 0%)}}
+
+/* 9. push — đẩy slide cũ lên trên */
+.band.active[data-t="push"]{animation:tPushIn .8s cubic-bezier(.65,0,.25,1) both}
+.deck[data-exit="push"] .band.leaving{animation:tPushOut .8s cubic-bezier(.65,0,.25,1) both}
+.deck[data-dir="back"] .band.active[data-t="push"]{animation-name:tPushInBack}
+.deck[data-dir="back"][data-exit="push"] .band.leaving{animation-name:tPushOutBack}
+@keyframes tPushIn{from{transform:translateY(100%)}}
+@keyframes tPushOut{to{transform:translateY(-35%);filter:brightness(.5)}}
+@keyframes tPushInBack{from{transform:translateY(-100%)}}
+@keyframes tPushOutBack{to{transform:translateY(35%);filter:brightness(.5)}}
+
+/* stinger — chuyển người thuyết trình */
+.stinger{position:fixed;inset:0;z-index:25;pointer-events:none;overflow:hidden}
+.stinger i{position:absolute;top:-20%;bottom:-20%;left:0;width:60%;transform:translateX(-140%) skewX(-18deg);opacity:0}
+.stinger .s1{background:var(--carrot);animation:stSweep .75s cubic-bezier(.7,0,.3,1) both}
+.stinger .s2{background:var(--leaf);animation:stSweep .75s cubic-bezier(.7,0,.3,1) .1s both}
+@keyframes stSweep{0%{opacity:1;transform:translateX(-140%) skewX(-18deg)}100%{opacity:1;transform:translateX(260%) skewX(-18deg)}}
+.stinger .card{position:absolute;left:50%;bottom:calc(84px + env(safe-area-inset-bottom,0px));display:flex;flex-direction:column;align-items:center;gap:2px;padding:12px 28px 14px;background:var(--forest);color:var(--cream);border-bottom:5px solid var(--carrot);box-shadow:0 18px 40px rgba(0,0,0,.25);opacity:0;transform:translate(-50%,20px);animation:stCard 2.3s var(--ease) .35s both}
+.stinger .card small{font-size:.72rem;letter-spacing:.18em;text-transform:uppercase;color:var(--leaf)}
+.stinger .card b{font-family:var(--display);font-weight:400;font-size:clamp(1.8rem,4vw,2.8rem);line-height:1.15;text-transform:uppercase}
+.stinger .card span{font-size:.9rem;opacity:.85}
+@keyframes stCard{0%{opacity:0;transform:translate(-50%,24px) scale(.92)}14%{opacity:1;transform:translate(-50%,0) scale(1)}80%{opacity:1;transform:translate(-50%,0)}100%{opacity:0;transform:translate(-50%,-10px)}}
+
+@media (prefers-reduced-motion:reduce){.stinger{display:none}.band.leaving{visibility:hidden}}
+
+/* ================= transitions v3 — nâng cấp ================= */
+/* khung ảnh: ken burns (ảnh zoom chậm trong khung) + parallax theo chuột */
+.ph-img{display:block;overflow:hidden}
+.active .ph-img img{animation:kenBurns 14s ease-out .6s both}
+.ph:nth-of-type(2n) .ph-img img{transform-origin:30% 70%}
+@keyframes kenBurns{from{transform:scale(1)}to{transform:scale(1.12)}}
+.band.active .ph{translate:calc(var(--mx,0) * -10px) calc(var(--my,0) * -8px);transition:translate .6s cubic-bezier(.2,.7,.2,1)}
+.band.active .ph:nth-of-type(2n){translate:calc(var(--mx,0) * 14px) calc(var(--my,0) * 10px)}
+
+/* 10. dots — chấm bi lan ra phủ kín */
+@property --dot{syntax:'<length>';inherits:false;initial-value:200px}
+.band.active[data-t="dots"]{--dot:200px;-webkit-mask-image:radial-gradient(circle,#000 var(--dot),transparent calc(var(--dot) + 1px));mask-image:radial-gradient(circle,#000 var(--dot),transparent calc(var(--dot) + 1px));-webkit-mask-size:9vmin 9vmin;mask-size:9vmin 9vmin;-webkit-mask-position:center;mask-position:center;animation:tDots 1s cubic-bezier(.6,0,.3,1) both}
+@keyframes tDots{from{--dot:0px}to{--dot:7vmin}}
+
+/* 11. slices — 3 dải ngang trượt vào so le */
+.band.active[data-t="slices"]{-webkit-mask-image:linear-gradient(#000,#000),linear-gradient(#000,#000),linear-gradient(#000,#000);mask-image:linear-gradient(#000,#000),linear-gradient(#000,#000),linear-gradient(#000,#000);-webkit-mask-size:100% 33.5%;mask-size:100% 33.5%;-webkit-mask-repeat:no-repeat;mask-repeat:no-repeat;animation:tSlices .95s cubic-bezier(.75,0,.2,1) both}
+@keyframes tSlices{
+  from{-webkit-mask-position:-100vw 0,100vw 50%,-100vw 100%;mask-position:-100vw 0,100vw 50%,-100vw 100%}
+  to{-webkit-mask-position:0 0,0 50%,0 100%;mask-position:0 0,0 50%,0 100%}}
+.deck[data-exit="slices"] .band.leaving,.deck[data-exit="dots"] .band.leaving,.deck[data-exit="diag"] .band.leaving{animation:tHold .95s ease both}
+
+/* 12. diag — gạt chéo kèm viền cam */
+.band.active[data-t="diag"]{animation:tDiag .9s cubic-bezier(.7,0,.2,1) both}
+.deck[data-dir="back"] .band.active[data-t="diag"]{animation-name:tDiagBack}
+@keyframes tDiag{from{clip-path:polygon(0 0,0 0,0 0,0 0)}to{clip-path:polygon(0 0,200% 0,0 200%,0 0)}}
+@keyframes tDiagBack{from{clip-path:polygon(100% 100%,100% 100%,100% 100%,100% 100%)}to{clip-path:polygon(100% 100%,-100% 100%,100% -100%,100% 100%)}}
+
+/* tàn lửa cho phần sườn nướng */
+.embers{position:fixed;inset:0;width:100%;height:100%;z-index:4;pointer-events:none;opacity:0;transition:opacity 1.2s ease}
+.embers.on{opacity:1}
+
+@media (prefers-reduced-motion:reduce){.active .ph-img img{animation:none!important}.band.active .ph{translate:none}.embers{display:none}}
+
+/* ================= giao diện v2 (html.ui2 — phím U để so sánh) ================= */
+.ui2 body{-webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility}
+
+/* chiều sâu cho nền: ánh sáng góc trên + viền tối nhẹ + vân giấy */
+.ui2 .band::after{content:"";position:absolute;inset:0;z-index:0;pointer-events:none;
+  background:
+    radial-gradient(ellipse 70% 55% at 15% 0%,rgba(255,255,255,.22),transparent 70%),
+    radial-gradient(ellipse 120% 90% at 50% 50%,transparent 60%,rgba(0,0,0,.1) 100%),
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='3' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 0  0 0 0 0 0  0 0 0 0 0  0 0 0 .55 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  opacity:.16;mix-blend-mode:multiply}
+.ui2 .band.forest::after{opacity:.6;mix-blend-mode:soft-light}
+
+/* tiêu đề: đổ bóng nhẹ trên nền tối, vạch nhấn dưới eyebrow */
+.ui2 .band.forest h2,.ui2 .band.forest h1{text-shadow:0 3px 0 rgba(0,0,0,.18)}
+.ui2 .band.cream h2,.ui2 .band.leaf h2{text-shadow:0 2px 0 rgba(22,93,58,.08)}
+.ui2 .eyebrow{display:inline-flex;align-items:center;gap:10px}
+.ui2 .eyebrow::before{content:"";width:28px;height:2px;background:currentColor;opacity:.8}
+
+/* thẻ nội dung: bóng cứng đồng bộ với khung ảnh + nhấc lên khi rê chuột */
+.ui2 :is(.stat,.flips .f,.steps4 li,.sides>*,.kinds>*,.times>*,.senses>*,.trio>*,.pair .l,.pair .r){
+  box-shadow:6px 6px 0 rgba(237,120,67,.9);transition:translate .25s var(--ease),box-shadow .25s var(--ease)}
+.ui2 .band.leaf :is(.stat,.flips .f,.steps4 li,.sides>*,.kinds>*,.times>*,.senses>*,.trio>*,.pair .l,.pair .r){box-shadow:6px 6px 0 rgba(22,93,58,.85)}
+.ui2 :is(.stat,.flips .f,.steps4 li,.sides>*,.kinds>*,.times>*,.senses>*,.trio>*,.pair .l,.pair .r):hover{translate:-3px -3px;box-shadow:9px 9px 0 var(--carrot)}
+.ui2 .chip{box-shadow:3px 3px 0 rgba(0,0,0,.14);transition:translate .2s var(--ease)}
+.ui2 .chip:hover{translate:0 -2px}
+
+/* khung ảnh: phóng nhẹ khi rê chuột */
+.ui2 .ph{transition:translate .6s cubic-bezier(.2,.7,.2,1),scale .35s var(--ease),box-shadow .35s var(--ease)}
+.ui2 .ph:hover{scale:1.03;box-shadow:14px 14px 0 var(--carrot)}
+
+/* thanh điều khiển & chip người nói: bóng cứng, dày hơn, dễ thấy trên máy chiếu */
+.ui2 .who,.ui2 .controls{box-shadow:4px 4px 0 var(--carrot);border-width:2px}
+.ui2 .who{padding:5px 14px 5px 5px;font-size:.88rem}
+.ui2 .who b{padding:4px 12px}
+.ui2 .controls button{transition:background .2s ease,color .2s ease}
+.ui2 .progress{height:6px;gap:4px}
+.ui2 .progress .seg{background:rgba(111,146,125,.28)}
+.ui2 .progress .seg span{background:linear-gradient(90deg,var(--carrot),#f59a5f);box-shadow:0 0 10px rgba(237,120,67,.65)}
+
+@media (hover:none){.ui2 .ph:hover,.ui2 .chip:hover,.ui2 :is(.stat,.flips .f,.steps4 li,.sides>*,.kinds>*,.times>*,.senses>*,.trio>*,.pair .l,.pair .r):hover{translate:none;scale:none}}
+@media (prefers-reduced-motion:reduce){.ui2 .ph:hover{scale:none}}
+
+/* ================= bản đồ Việt Nam + máy bay ================= */
+.vmap.vn{width:min(100%,470px,76vh);overflow:visible}
+.vn .vn-land{fill:var(--leaf);stroke:var(--forest);stroke-width:2;stroke-linejoin:round}
+.vn .vn-land-hatch{stroke:none;pointer-events:none}
+.vn .vn-hatch{stroke:var(--forest);stroke-width:1;opacity:.12}
+.band.leaf .vn .vn-land{fill:var(--cream)}
+.band.forest .vn .vn-land{fill:rgba(203,230,145,.16);stroke:var(--leaf)}
+.band.forest .vn .vn-hatch{stroke:var(--leaf)}
+.vn .vn-isles circle{fill:var(--forest)}
+.band.forest .vn .vn-isles circle{fill:var(--leaf)}
+.vmap.vn text{font-family:var(--body);text-transform:none;font-size:12px;fill:var(--forest);opacity:.75}
+.vmap.vn .vn-sea{font-style:italic;font-size:15px;letter-spacing:.2em;opacity:.35}
+.band.forest .vmap.vn text{fill:var(--leaf)}
+.vn .vn-trail{fill:none;stroke:var(--carrot);stroke-width:3;stroke-linecap:round}
+.vn .vn-city .dot{fill:var(--cream);stroke:var(--forest);stroke-width:3;transition:fill .3s ease}
+.vn .vn-city .ring{fill:none;stroke:var(--carrot);stroke-width:2.5;opacity:0;transform-box:fill-box;transform-origin:center}
+.vn .vn-city text{font-family:var(--display);font-size:19px;text-transform:uppercase;opacity:1;fill:var(--forest)}
+.band.forest .vn .vn-city .dot{fill:var(--forest);stroke:var(--leaf)}
+.vn .vn-city.lit .dot{fill:var(--carrot);stroke:var(--carrot)}
+.vn .vn-city.lit .ring{animation:vnPing 1.6s ease-out infinite}
+.vn .vn-city.lit text{fill:var(--carrot)}
+@keyframes vnPing{0%{opacity:.9;transform:scale(.6)}100%{opacity:0;transform:scale(2.2)}}
+.vn .vn-plane path{fill:var(--forest);stroke:var(--cream);stroke-width:1.4;filter:drop-shadow(3px 5px 2px rgba(0,0,0,.25))}
+.band.forest .vn .vn-plane path{fill:var(--cream);stroke:var(--forest)}
+.vn .vn-plane{transition:opacity .25s ease}
+/* bản đồ nhỏ trên slide từng miền: chỉ hiện tên thành phố đích */
+.mini-map .vmap.vn text{display:none}
+.mini-map .vmap.vn .vn-city.target text{display:block;font-size:34px}
+.mini-map .vn .vn-isles,.mini-map .vn .vn-sea{display:none}
+.mini-map .vn .vn-plane path{stroke-width:2}
+.mini-map .vn .vn-trail{stroke-width:5}
+.mini-map.corner{left:auto;right:-30px;top:-34px;bottom:auto;width:clamp(120px,11vw,165px);padding:8px 6px;border-radius:12px;transform:rotate(3deg);box-shadow:5px 5px 0 var(--carrot)}
+.band.forest .mini-map{background:var(--forest);border-color:var(--leaf)}
+.band.leaf .mini-map{background:var(--cream)}
+.active .mini-map.corner{animation:pop .6s var(--ease) .9s both}
+.vn .vn-city text{paint-order:stroke;stroke:var(--cream);stroke-width:5px;stroke-linejoin:round}
+.band.forest .vn .vn-city text{stroke:var(--forest)}
+.band.leaf .vn .vn-city text{stroke:var(--leaf)}
+@media (max-width:820px){.mini-map.corner{width:110px;right:-10px;top:-20px}}
+
+/* ================= chuyển cảnh "chuyến bay" giữa các miền ================= */
+.flight{position:fixed;inset:0;z-index:24;pointer-events:none;overflow:hidden;
+  background:radial-gradient(ellipse 80% 70% at 50% 45%,#1d7048 0%,var(--forest) 55%,#0e3f27 100%);
+  animation:flightFade 2.7s linear both}
+@keyframes flightFade{0%{opacity:0}12%{opacity:1}78%{opacity:1}100%{opacity:0}}
+.flight svg{position:absolute;inset:0;width:100%;height:100%}
+.flight .fl-grid{fill:none;stroke:rgba(203,230,145,.08);stroke-width:.6}
+.flight .fl-land{fill:rgba(203,230,145,.22);stroke:var(--leaf);stroke-width:1.4;stroke-linejoin:round}
+.flight .fl-isles circle{fill:var(--leaf);opacity:.7}
+.flight .fl-route{fill:none;stroke:rgba(255,250,238,.45);stroke-width:1.4;stroke-dasharray:3 4}
+.flight .fl-trail{fill:none;stroke:var(--carrot);stroke-width:2.6;stroke-linecap:round;stroke-dasharray:0 9999}
+.flight .fl-city .dot{fill:var(--forest);stroke:var(--leaf);stroke-width:2}
+.flight .fl-city.from .dot{fill:var(--leaf)}
+.flight .fl-city.to .dot{fill:var(--carrot);stroke:var(--cream)}
+.flight .fl-city .ring{fill:none;stroke:var(--carrot);stroke-width:1.8;opacity:0;transform-box:fill-box;transform-origin:center}
+.flight .fl-city.to .ring{animation:vnPing 1.2s ease-out .9s infinite}
+.flight .fl-city text{font-family:var(--display);font-size:13px;text-transform:uppercase;fill:var(--cream);paint-order:stroke;stroke:var(--forest);stroke-width:3px}
+.flight .fl-city.to text{fill:var(--carrot)}
+.flight .fl-plane path{fill:var(--cream);stroke:var(--forest);stroke-width:1;filter:drop-shadow(4px 8px 3px rgba(0,0,0,.35))}
+.flight-head{position:absolute;z-index:1;top:clamp(56px,9vh,96px);left:0;right:0;text-align:center;color:var(--cream);animation:flightHead 2.7s var(--ease) both}
+.flight-head small{display:block;font-size:.8rem;letter-spacing:.24em;text-transform:uppercase;color:var(--leaf)}
+.flight-head small span{color:var(--carrot);margin:0 .4em}
+.flight-head b{display:block;font-family:var(--display);font-weight:400;font-size:clamp(2.4rem,6vw,4.6rem);line-height:1.15;text-transform:uppercase;text-shadow:0 4px 0 rgba(0,0,0,.2)}
+@keyframes flightHead{0%{opacity:0;transform:translateY(-18px)}18%{opacity:1;transform:none}66%{opacity:1}80%{opacity:0;transform:translateY(-10px)}100%{opacity:0}}
+@media (min-width:821px){
+  .flight svg{left:34%;width:62%;top:4vh;height:92vh}
+  .flight-head{top:50%;left:max(40px,6vw);right:auto;width:30%;text-align:left;margin-top:-3.5em}
+}
+@media (max-width:820px){.flight svg{top:22vh;height:76vh}}
+@media (prefers-reduced-motion:reduce){.flight{display:none}}
+
+/* ================= âm dương lăn trên thanh cân bằng (slide 8) ================= */
+.yy-stage{position:relative;width:100%;aspect-ratio:1/0.92;user-select:none;-webkit-user-select:none}
+.active .yy.yy-roll{animation:none}
+.yy.yy-roll{position:absolute;left:21%;width:58%;bottom:14%;cursor:grab;touch-action:none;filter:drop-shadow(0 10px 8px rgba(22,93,58,.25));will-change:transform}
+.yy-stage.grab .yy.yy-roll{cursor:grabbing}
+.yy-beam{position:absolute;left:2%;right:2%;bottom:calc(14% - 8px);height:8px;background:var(--forest);border-radius:4px;transform-origin:50% 50%}
+.yy-beam i{position:absolute;top:-5px;width:18px;height:18px;border-radius:50%;border:3px solid var(--forest)}
+.yy-beam .c{left:-4px;background:var(--cream)}
+.yy-beam .h{right:-4px;background:var(--carrot)}
+.yy-fulcrum{position:absolute;left:50%;bottom:calc(14% - 46px);width:0;height:0;margin-left:-22px;border-left:22px solid transparent;border-right:22px solid transparent;border-bottom:38px solid var(--forest)}
+.yy-hint{position:absolute;left:0;right:0;bottom:-34px;margin:0;text-align:center;font-size:.8rem;font-style:italic;color:var(--forest);opacity:.6}
+.yy-wrap .yy-l,.yy-wrap .yy-r{top:38%;z-index:2;transition:transform .35s var(--ease),box-shadow .35s var(--ease),background .35s ease,color .35s ease}
+.band.yy-cold .yy-l{transform:translateY(-50%) scale(1.18);box-shadow:5px 5px 0 var(--carrot)}
+.band.yy-hot .yy-r{transform:translateY(-50%) scale(1.18);box-shadow:5px 5px 0 var(--carrot);color:var(--cream)}
+/* các món cùng tính sáng theo */
+.yy-pairs .l,.yy-pairs .r,.yy-pairs .plus{transition:translate .35s var(--ease),box-shadow .35s var(--ease),scale .35s var(--ease)}
+.band.yy-cold .yy-pairs .l{translate:-6px -4px;box-shadow:8px 8px 0 var(--carrot)}
+.band.yy-hot .yy-pairs .r{translate:6px -4px;box-shadow:8px 8px 0 var(--carrot)}
+.band.yy-mid .yy-pairs .plus{scale:1.15}
+@media (prefers-reduced-motion:reduce){.yy-hint{display:none}}
+
+/* ================= người nhỏ vác âm dương (slide 8) ================= */
+.yy-runner{position:absolute;left:0;top:0;z-index:6;width:84px;height:131px;pointer-events:none;opacity:0;transition:opacity .25s ease}
+.yy-runner.show{opacity:1}
+.yr-flip{width:100%;height:100%}
+.yy-runner svg{display:block;overflow:visible}
+.yy-runner path,.yy-runner line{fill:none;stroke:var(--forest);stroke-width:5;stroke-linecap:round;stroke-linejoin:round}
+.yy-runner .yr-scarf{fill:var(--carrot);stroke:none;transform-box:view-box;transform-origin:29px 46px}
+.yy-runner .yr-head{fill:var(--cream);stroke:var(--forest);stroke-width:3}
+.yy-runner .yr-band{stroke:var(--carrot);stroke-width:3}
+.yy-runner .yr-shadow{fill:rgba(22,93,58,.22)}
+.yy-runner .yr-cargo{opacity:0;transform:translateY(14px) scale(.6);transform-box:view-box;transform-origin:32px 26px;transition:opacity .2s ease,transform .3s cubic-bezier(.3,1.5,.5,1)}
+.yy-runner.carry .yr-cargo{opacity:1;transform:none}
+.yy-runner .yr-arms-up,.yy-runner .yr-arms-push{display:none}
+.yy-runner.carry .yr-arms-up{display:inline}
+.yy-runner.carry .yr-arms-swing{display:none}
+.yy-runner.carry.push .yr-arms-up{display:none}
+.yy-runner.carry.push .yr-arms-push{display:inline}
+.yy-runner.carry.push .yr-cargo{transform:translate(-8px,22px) scale(.85)}
+.yy-runner .yr-leg,.yy-runner .yr-arms-swing path{transform-box:view-box}
+.yy-runner .yr-leg{transform-origin:32px 66px}
+.yy-runner .yr-arms-swing path{transform-origin:32px 49px}
+.yy-runner.run .yr-leg.a{animation:yrLeg .28s ease-in-out infinite alternate}
+.yy-runner.run .yr-leg.b{animation:yrLeg .28s ease-in-out infinite alternate-reverse}
+.yy-runner.run .yr-arms-swing .sa{animation:yrLeg .28s ease-in-out infinite alternate-reverse}
+.yy-runner.run .yr-arms-swing .sb{animation:yrLeg .28s ease-in-out infinite alternate}
+.yy-runner.run .yr-body{animation:yrBob .14s ease-in-out infinite alternate}
+.yy-runner.run .yr-scarf{animation:yrScarf .2s ease-in-out infinite alternate}
+.yy-runner.run .yr-cargo{animation:yrBob .14s ease-in-out infinite alternate}
+.yy-runner.push .yr-body{transform:rotate(12deg);transform-box:view-box;transform-origin:32px 96px;animation:none}
+@keyframes yrLeg{from{transform:rotate(-32deg)}to{transform:rotate(32deg)}}
+@keyframes yrBob{from{transform:translateY(0)}to{transform:translateY(-3px)}}
+@keyframes yrScarf{from{transform:rotate(-6deg) scaleX(1)}to{transform:rotate(8deg) scaleX(1.15)}}
+/* khi người đang vác: âm dương trên thanh ẩn đi; thẻ chữ do JS điều khiển */
+.band.yy-carried .yy.yy-roll{opacity:0}
+.yy.yy-roll{transition:opacity .15s ease}
+.band.yy-run .yy-pairs .l,.band.yy-run .yy-pairs .r,.band.yy-run .yy-pairs .plus{animation:none}
+.band.yy-hold .yy-hint{opacity:0}
+@media (prefers-reduced-motion:reduce){.yy-runner{display:none}}
+
+/* ================= người nhỏ đội cơm tấm (slide 1) ================= */
+.band.intro-run .members li:not(:first-child){animation:none}
+.intro-runner .yr-cargo path.yr-steam{stroke-width:1;stroke:var(--sage)}
+.yy-runner.cheer .yr-cargo{animation:yrToss .52s ease-in-out}
+@keyframes yrToss{0%{transform:none}45%{transform:translateY(-26px) rotate(200deg)}100%{transform:rotate(360deg)}}
+
+/* ================= slide 1: chữ bay tán loạn rồi ghép lại ================= */
+.band.intro-run .cover-text [data-a],.band.intro-run .cover-text [data-letters] .ch{animation:none}
+.cover .eyebrow .ch,.cover .sub .ch{display:inline-block}
+.cover .eyebrow > span{display:inline}
+/* dấu tiếng Việt (Ẩ, Ệ, Ấ) không đè lên dòng trên/dưới khi font Anton tải xong */
+.cover h1{line-height:1.16!important}
+.cover .eyebrow + h1{margin-top:22px!important}
+.cover .sub{margin-top:22px;line-height:1.2}
+
+/* ================= chuyển cảnh 1 → 2: người đẩy slide + người chạy theo ================= */
+.shove{position:fixed;inset:0;z-index:24;pointer-events:none;overflow:hidden}
+.shove .shove-runner{position:absolute;left:0;top:0;width:120px;height:187px;opacity:1}
+.shove .shove-runner .yr-cargo{display:none}
+.shove .chaser .yr-band{stroke:var(--leaf)}
+.shove .chaser .yr-scarf{fill:var(--leaf)}
+.shove .pusher.push .yr-arms-swing{display:none}
+.shove .pusher.push .yr-arms-push{display:inline}
+.shove .pusher.push .yr-body{transform:rotate(16deg);transform-box:view-box;transform-origin:32px 96px;animation:none}
+.shove .pusher.push .yr-leg.a{animation-duration:.42s}
+.shove .pusher.push .yr-leg.b{animation-duration:.42s}
+.shove-bubble{position:absolute;left:0;top:0;padding:8px 14px;background:var(--cream);color:var(--forest);border:2px solid var(--forest);box-shadow:4px 4px 0 var(--carrot);font-weight:700;font-size:1.05rem;white-space:nowrap;opacity:0;scale:.6;transition:opacity .2s ease,scale .25s cubic-bezier(.3,1.6,.5,1)}
+.shove-bubble::after{content:"";position:absolute;left:34px;bottom:-12px;border:6px solid transparent;border-top:8px solid var(--forest)}
+.shove-bubble.on{opacity:1;scale:1}
+.shove .yy-runner svg{filter:drop-shadow(0 0 1.5px var(--cream)) drop-shadow(0 0 3px var(--cream)) drop-shadow(0 6px 6px rgba(0,0,0,.35))}
+@media (prefers-reduced-motion:reduce){.shove{display:none}}
+
+/* ================= chuyển cảnh có người: đẩy / nâng / giậm / đá ================= */
+.ctx .yy-runner{transition:none}
+.ctx .yy-runner.push .yr-arms-swing,.ctx .yy-runner.lift .yr-arms-swing,.ctx .yy-runner.cheer .yr-arms-swing{display:none}
+.ctx .yy-runner.push .yr-arms-push{display:inline}
+.ctx .yy-runner.lift .yr-arms-up,.ctx .yy-runner.cheer .yr-arms-up{display:inline}
+.ctx .yy-runner.push .yr-leg.a,.ctx .yy-runner.push .yr-leg.b{animation:yrLeg .42s ease-in-out infinite alternate}
+.ctx .yy-runner.push .yr-leg.b{animation-direction:alternate-reverse}
+.ctx .yy-runner.push .yr-body{transform:rotate(16deg);transform-box:view-box;transform-origin:32px 96px}
+.ctx .yy-runner.lift .yr-body{animation:yrBob .3s ease-in-out infinite alternate}
+.ctx .yy-runner.kick .yr-leg.a{transform:rotate(-88deg)}
+.ctx .yy-runner.kick .yr-leg.b{transform:rotate(18deg)}
+.ctx .yy-runner.kick .yr-body{transform:rotate(-14deg);transform-box:view-box;transform-origin:32px 66px}
+.ctx .yy-runner.cheer .yr-leg.a{transform:rotate(-14deg)}
+.ctx .yy-runner.cheer .yr-leg.b{transform:rotate(14deg)}
+.ctx-burst{position:absolute;left:0;top:0;min-width:100px;text-align:center;font-family:var(--display);font-size:clamp(2rem,4vw,3.4rem);color:var(--cream);background:var(--carrot);padding:6px 16px;border:3px solid var(--forest);box-shadow:5px 5px 0 var(--forest);clip-path:polygon(0 18%,14% 0,30% 12%,50% 0,66% 14%,86% 0,100% 20%,92% 50%,100% 80%,84% 100%,64% 88%,46% 100%,30% 86%,12% 100%,0 80%,8% 50%);opacity:0;scale:.4;rotate:-8deg;transition:opacity .12s ease,scale .2s cubic-bezier(.3,1.8,.5,1)}
+.ctx-burst.on{opacity:1;scale:1}
+
+/* ================= chuyển cảnh có người v2: nón lá + 17 cảnh ================= */
+/* nón lá */
+.yy-runner .yr-hat .cone{fill:#E9D59A;stroke:var(--forest);stroke-width:2.2;stroke-linejoin:round}
+.yy-runner .yr-hat .weave{fill:none;stroke:#b89a4f;stroke-width:1.1}
+.yy-runner .yr-band{stroke:var(--carrot);stroke-width:1.6}
+.ctx .chaser .yr-band,.shove .chaser .yr-band{stroke:#3f9b5a}
+.ctx .chaser .yr-scarf{fill:#3f9b5a}
+/* lớp */
+.ctx-pieces,.ctx-props{position:absolute;inset:0;pointer-events:none}
+.ctx-pieces{z-index:0}
+.ctx .shove-runner{z-index:1}
+.ctx-props{z-index:2}
+.ctx .cp{position:absolute;left:0;top:0;will-change:transform}
+.ctx .cp svg{width:100%;height:100%;display:block;overflow:visible}
+/* tư thế mới */
+.ctx .yy-runner.pull .yr-arms-swing,.ctx .yy-runner.punch .yr-arms-swing,.ctx .yy-runner.carry .yr-arms-swing,.ctx .yy-runner.inhale .yr-arms-swing,.ctx .yy-runner.blow .yr-arms-swing{display:none}
+.ctx .yy-runner.pull .yr-arms-push,.ctx .yy-runner.punch .yr-arms-push,.ctx .yy-runner.blow .yr-arms-push{display:inline}
+.ctx .yy-runner.carry .yr-arms-up{display:inline}
+.ctx .yy-runner.carry .yr-leg.a{animation:yrLeg .3s ease-in-out infinite alternate}
+.ctx .yy-runner.carry .yr-leg.b{animation:yrLeg .3s ease-in-out infinite alternate-reverse}
+.ctx .yy-runner.carry .yr-body{animation:yrBob .15s ease-in-out infinite alternate}
+.ctx .yy-runner.pull .yr-body{transform:rotate(-20deg);transform-box:view-box;transform-origin:32px 96px}
+.ctx .yy-runner.pull .yr-leg.a{transform:rotate(-22deg)}
+.ctx .yy-runner.pull .yr-leg.b{transform:rotate(14deg)}
+.ctx .yy-runner.punch .yr-body{transform:rotate(12deg);transform-box:view-box;transform-origin:32px 96px}
+.ctx .yy-runner.punch .yr-leg.a{transform:rotate(-26deg)}
+.ctx .yy-runner.punch .yr-leg.b{transform:rotate(22deg)}
+.ctx .yy-runner.fall .yr-flip svg{transform:rotate(-82deg) translate(-30px,8px);transform-origin:50% 95%}
+.ctx .yy-runner.fall .yr-arms-swing .sa{transform:rotate(-70deg)}
+.ctx .yy-runner.fall .yr-arms-swing .sb{transform:rotate(60deg)}
+.ctx .yy-runner.bow .yr-body{transform:rotate(30deg);transform-box:view-box;transform-origin:32px 70px}
+.ctx .yy-runner.fan .yr-arms-swing .sb{animation:yrFan .14s ease-in-out infinite alternate}
+@keyframes yrFan{from{transform:rotate(-70deg)}to{transform:rotate(-120deg)}}
+.ctx .yy-runner.inhale .yr-arms-up{display:inline}
+.ctx .yy-runner.inhale .yr-body{transform:rotate(-14deg) scale(1.06);transform-box:view-box;transform-origin:32px 96px}
+.ctx .yy-runner.blow .yr-body{transform:rotate(14deg);transform-box:view-box;transform-origin:32px 96px}
+/* đồ vật */
+.ctx .cp-burst{font-family:var(--display);font-size:clamp(1.8rem,3.4vw,3rem);color:var(--cream);background:var(--carrot);padding:6px 16px;border:3px solid var(--forest);box-shadow:5px 5px 0 var(--forest);white-space:nowrap;rotate:-8deg;clip-path:polygon(0 18%,14% 0,30% 12%,50% 0,66% 14%,86% 0,100% 20%,92% 50%,100% 80%,84% 100%,64% 88%,46% 100%,30% 86%,12% 100%,0 80%,8% 50%)}
+.ctx .cp-bubble{padding:8px 14px;background:var(--cream);color:var(--forest);border:2px solid var(--forest);box-shadow:4px 4px 0 var(--carrot);font-weight:700;font-size:1.05rem;white-space:nowrap}
+.ctx .cp-bubble::after{content:"";position:absolute;left:34px;bottom:-12px;border:6px solid transparent;border-top:8px solid var(--forest)}
+.ctx .cp-big{font-family:var(--display);font-size:clamp(3rem,9vw,7.5rem);color:#ffd23f;-webkit-text-stroke:4px var(--forest);text-shadow:6px 6px 0 var(--carrot);white-space:nowrap;letter-spacing:.04em}
+.ctx .cp-ko{color:#ff4d3a;font-size:clamp(4rem,13vw,10rem)}
+.ctx .cp-vs{display:grid;place-items:center;font-family:var(--display);font-size:2rem;color:#ffd23f;-webkit-text-stroke:2px var(--forest)}
+.ctx .cp-hp{display:flex;flex-direction:column;gap:4px}
+.ctx .cp-hp .t{font-family:var(--display);font-size:1rem;color:var(--forest);background:var(--cream);align-self:flex-start;padding:0 8px;border:2px solid var(--forest)}
+.ctx .cp-hp b{display:block;flex:none;height:24px;background:#5a1a12;border:3px solid var(--forest);box-shadow:4px 4px 0 rgba(0,0,0,.3);overflow:hidden}
+.ctx .cp-hp i{display:block;height:100%;width:var(--v,100%);background:linear-gradient(#ffe066,#f2b632);transition:width .1s linear}
+.ctx .cp-hp-r .t{align-self:flex-end}
+.ctx .cp-hp-r b{transform:scaleX(-1)}
+.ctx .cp-rope{height:5px;transform-origin:0 50%;background:repeating-linear-gradient(90deg,#c9954f 0 8px,#8e6430 8px 10px);border-radius:3px;box-shadow:0 2px 0 rgba(0,0,0,.25)}
+.ctx .cp-knot{border-radius:50%;background:var(--carrot);border:3px solid var(--forest)}
+.ctx .cp-cut{height:4px;transform-origin:0 50%;background:repeating-linear-gradient(90deg,#fff 0 10px,transparent 10px 18px);filter:drop-shadow(0 0 2px rgba(0,0,0,.6))}
+.ctx .cp-star{display:grid;place-items:center;color:#ffd23f;font-size:22px;-webkit-text-stroke:1px var(--forest)}
+.ctx .cp-star::before{content:"★"}
+.ctx .cp-bit{background:var(--cream);border:1.5px solid var(--forest)}
+.ctx .cp-tape{background:rgba(232,220,170,.85);border-left:2px dashed rgba(0,0,0,.15);border-right:2px dashed rgba(0,0,0,.15);box-shadow:0 2px 6px rgba(0,0,0,.2)}
+.ctx .cp-roll{border-radius:28px;background:repeating-linear-gradient(90deg,#fffaee 0 8px,#e8dcc0 8px 12px,#fffaee 12px 20px),#fffaee;border:3px solid var(--forest);box-shadow:-10px 0 24px rgba(0,0,0,.3)}
+.ctx .cp-curtain{background:repeating-linear-gradient(90deg,#9e1b22 0 26px,#c62b31 26px 44px,#8a151c 44px 56px);box-shadow:inset 0 -30px 40px rgba(0,0,0,.35),0 0 30px rgba(0,0,0,.4);border-bottom:10px solid #ffd23f}
+.ctx .cp-squeegee{background:linear-gradient(90deg,rgba(255,255,255,.85),rgba(200,230,255,.6));border-left:4px solid #37474f;box-shadow:-6px 0 18px rgba(0,0,0,.2)}
+.ctx .cp-foam{border-radius:50%;background:radial-gradient(circle at 35% 35%,#fff,rgba(220,240,255,.7));border:1px solid rgba(0,0,0,.08)}
+.ctx .cp-wind{height:4px;border-radius:2px;background:linear-gradient(90deg,transparent,rgba(255,255,255,.95),transparent);filter:drop-shadow(0 0 2px rgba(0,0,0,.4))}
+.ctx .cp-puff{border-radius:50%;background:radial-gradient(circle,rgba(250,248,240,.97) 0%,rgba(225,222,212,.92) 45%,rgba(200,198,190,0) 70%);filter:blur(6px)}
+.ctx .cp-cloud{border-radius:50%;background:radial-gradient(circle at 30% 40%,#f3efe2 0 30%,transparent 31%),radial-gradient(circle at 65% 35%,#efe9d9 0 34%,transparent 35%),radial-gradient(circle at 50% 65%,#e8e1cd 0 40%,transparent 41%),radial-gradient(circle at 20% 70%,#f3efe2 0 22%,transparent 23%),radial-gradient(circle at 82% 68%,#f3efe2 0 24%,transparent 25%);filter:drop-shadow(0 6px 0 rgba(22,93,58,.35))}
+.ctx .cp-limb{background:var(--forest);border-radius:6px}
+.ctx .cp-splat{border-radius:44% 56% 52% 48%/48% 42% 58% 52%}
+.ctx .cp-splat-egg{background:radial-gradient(circle,#f2b632 0 18%,#fff 19% 55%,transparent 56%)}
+.ctx .cp-splat-rib{background:radial-gradient(circle,#8a3b1d 0 32%,rgba(138,59,29,.6) 33% 48%,transparent 49%)}
+.ctx .cp-splat-tomato{background:radial-gradient(circle,#e5533d 0 30%,rgba(229,83,61,.55) 31% 52%,transparent 53%)}
+.ctx .cp-scissors .bl{transform-box:fill-box;transform-origin:95px 55px;transform-origin:center}
+.ctx .cp-scissors .bl.a{animation:snipA .18s ease-in-out infinite alternate}
+.ctx .cp-scissors .bl.b{animation:snipB .18s ease-in-out infinite alternate}
+@keyframes snipA{from{rotate:-8deg}to{rotate:2deg}}
+@keyframes snipB{from{rotate:8deg}to{rotate:-2deg}}

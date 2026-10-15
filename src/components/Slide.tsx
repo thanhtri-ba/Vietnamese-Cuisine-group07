@@ -1,10 +1,12 @@
 import { useContext, useEffect, useRef, type ReactNode } from 'react';
 import { DeckContext, SlideIndexContext } from './DeckContext';
+import { NavContext } from './NavContext';
+import { transitions } from '../data/transitions';
 
 interface SlideProps {
   index: number;
   className: string;
-  /** transition name used by CSS: fade | slide | up | down | zoom | wipe | circle | blinds */
+  /** transition name used by CSS (overridden by data/transitions.ts when set there) */
   t: string;
   /** index into data/people.ts */
   who: number;
@@ -17,6 +19,9 @@ interface SlideProps {
 export default function Slide({ index, className, t, who, labelledBy, label, children }: SlideProps) {
   const current = useContext(DeckContext);
   const active = current === index;
+  const nav = useContext(NavContext);
+  const leaving = !active && nav.prev === index;
+  const cls = active ? `${className} active` : leaving ? `${className} leaving` : className;
   const ref = useRef<HTMLElement>(null);
 
   useEffect(() => {
@@ -31,8 +36,8 @@ export default function Slide({ index, className, t, who, labelledBy, label, chi
     <SlideIndexContext.Provider value={index}>
       <section
         ref={ref}
-        className={active ? `${className} active` : className}
-        data-t={t}
+        className={cls}
+        data-t={transitions[index] ?? t}
         data-who={who}
         aria-labelledby={labelledBy}
         aria-label={label}

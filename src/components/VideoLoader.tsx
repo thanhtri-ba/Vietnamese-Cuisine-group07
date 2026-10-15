@@ -15,7 +15,7 @@ export default function VideoLoader({ note, ...rest }: Props) {
   return (
     <div className="video-box" {...rest}>
       <label className="file-btn">
-        ▶ Load the 60-second grilling video
+        ▶ Mở video nướng sườn (60 giây)
         <input
           type="file"
           accept="video/*"

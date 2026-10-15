@@ -1,0 +1,9 @@
+
+/* ================= slide 1: chữ bay tán loạn rồi ghép lại ================= */
+.band.intro-run .cover-text [data-a],.band.intro-run .cover-text [data-letters] .ch{animation:none}
+.cover .eyebrow .ch,.cover .sub .ch{display:inline-block}
+.cover .eyebrow > span{display:inline}
+/* dấu tiếng Việt (Ẩ, Ệ, Ấ) không đè lên dòng trên/dưới khi font Anton tải xong */
+.cover h1{line-height:1.16!important}
+.cover .eyebrow + h1{margin-top:22px!important}
+.cover .sub{margin-top:22px;line-height:1.2}

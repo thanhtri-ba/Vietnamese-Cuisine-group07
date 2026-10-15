@@ -1,36 +1,23 @@
 import type { CSSProperties } from 'react';
 import Slide from '../components/Slide';
+import Photo from '../components/Photo';
 
 /** Slide 9: Fish sauce: the soul of Vietnamese cooking */
 export default function Slide09() {
   return (
     <Slide index={8} className="band forest" t="zoom" who={1} labelledBy="t8">
       <div className="inner split">
-        <svg className="bottle" viewBox="0 0 120 260" role="img" aria-label="A bottle of fish sauce filling up" data-a="fadeUp" style={{ "--d": ".3s" } as CSSProperties}>
-          <defs>
-            <clipPath id="bottle-clip">
-              <path d="M46 8 h28 v40 c0 14 26 22 26 52 v140 c0 8 -6 12 -12 12 h-56 c-6 0 -12 -4 -12 -12 v-140 c0 -30 26 -38 26 -52z"></path>
-            </clipPath>
-          </defs>
-          <path d="M46 8 h28 v40 c0 14 26 22 26 52 v140 c0 8 -6 12 -12 12 h-56 c-6 0 -12 -4 -12 -12 v-140 c0 -30 26 -38 26 -52z" fill="rgba(255,250,238,.12)" stroke="#FFFAEE" strokeWidth="3"></path>
-          <g clipPath="url(#bottle-clip)">
-            <rect className="liquid" x="0" y="80" width="120" height="180" fill="#C98A2B"></rect>
-          </g>
-          <rect x="42" y="0" width="36" height="14" rx="3" fill="#ED7843"></rect>
-          <rect x="26" y="140" width="68" height="56" fill="#FFFAEE"></rect>
-          <text x="60" y="164" textAnchor="middle" fontFamily="Anton,Impact,sans-serif" fontSize="16" fill="#165D3A">NƯỚC</text>
-          <text x="60" y="186" textAnchor="middle" fontFamily="Anton,Impact,sans-serif" fontSize="16" fill="#165D3A">MẮM</text>
-        </svg>
+        <Photo src="nuoc-mam-phu-quoc.webp" alt="A bottle of Phú Quốc fish sauce with anchovies and chili by the sea" caption="Nước mắm Phú Quốc" h="58vh" tilt="l" tape delay=".3s" />
         <div className="copy">
-          <h2 id="t8" data-a="slideR" style={{ "--d": ".5s" } as CSSProperties}>Fish sauce: the soul of Vietnamese cooking</h2>
+          <h2 id="t8" data-a="slideR" style={{ "--d": ".5s" } as CSSProperties}>Nước mắm: linh hồn ẩm thực Việt</h2>
           <div className="chips" data-st="pop" style={{ "--base": "1s" } as CSSProperties}>
-            <span className="chip" style={{ "--i": "0" } as CSSProperties}>Marinate<small>ướp</small></span>
-            <span className="chip" style={{ "--i": "1" } as CSSProperties}>Season<small>nêm</small></span>
-            <span className="chip" style={{ "--i": "2" } as CSSProperties}>Dip<small>chấm</small></span>
+            <span className="chip" style={{ "--i": "0" } as CSSProperties}>Ướp thịt<small>ngấm sâu vị ngọt</small></span>
+            <span className="chip" style={{ "--i": "1" } as CSSProperties}>Nêm nếm<small>đậm đà nước dùng</small></span>
+            <span className="chip" style={{ "--i": "2" } as CSSProperties}>Nước chấm<small>pha chua ngọt hài hòa</small></span>
           </div>
           <div data-a="fadeUp" style={{ "--d": "1.5s" } as CSSProperties}>
             <p className="year">2012</p>
-            <p className="lede">Phú Quốc fish sauce became the first Vietnamese product with geographical indication protection in the European Union.</p>
+            <p className="lede">Nước mắm Phú Quốc trở thành sản phẩm đầu tiên của Việt Nam được Liên minh Châu Âu (EU) công nhận và bảo hộ chỉ dẫn địa lý.</p>
           </div>
         </div>
       </div>

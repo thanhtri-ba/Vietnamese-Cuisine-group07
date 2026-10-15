@@ -1,0 +1,21 @@
+
+/* ================= âm dương lăn trên thanh cân bằng (slide 8) ================= */
+.yy-stage{position:relative;width:100%;aspect-ratio:1/0.92;user-select:none;-webkit-user-select:none}
+.active .yy.yy-roll{animation:none}
+.yy.yy-roll{position:absolute;left:21%;width:58%;bottom:14%;cursor:grab;touch-action:none;filter:drop-shadow(0 10px 8px rgba(22,93,58,.25));will-change:transform}
+.yy-stage.grab .yy.yy-roll{cursor:grabbing}
+.yy-beam{position:absolute;left:2%;right:2%;bottom:calc(14% - 8px);height:8px;background:var(--forest);border-radius:4px;transform-origin:50% 50%}
+.yy-beam i{position:absolute;top:-5px;width:18px;height:18px;border-radius:50%;border:3px solid var(--forest)}
+.yy-beam .c{left:-4px;background:var(--cream)}
+.yy-beam .h{right:-4px;background:var(--carrot)}
+.yy-fulcrum{position:absolute;left:50%;bottom:calc(14% - 46px);width:0;height:0;margin-left:-22px;border-left:22px solid transparent;border-right:22px solid transparent;border-bottom:38px solid var(--forest)}
+.yy-hint{position:absolute;left:0;right:0;bottom:-34px;margin:0;text-align:center;font-size:.8rem;font-style:italic;color:var(--forest);opacity:.6}
+.yy-wrap .yy-l,.yy-wrap .yy-r{top:38%;z-index:2;transition:transform .35s var(--ease),box-shadow .35s var(--ease),background .35s ease,color .35s ease}
+.band.yy-cold .yy-l{transform:translateY(-50%) scale(1.18);box-shadow:5px 5px 0 var(--carrot)}
+.band.yy-hot .yy-r{transform:translateY(-50%) scale(1.18);box-shadow:5px 5px 0 var(--carrot);color:var(--cream)}
+/* các món cùng tính sáng theo */
+.yy-pairs .l,.yy-pairs .r,.yy-pairs .plus{transition:translate .35s var(--ease),box-shadow .35s var(--ease),scale .35s var(--ease)}
+.band.yy-cold .yy-pairs .l{translate:-6px -4px;box-shadow:8px 8px 0 var(--carrot)}
+.band.yy-hot .yy-pairs .r{translate:6px -4px;box-shadow:8px 8px 0 var(--carrot)}
+.band.yy-mid .yy-pairs .plus{scale:1.15}
+@media (prefers-reduced-motion:reduce){.yy-hint{display:none}}

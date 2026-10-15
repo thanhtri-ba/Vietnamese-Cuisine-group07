@@ -11,9 +11,9 @@ export default function Slide02() {
         <img src="img/street-shop.webp" alt="" />
       </div>
       <div className="inner">
-        <h2 id="t2" className="sr">A question for everyone</h2>
-        <p className="eyebrow accent" data-a="fadeDown" style={{ "--d": ".2s" } as CSSProperties}>A question for everyone</p>
-        <p className="q" style={{ marginTop: "18px" } as CSSProperties}><TypeWriter text="If you could choose only one Vietnamese dish to introduce Vietnam to the world…" /></p>
+        <h2 id="t2" className="sr">Câu hỏi dành cho mọi người</h2>
+        <p className="eyebrow accent" data-a="fadeDown" style={{ "--d": ".2s" } as CSSProperties}>Câu hỏi dành cho mọi người</p>
+        <p className="q" style={{ marginTop: "18px" } as CSSProperties}><TypeWriter text="Nếu chỉ được chọn một món ăn để giới thiệu Việt Nam với thế giới, bạn sẽ chọn…" /></p>
         <PollPicks data-st="dropIn" style={{ "--base": "2.6s" } as CSSProperties} />
         <PollNote data-a="fadeUp" style={{ "--d": "3.4s" } as CSSProperties} />
       </div>

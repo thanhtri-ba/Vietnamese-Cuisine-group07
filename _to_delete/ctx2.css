@@ -1,0 +1,74 @@
+
+/* ================= chuyển cảnh có người v2: nón lá + 17 cảnh ================= */
+/* nón lá */
+.yy-runner .yr-hat .cone{fill:#E9D59A;stroke:var(--forest);stroke-width:2.2;stroke-linejoin:round}
+.yy-runner .yr-hat .weave{fill:none;stroke:#b89a4f;stroke-width:1.1}
+.yy-runner .yr-band{stroke:var(--carrot);stroke-width:1.6}
+.ctx .chaser .yr-band,.shove .chaser .yr-band{stroke:#3f9b5a}
+.ctx .chaser .yr-scarf{fill:#3f9b5a}
+/* lớp */
+.ctx-pieces,.ctx-props{position:absolute;inset:0;pointer-events:none}
+.ctx-pieces{z-index:0}
+.ctx .shove-runner{z-index:1}
+.ctx-props{z-index:2}
+.ctx .cp{position:absolute;left:0;top:0;will-change:transform}
+.ctx .cp svg{width:100%;height:100%;display:block;overflow:visible}
+/* tư thế mới */
+.ctx .yy-runner.pull .yr-arms-swing,.ctx .yy-runner.punch .yr-arms-swing,.ctx .yy-runner.carry .yr-arms-swing,.ctx .yy-runner.inhale .yr-arms-swing,.ctx .yy-runner.blow .yr-arms-swing{display:none}
+.ctx .yy-runner.pull .yr-arms-push,.ctx .yy-runner.punch .yr-arms-push,.ctx .yy-runner.blow .yr-arms-push{display:inline}
+.ctx .yy-runner.carry .yr-arms-up{display:inline}
+.ctx .yy-runner.carry .yr-leg.a{animation:yrLeg .3s ease-in-out infinite alternate}
+.ctx .yy-runner.carry .yr-leg.b{animation:yrLeg .3s ease-in-out infinite alternate-reverse}
+.ctx .yy-runner.carry .yr-body{animation:yrBob .15s ease-in-out infinite alternate}
+.ctx .yy-runner.pull .yr-body{transform:rotate(-20deg);transform-box:view-box;transform-origin:32px 96px}
+.ctx .yy-runner.pull .yr-leg.a{transform:rotate(-22deg)}
+.ctx .yy-runner.pull .yr-leg.b{transform:rotate(14deg)}
+.ctx .yy-runner.punch .yr-body{transform:rotate(12deg);transform-box:view-box;transform-origin:32px 96px}
+.ctx .yy-runner.punch .yr-leg.a{transform:rotate(-26deg)}
+.ctx .yy-runner.punch .yr-leg.b{transform:rotate(22deg)}
+.ctx .yy-runner.fall .yr-flip svg{transform:rotate(-82deg) translate(-30px,8px);transform-origin:50% 95%}
+.ctx .yy-runner.fall .yr-arms-swing .sa{transform:rotate(-70deg)}
+.ctx .yy-runner.fall .yr-arms-swing .sb{transform:rotate(60deg)}
+.ctx .yy-runner.bow .yr-body{transform:rotate(30deg);transform-box:view-box;transform-origin:32px 70px}
+.ctx .yy-runner.fan .yr-arms-swing .sb{animation:yrFan .14s ease-in-out infinite alternate}
+@keyframes yrFan{from{transform:rotate(-70deg)}to{transform:rotate(-120deg)}}
+.ctx .yy-runner.inhale .yr-arms-up{display:inline}
+.ctx .yy-runner.inhale .yr-body{transform:rotate(-14deg) scale(1.06);transform-box:view-box;transform-origin:32px 96px}
+.ctx .yy-runner.blow .yr-body{transform:rotate(14deg);transform-box:view-box;transform-origin:32px 96px}
+/* đồ vật */
+.ctx .cp-burst{font-family:var(--display);font-size:clamp(1.8rem,3.4vw,3rem);color:var(--cream);background:var(--carrot);padding:6px 16px;border:3px solid var(--forest);box-shadow:5px 5px 0 var(--forest);white-space:nowrap;rotate:-8deg;clip-path:polygon(0 18%,14% 0,30% 12%,50% 0,66% 14%,86% 0,100% 20%,92% 50%,100% 80%,84% 100%,64% 88%,46% 100%,30% 86%,12% 100%,0 80%,8% 50%)}
+.ctx .cp-bubble{padding:8px 14px;background:var(--cream);color:var(--forest);border:2px solid var(--forest);box-shadow:4px 4px 0 var(--carrot);font-weight:700;font-size:1.05rem;white-space:nowrap}
+.ctx .cp-bubble::after{content:"";position:absolute;left:34px;bottom:-12px;border:6px solid transparent;border-top:8px solid var(--forest)}
+.ctx .cp-big{font-family:var(--display);font-size:clamp(3rem,9vw,7.5rem);color:#ffd23f;-webkit-text-stroke:4px var(--forest);text-shadow:6px 6px 0 var(--carrot);white-space:nowrap;letter-spacing:.04em}
+.ctx .cp-ko{color:#ff4d3a;font-size:clamp(4rem,13vw,10rem)}
+.ctx .cp-vs{display:grid;place-items:center;font-family:var(--display);font-size:2rem;color:#ffd23f;-webkit-text-stroke:2px var(--forest)}
+.ctx .cp-hp{display:flex;flex-direction:column;gap:4px}
+.ctx .cp-hp .t{font-family:var(--display);font-size:1rem;color:var(--forest);background:var(--cream);align-self:flex-start;padding:0 8px;border:2px solid var(--forest)}
+.ctx .cp-hp b{display:block;flex:none;height:24px;background:#5a1a12;border:3px solid var(--forest);box-shadow:4px 4px 0 rgba(0,0,0,.3);overflow:hidden}
+.ctx .cp-hp i{display:block;height:100%;width:var(--v,100%);background:linear-gradient(#ffe066,#f2b632);transition:width .1s linear}
+.ctx .cp-hp-r .t{align-self:flex-end}
+.ctx .cp-hp-r b{transform:scaleX(-1)}
+.ctx .cp-rope{height:5px;transform-origin:0 50%;background:repeating-linear-gradient(90deg,#c9954f 0 8px,#8e6430 8px 10px);border-radius:3px;box-shadow:0 2px 0 rgba(0,0,0,.25)}
+.ctx .cp-knot{border-radius:50%;background:var(--carrot);border:3px solid var(--forest)}
+.ctx .cp-cut{height:4px;transform-origin:0 50%;background:repeating-linear-gradient(90deg,#fff 0 10px,transparent 10px 18px);filter:drop-shadow(0 0 2px rgba(0,0,0,.6))}
+.ctx .cp-star{display:grid;place-items:center;color:#ffd23f;font-size:22px;-webkit-text-stroke:1px var(--forest)}
+.ctx .cp-star::before{content:"★"}
+.ctx .cp-bit{background:var(--cream);border:1.5px solid var(--forest)}
+.ctx .cp-tape{background:rgba(232,220,170,.85);border-left:2px dashed rgba(0,0,0,.15);border-right:2px dashed rgba(0,0,0,.15);box-shadow:0 2px 6px rgba(0,0,0,.2)}
+.ctx .cp-roll{border-radius:28px;background:repeating-linear-gradient(90deg,#fffaee 0 8px,#e8dcc0 8px 12px,#fffaee 12px 20px),#fffaee;border:3px solid var(--forest);box-shadow:-10px 0 24px rgba(0,0,0,.3)}
+.ctx .cp-curtain{background:repeating-linear-gradient(90deg,#9e1b22 0 26px,#c62b31 26px 44px,#8a151c 44px 56px);box-shadow:inset 0 -30px 40px rgba(0,0,0,.35),0 0 30px rgba(0,0,0,.4);border-bottom:10px solid #ffd23f}
+.ctx .cp-squeegee{background:linear-gradient(90deg,rgba(255,255,255,.85),rgba(200,230,255,.6));border-left:4px solid #37474f;box-shadow:-6px 0 18px rgba(0,0,0,.2)}
+.ctx .cp-foam{border-radius:50%;background:radial-gradient(circle at 35% 35%,#fff,rgba(220,240,255,.7));border:1px solid rgba(0,0,0,.08)}
+.ctx .cp-wind{height:4px;border-radius:2px;background:linear-gradient(90deg,transparent,rgba(255,255,255,.95),transparent);filter:drop-shadow(0 0 2px rgba(0,0,0,.4))}
+.ctx .cp-puff{border-radius:50%;background:radial-gradient(circle,rgba(250,248,240,.97) 0%,rgba(225,222,212,.92) 45%,rgba(200,198,190,0) 70%);filter:blur(6px)}
+.ctx .cp-cloud{border-radius:50%;background:radial-gradient(circle at 30% 40%,#f3efe2 0 30%,transparent 31%),radial-gradient(circle at 65% 35%,#efe9d9 0 34%,transparent 35%),radial-gradient(circle at 50% 65%,#e8e1cd 0 40%,transparent 41%),radial-gradient(circle at 20% 70%,#f3efe2 0 22%,transparent 23%),radial-gradient(circle at 82% 68%,#f3efe2 0 24%,transparent 25%);filter:drop-shadow(0 6px 0 rgba(22,93,58,.35))}
+.ctx .cp-limb{background:var(--forest);border-radius:6px}
+.ctx .cp-splat{border-radius:44% 56% 52% 48%/48% 42% 58% 52%}
+.ctx .cp-splat-egg{background:radial-gradient(circle,#f2b632 0 18%,#fff 19% 55%,transparent 56%)}
+.ctx .cp-splat-rib{background:radial-gradient(circle,#8a3b1d 0 32%,rgba(138,59,29,.6) 33% 48%,transparent 49%)}
+.ctx .cp-splat-tomato{background:radial-gradient(circle,#e5533d 0 30%,rgba(229,83,61,.55) 31% 52%,transparent 53%)}
+.ctx .cp-scissors .bl{transform-box:fill-box;transform-origin:95px 55px;transform-origin:center}
+.ctx .cp-scissors .bl.a{animation:snipA .18s ease-in-out infinite alternate}
+.ctx .cp-scissors .bl.b{animation:snipB .18s ease-in-out infinite alternate}
+@keyframes snipA{from{rotate:-8deg}to{rotate:2deg}}
+@keyframes snipB{from{rotate:8deg}to{rotate:-2deg}}
