@@ -1161,7 +1161,7 @@ export default function CharTransition({ kind, fromIndex, toIndex }: { kind: Cha
   }, [kind, fromIndex, toIndex]);
 
   return (
-    <div className="shove ctx" aria-hidden="true">
+    <div className={`shove ctx k-${kind}`} aria-hidden="true">
       <div className="ctx-pieces" ref={layer} />
       <div className="yy-runner show shove-runner pusher" ref={ra}>
         <RunnerFigure width={W} height={H} cargo={null} />

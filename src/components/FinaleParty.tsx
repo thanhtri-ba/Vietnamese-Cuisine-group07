@@ -319,7 +319,7 @@ export default function FinaleParty() {
           </svg>
         </div>
       ))}
-      {Array.from({ length: N }, (_, i) => fig(`s${i}`, `fp-sit ${i % 2 ? 'chaser' : 'pusher'}`, W, H))}
+      {Array.from({ length: N }, (_, i) => fig(`s${i}`, `fp-sit ${['pusher', 'chaser', 'v3', 'v4', 'thief'][i % 5]}`, W, H))}
       {[0, 1].map((i) => fig(`u${i}`, `fp-ui ${i ? 'chaser' : 'pusher'}`, UW, UH))}
       {[0, 1].map((i) => fig(`c${i}`, 'fp-cop police', PW, PH, 'police'))}
       <div className="cp cp-bubble fp-bubble">STOP RIGHT THERE!</div>

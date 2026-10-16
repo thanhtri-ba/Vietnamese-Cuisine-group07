@@ -1,0 +1,143 @@
+/* === 3D character sprites (rendered from the supplied .glb models; see CREDITS) === */
+.yr-flip{position:relative;display:flex;justify-content:center}
+.yr-flip>svg{position:absolute;left:0;top:0}
+.yr-spr{flex:none;height:100%;aspect-ratio:190/262;background-repeat:no-repeat;background-position:0 0;background-size:400% 100%;pointer-events:none;animation:sprPlay 1.6s steps(4,jump-none) infinite;filter:drop-shadow(0 0 1.5px rgba(255,250,238,.85)) drop-shadow(0 5px 5px rgba(0,0,0,.28))}
+@keyframes sprPlay{from{background-position:0 0}to{background-position:100% 0}}
+.yy-runner .yr-spr{background-image:url('../assets/chars/kid-stand.webp')}
+.yy-runner.chaser .yr-spr{background-image:url('../assets/chars/dad-stand.webp')}
+.yy-runner.thief .yr-spr{background-image:url('../assets/chars/bandit-stand.webp')}
+.yy-runner.police .yr-spr{background-image:url('../assets/chars/cop-stand.webp')}
+.yy-runner.v3 .yr-spr{background-image:url('../assets/chars/sage-stand.webp')}
+.yy-runner.v4 .yr-spr{background-image:url('../assets/chars/lad-stand.webp')}
+.yy-runner.stand .yr-spr{background-size:400% 100%;animation:sprPlay 1.6s steps(4,jump-none) infinite}
+.yy-runner.lift .yr-spr{background-size:400% 100%;animation:sprPlay 1.2s steps(4,jump-none) infinite}
+.yy-runner.cheer .yr-spr{background-size:600% 100%;animation:sprPlay 0.6s steps(6,jump-none) infinite}
+.yy-runner.run .yr-spr{background-size:800% 100%;animation:sprPlay 0.52s steps(8,jump-none) infinite}
+.yy-runner.carry .yr-spr{background-size:800% 100%;animation:sprPlay 0.6s steps(8,jump-none) infinite}
+.yy-runner.pull .yr-spr{background-size:600% 100%;animation:sprPlay 0.9s steps(6,jump-none) infinite}
+.yy-runner.push .yr-spr{background-size:800% 100%;animation:sprPlay 0.84s steps(8,jump-none) infinite}
+.yy-runner.kick .yr-spr{background-size:300% 100%;animation:sprPlay 0.42s steps(3,jump-none) 1 forwards}
+.yy-runner.punch .yr-spr{background-size:400% 100%;animation:sprPlay 0.36s steps(4,jump-none) 1 forwards}
+.yy-runner.fall .yr-spr{background-size:100% 100%;animation:none}
+.yy-runner.bow .yr-spr{background-size:300% 100%;animation:sprPlay 0.5s steps(3,jump-none) 1 forwards}
+.yy-runner.inhale .yr-spr{background-size:100% 100%;animation:none}
+.yy-runner.blow .yr-spr{background-size:100% 100%;animation:none}
+.yy-runner.fan .yr-spr{background-size:400% 100%;animation:sprPlay 0.45s steps(4,jump-none) infinite}
+.yy-runner.hang .yr-spr{background-size:100% 100%;animation:none}
+.yy-runner.sit .yr-spr{background-size:400% 100%;animation:sprPlay 1.4s steps(4,jump-none) infinite}
+.yy-runner.stand .yr-spr{background-image:url('../assets/chars/kid-stand.webp')}
+.yy-runner.lift .yr-spr{background-image:url('../assets/chars/kid-lift.webp')}
+.yy-runner.cheer .yr-spr{background-image:url('../assets/chars/kid-cheer.webp')}
+.yy-runner.run .yr-spr{background-image:url('../assets/chars/kid-run.webp')}
+.yy-runner.carry .yr-spr{background-image:url('../assets/chars/kid-carry.webp')}
+.yy-runner.pull .yr-spr{background-image:url('../assets/chars/kid-pull.webp')}
+.yy-runner.push .yr-spr{background-image:url('../assets/chars/kid-push.webp')}
+.yy-runner.kick .yr-spr{background-image:url('../assets/chars/kid-kick.webp')}
+.yy-runner.punch .yr-spr{background-image:url('../assets/chars/kid-punch.webp')}
+.yy-runner.fall .yr-spr{background-image:url('../assets/chars/kid-fall.webp')}
+.yy-runner.bow .yr-spr{background-image:url('../assets/chars/kid-bow.webp')}
+.yy-runner.inhale .yr-spr{background-image:url('../assets/chars/kid-inhale.webp')}
+.yy-runner.blow .yr-spr{background-image:url('../assets/chars/kid-blow.webp')}
+.yy-runner.fan .yr-spr{background-image:url('../assets/chars/kid-fan.webp')}
+.yy-runner.hang .yr-spr{background-image:url('../assets/chars/kid-hang.webp')}
+.yy-runner.sit .yr-spr{background-image:url('../assets/chars/kid-sit.webp')}
+.yy-runner.chaser.stand .yr-spr{background-image:url('../assets/chars/dad-stand.webp')}
+.yy-runner.chaser.lift .yr-spr{background-image:url('../assets/chars/dad-lift.webp')}
+.yy-runner.chaser.cheer .yr-spr{background-image:url('../assets/chars/dad-cheer.webp')}
+.yy-runner.chaser.run .yr-spr{background-image:url('../assets/chars/dad-run.webp')}
+.yy-runner.chaser.carry .yr-spr{background-image:url('../assets/chars/dad-carry.webp')}
+.yy-runner.chaser.pull .yr-spr{background-image:url('../assets/chars/dad-pull.webp')}
+.yy-runner.chaser.push .yr-spr{background-image:url('../assets/chars/dad-push.webp')}
+.yy-runner.chaser.kick .yr-spr{background-image:url('../assets/chars/dad-kick.webp')}
+.yy-runner.chaser.punch .yr-spr{background-image:url('../assets/chars/dad-punch.webp')}
+.yy-runner.chaser.fall .yr-spr{background-image:url('../assets/chars/dad-fall.webp')}
+.yy-runner.chaser.bow .yr-spr{background-image:url('../assets/chars/dad-bow.webp')}
+.yy-runner.chaser.inhale .yr-spr{background-image:url('../assets/chars/dad-inhale.webp')}
+.yy-runner.chaser.blow .yr-spr{background-image:url('../assets/chars/dad-blow.webp')}
+.yy-runner.chaser.fan .yr-spr{background-image:url('../assets/chars/dad-fan.webp')}
+.yy-runner.chaser.hang .yr-spr{background-image:url('../assets/chars/dad-hang.webp')}
+.yy-runner.chaser.sit .yr-spr{background-image:url('../assets/chars/dad-sit.webp')}
+.yy-runner.thief.stand .yr-spr{background-image:url('../assets/chars/bandit-stand.webp')}
+.yy-runner.thief.lift .yr-spr{background-image:url('../assets/chars/bandit-lift.webp')}
+.yy-runner.thief.cheer .yr-spr{background-image:url('../assets/chars/bandit-cheer.webp')}
+.yy-runner.thief.run .yr-spr{background-image:url('../assets/chars/bandit-run.webp')}
+.yy-runner.thief.carry .yr-spr{background-image:url('../assets/chars/bandit-carry.webp')}
+.yy-runner.thief.pull .yr-spr{background-image:url('../assets/chars/bandit-stand.webp');background-size:400% 100%;animation:sprPlay 1.6s steps(4,jump-none) infinite}
+.yy-runner.thief.push .yr-spr{background-image:url('../assets/chars/bandit-push.webp')}
+.yy-runner.thief.kick .yr-spr{background-image:url('../assets/chars/bandit-stand.webp');background-size:400% 100%;animation:sprPlay 1.6s steps(4,jump-none) infinite}
+.yy-runner.thief.punch .yr-spr{background-image:url('../assets/chars/bandit-stand.webp');background-size:400% 100%;animation:sprPlay 1.6s steps(4,jump-none) infinite}
+.yy-runner.thief.fall .yr-spr{background-image:url('../assets/chars/bandit-fall.webp')}
+.yy-runner.thief.bow .yr-spr{background-image:url('../assets/chars/bandit-stand.webp');background-size:400% 100%;animation:sprPlay 1.6s steps(4,jump-none) infinite}
+.yy-runner.thief.inhale .yr-spr{background-image:url('../assets/chars/bandit-stand.webp');background-size:400% 100%;animation:sprPlay 1.6s steps(4,jump-none) infinite}
+.yy-runner.thief.blow .yr-spr{background-image:url('../assets/chars/bandit-stand.webp');background-size:400% 100%;animation:sprPlay 1.6s steps(4,jump-none) infinite}
+.yy-runner.thief.fan .yr-spr{background-image:url('../assets/chars/bandit-stand.webp');background-size:400% 100%;animation:sprPlay 1.6s steps(4,jump-none) infinite}
+.yy-runner.thief.hang .yr-spr{background-image:url('../assets/chars/bandit-hang.webp')}
+.yy-runner.thief.sit .yr-spr{background-image:url('../assets/chars/bandit-sit.webp');background-size:400% 100%;animation:sprPlay 1.6s steps(4,jump-none) infinite}
+.yy-runner.police.stand .yr-spr{background-image:url('../assets/chars/cop-stand.webp')}
+.yy-runner.police.lift .yr-spr{background-image:url('../assets/chars/cop-stand.webp');background-size:400% 100%;animation:sprPlay 1.6s steps(4,jump-none) infinite}
+.yy-runner.police.cheer .yr-spr{background-image:url('../assets/chars/cop-cheer.webp')}
+.yy-runner.police.run .yr-spr{background-image:url('../assets/chars/cop-run.webp')}
+.yy-runner.police.carry .yr-spr{background-image:url('../assets/chars/cop-stand.webp');background-size:400% 100%;animation:sprPlay 1.6s steps(4,jump-none) infinite}
+.yy-runner.police.pull .yr-spr{background-image:url('../assets/chars/cop-stand.webp');background-size:400% 100%;animation:sprPlay 1.6s steps(4,jump-none) infinite}
+.yy-runner.police.push .yr-spr{background-image:url('../assets/chars/cop-stand.webp');background-size:400% 100%;animation:sprPlay 1.6s steps(4,jump-none) infinite}
+.yy-runner.police.kick .yr-spr{background-image:url('../assets/chars/cop-stand.webp');background-size:400% 100%;animation:sprPlay 1.6s steps(4,jump-none) infinite}
+.yy-runner.police.punch .yr-spr{background-image:url('../assets/chars/cop-punch.webp')}
+.yy-runner.police.fall .yr-spr{background-image:url('../assets/chars/cop-fall.webp')}
+.yy-runner.police.bow .yr-spr{background-image:url('../assets/chars/cop-stand.webp');background-size:400% 100%;animation:sprPlay 1.6s steps(4,jump-none) infinite}
+.yy-runner.police.inhale .yr-spr{background-image:url('../assets/chars/cop-stand.webp');background-size:400% 100%;animation:sprPlay 1.6s steps(4,jump-none) infinite}
+.yy-runner.police.blow .yr-spr{background-image:url('../assets/chars/cop-stand.webp');background-size:400% 100%;animation:sprPlay 1.6s steps(4,jump-none) infinite}
+.yy-runner.police.fan .yr-spr{background-image:url('../assets/chars/cop-stand.webp');background-size:400% 100%;animation:sprPlay 1.6s steps(4,jump-none) infinite}
+.yy-runner.police.hang .yr-spr{background-image:url('../assets/chars/cop-stand.webp');background-size:400% 100%;animation:sprPlay 1.6s steps(4,jump-none) infinite}
+.yy-runner.police.sit .yr-spr{background-image:url('../assets/chars/cop-sit.webp')}
+.yy-runner.v3.stand .yr-spr{background-image:url('../assets/chars/sage-stand.webp')}
+.yy-runner.v3.lift .yr-spr{background-image:url('../assets/chars/sage-lift.webp')}
+.yy-runner.v3.cheer .yr-spr{background-image:url('../assets/chars/sage-cheer.webp')}
+.yy-runner.v3.run .yr-spr{background-image:url('../assets/chars/sage-run.webp')}
+.yy-runner.v3.carry .yr-spr{background-image:url('../assets/chars/sage-carry.webp')}
+.yy-runner.v3.pull .yr-spr{background-image:url('../assets/chars/sage-stand.webp');background-size:400% 100%;animation:sprPlay 1.6s steps(4,jump-none) infinite}
+.yy-runner.v3.push .yr-spr{background-image:url('../assets/chars/sage-stand.webp');background-size:400% 100%;animation:sprPlay 1.6s steps(4,jump-none) infinite}
+.yy-runner.v3.kick .yr-spr{background-image:url('../assets/chars/sage-stand.webp');background-size:400% 100%;animation:sprPlay 1.6s steps(4,jump-none) infinite}
+.yy-runner.v3.punch .yr-spr{background-image:url('../assets/chars/sage-stand.webp');background-size:400% 100%;animation:sprPlay 1.6s steps(4,jump-none) infinite}
+.yy-runner.v3.fall .yr-spr{background-image:url('../assets/chars/sage-stand.webp');background-size:400% 100%;animation:sprPlay 1.6s steps(4,jump-none) infinite}
+.yy-runner.v3.bow .yr-spr{background-image:url('../assets/chars/sage-stand.webp');background-size:400% 100%;animation:sprPlay 1.6s steps(4,jump-none) infinite}
+.yy-runner.v3.inhale .yr-spr{background-image:url('../assets/chars/sage-stand.webp');background-size:400% 100%;animation:sprPlay 1.6s steps(4,jump-none) infinite}
+.yy-runner.v3.blow .yr-spr{background-image:url('../assets/chars/sage-stand.webp');background-size:400% 100%;animation:sprPlay 1.6s steps(4,jump-none) infinite}
+.yy-runner.v3.fan .yr-spr{background-image:url('../assets/chars/sage-stand.webp');background-size:400% 100%;animation:sprPlay 1.6s steps(4,jump-none) infinite}
+.yy-runner.v3.hang .yr-spr{background-image:url('../assets/chars/sage-stand.webp');background-size:400% 100%;animation:sprPlay 1.6s steps(4,jump-none) infinite}
+.yy-runner.v3.sit .yr-spr{background-image:url('../assets/chars/sage-sit.webp')}
+.yy-runner.v4.stand .yr-spr{background-image:url('../assets/chars/lad-stand.webp')}
+.yy-runner.v4.lift .yr-spr{background-image:url('../assets/chars/lad-lift.webp')}
+.yy-runner.v4.cheer .yr-spr{background-image:url('../assets/chars/lad-cheer.webp')}
+.yy-runner.v4.run .yr-spr{background-image:url('../assets/chars/lad-run.webp')}
+.yy-runner.v4.carry .yr-spr{background-image:url('../assets/chars/lad-carry.webp')}
+.yy-runner.v4.pull .yr-spr{background-image:url('../assets/chars/lad-stand.webp');background-size:400% 100%;animation:sprPlay 1.6s steps(4,jump-none) infinite}
+.yy-runner.v4.push .yr-spr{background-image:url('../assets/chars/lad-stand.webp');background-size:400% 100%;animation:sprPlay 1.6s steps(4,jump-none) infinite}
+.yy-runner.v4.kick .yr-spr{background-image:url('../assets/chars/lad-stand.webp');background-size:400% 100%;animation:sprPlay 1.6s steps(4,jump-none) infinite}
+.yy-runner.v4.punch .yr-spr{background-image:url('../assets/chars/lad-stand.webp');background-size:400% 100%;animation:sprPlay 1.6s steps(4,jump-none) infinite}
+.yy-runner.v4.fall .yr-spr{background-image:url('../assets/chars/lad-stand.webp');background-size:400% 100%;animation:sprPlay 1.6s steps(4,jump-none) infinite}
+.yy-runner.v4.bow .yr-spr{background-image:url('../assets/chars/lad-stand.webp');background-size:400% 100%;animation:sprPlay 1.6s steps(4,jump-none) infinite}
+.yy-runner.v4.inhale .yr-spr{background-image:url('../assets/chars/lad-stand.webp');background-size:400% 100%;animation:sprPlay 1.6s steps(4,jump-none) infinite}
+.yy-runner.v4.blow .yr-spr{background-image:url('../assets/chars/lad-stand.webp');background-size:400% 100%;animation:sprPlay 1.6s steps(4,jump-none) infinite}
+.yy-runner.v4.fan .yr-spr{background-image:url('../assets/chars/lad-stand.webp');background-size:400% 100%;animation:sprPlay 1.6s steps(4,jump-none) infinite}
+.yy-runner.v4.hang .yr-spr{background-image:url('../assets/chars/lad-stand.webp');background-size:400% 100%;animation:sprPlay 1.6s steps(4,jump-none) infinite}
+.yy-runner.v4.sit .yr-spr{background-image:url('../assets/chars/lad-sit.webp')}
+.ctx .yy-runner.fall .yr-spr{transform:rotate(-82deg) translate(-30px,8px);transform-origin:50% 95%}
+.yy-runner.sit .yr-shadow,.yy-runner.hang .yr-shadow{display:none}
+.finale .credit{position:absolute;left:0;right:0;bottom:1.2vh;margin:0;text-align:center;font-size:max(10px,1.15vh);letter-spacing:.04em;color:var(--cream);opacity:.5;pointer-events:none}
+/* martial-arts fighters (Chibi Apprentice / Chibi Master, no hat) for the health-bar fight */
+.k-hp .yy-runner.pusher .yr-spr{background-image:url('../assets/chars/wapp-stand.webp')}
+.k-hp .yy-runner.pusher.run .yr-spr{background-image:url('../assets/chars/wapp-run.webp')}
+.k-hp .yy-runner.pusher.stand .yr-spr{background-image:url('../assets/chars/wapp-stand.webp')}
+.k-hp .yy-runner.pusher.punch .yr-spr{background-image:url('../assets/chars/wapp-punch.webp')}
+.k-hp .yy-runner.pusher.pull .yr-spr{background-image:url('../assets/chars/wapp-pull.webp')}
+.k-hp .yy-runner.pusher.kick .yr-spr{background-image:url('../assets/chars/wapp-kick.webp')}
+.k-hp .yy-runner.pusher.cheer .yr-spr{background-image:url('../assets/chars/wapp-cheer.webp')}
+.k-hp .yy-runner.pusher.fall .yr-spr{background-image:url('../assets/chars/wapp-fall.webp')}
+.k-hp .yy-runner.chaser .yr-spr{background-image:url('../assets/chars/wmas-stand.webp')}
+.k-hp .yy-runner.chaser.run .yr-spr{background-image:url('../assets/chars/wmas-run.webp')}
+.k-hp .yy-runner.chaser.stand .yr-spr{background-image:url('../assets/chars/wmas-stand.webp')}
+.k-hp .yy-runner.chaser.punch .yr-spr{background-image:url('../assets/chars/wmas-punch.webp')}
+.k-hp .yy-runner.chaser.pull .yr-spr{background-image:url('../assets/chars/wmas-pull.webp')}
+.k-hp .yy-runner.chaser.kick .yr-spr{background-image:url('../assets/chars/wmas-kick.webp')}
+.k-hp .yy-runner.chaser.cheer .yr-spr{background-image:url('../assets/chars/wmas-cheer.webp')}
+.k-hp .yy-runner.chaser.fall .yr-spr{background-image:url('../assets/chars/wmas-fall.webp')}
