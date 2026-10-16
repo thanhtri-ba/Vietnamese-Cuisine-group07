@@ -24,7 +24,7 @@ export default function Slide32() {
         </div>
         <h2 id="t25" className="wave" data-letters aria-label="Thank you!"><SplitText text="Thank you!" start={0} /></h2>
         <p className="qa" data-a="fadeUp" style={{ "--d": "2s" } as CSSProperties}>Questions & answers</p>
-        <p className="credit">3D characters by joaobaltieri and UB artist (Sketchfab), CC BY 4.0</p>
+        <p className="credit"> Designer:Phạm Thành Trí - 16/10/2026 </p>
       </div>
       <FinaleParty />
     </Slide>
