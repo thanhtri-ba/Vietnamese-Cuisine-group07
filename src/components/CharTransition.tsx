@@ -59,7 +59,7 @@ export const CHAR_TOTAL: Record<CharKind, number> = {
   smoke: 2700,
   plate: 2500,
   dust: 3000,
-  hp: 3700,
+  hp: 6200,
   food: 3100,
   heist: 3800,
 };
@@ -164,6 +164,8 @@ interface Frame {
   /** kẻ trộm (cảnh heist) — treo ngược trên dây */
   thief?: Pose;
   props?: Prop[];
+  /** camera: zoom + rung toàn bộ cảnh (nhân vật, đạo cụ, mảnh vỡ) quanh (cx, cy) */
+  cam?: { s: number; cx: number; cy: number; dx: number; dy: number };
 }
 interface Ctx {
   vw: number;
@@ -795,93 +797,218 @@ const dust: Scene = (t, { vw, vh, F, R }) => {
   };
 };
 
-// 16. đối kháng có thanh máu
+// 16. đối kháng có thanh máu — hai võ sư, camera zoom/rung, combo, chiêu cuối + K.O.
+/** hiệu ứng va chạm: tia sáng + sóng xung kích + tia lửa bay ra; u = ms kể từ lúc đánh trúng */
+const impact = (id: string, x: number, y: number, u: number, R: number[], mag = 1): Prop[] => {
+  if (u < 0 || u > 700) return [];
+  const out: Prop[] = [];
+  if (u < 240) out.push({ id: `${id}s`, type: 'fxspark', x, y, w: 150 * mag, h: 150 * mag, rot: R[3] * 60, sc: 0.4 + easeOut(u / 240) * 1.1, op: 1 - seg(u, 130, 240) });
+  if (u < 520) out.push({ id: `${id}r`, type: 'fxring', x, y, w: 90 * mag, h: 90 * mag, sc: 0.3 + easeOut(u / 520) * 2.8, op: 1 - u / 520 });
+  for (let i = 0; i < 9; i++) {
+    const an = ((i + R[i + 5]) / 9) * Math.PI * 2;
+    const d = easeOut(seg(u, 0, 560)) * (80 + R[i + 20] * 90) * mag;
+    out.push({ id: `${id}d${i}`, type: 'fxdot', x: x + Math.cos(an) * d, y: y + Math.sin(an) * d + u * u * 0.00035, w: 11, h: 11, op: 1 - seg(u, 260, 560) });
+  }
+  return out;
+};
+
 const hp: Scene = (t, { vw, vh, F, R, from, to }) => {
-  const xa0 = vw * 0.36;
-  const xb0 = vw * 0.64;
-  const enter = easeOut(seg(t, 0, 500));
+  const KO = 4560;
+  const xa0 = vw * 0.42;
+  const xb0 = vw * 0.58;
+  const chest = F - H;
+  const enterAt = (k: number) => easeOut(seg(k, 0, 650));
   const hits = [
-    { t: 1000, by: 'b', dmgA: 30 },
-    { t: 1400, by: 'a', dmgB: 20 },
-    { t: 1800, by: 'b', dmgA: 25 },
-    { t: 2200, by: 'b', dmgA: 25 },
+    { t: 1700, by: 'a', dmg: 14, pose: 'punch', txt: 'POW!', mag: 1 },
+    { t: 2050, by: 'b', dmg: 15, pose: 'punch', txt: 'WHAM!', mag: 1 },
+    { t: 2400, by: 'a', dmg: 14, pose: 'kick', txt: 'BAM!', mag: 1.1 },
+    { t: 2750, by: 'b', dmg: 20, pose: 'kick', txt: 'SMASH!', mag: 1.2, combo: 1 },
+    { t: 3050, by: 'b', dmg: 18, pose: 'punch', txt: 'CRACK!', mag: 1.3, combo: 2 },
+    { t: 3350, by: 'b', dmg: 18, pose: 'kick', txt: 'BOOM!', mag: 1.5, combo: 3 },
   ];
   let hpA = 100;
   let hpB = 100;
-  let ax = lerp(-W, xa0, enter);
-  let bx = lerp(vw + W, xb0, enter);
-  let aPose = t < 500 ? 'run' : 'stand';
-  let bPose = t < 500 ? 'run' : 'stand';
-  let shake = 0;
-  const props: Prop[] = [];
-  hits.forEach((h, i) => {
-    const p = seg(t, h.t, h.t + 300);
-    if (h.dmgA) hpA -= h.dmgA * p;
-    if (h.dmgB) hpB -= h.dmgB * p;
-    if (on(t, h.t - 150, h.t + 150)) {
-      const lunge = Math.sin(Math.PI * seg(t, h.t - 150, h.t + 150)) * 40;
-      if (h.by === 'b') {
-        bx -= lunge;
-        bPose = 'punch';
-      } else {
-        ax += lunge;
-        aPose = 'punch';
+  let drift = 0; // sau mỗi đòn combo, A bị đẩy lùi và B đuổi theo
+  let comboN = 0;
+  let comboT = 0;
+  hits.forEach((h) => {
+    if (h.by === 'b') hpA -= h.dmg * seg(t, h.t, h.t + 300);
+    else hpB -= h.dmg * seg(t, h.t, h.t + 300);
+    if (h.combo) {
+      drift += 26 * easeOut(seg(t, h.t, h.t + 250));
+      if (t >= h.t) {
+        comboN = h.combo;
+        comboT = h.t;
       }
     }
-    if (on(t, h.t, h.t + 260)) {
-      const kb = Math.sin(Math.PI * seg(t, h.t, h.t + 260)) * 26;
+  });
+  const axBase = xa0 - drift;
+  const bxBase = xb0 - drift;
+  let ax = t < 3000 ? lerp(-W, xa0, enterAt(t)) - drift : axBase;
+  let bx = t < 3000 ? lerp(vw + W, xb0, enterAt(t)) - drift : bxBase;
+  let ay = F;
+  let by = F;
+  let aPose = t < 650 ? 'run' : 'stand';
+  let bPose = t < 650 ? 'run' : 'stand';
+  let shake = 0;
+  let shakeY = 0;
+  let kick = 0; // giật zoom nhẹ mỗi cú đấm
+  let flash = 0;
+  const props: Prop[] = [];
+  const hud: Prop[] = [];
+
+  // bụi bốc lên khi chạy vào
+  for (let k = Math.max(0, Math.floor(t / 80) - 5); k <= Math.floor(t / 80); k++) {
+    const kt = k * 80;
+    const u = t - kt;
+    if (kt >= 650 || u > 420) continue;
+    for (const sd of [0, 1]) {
+      const px = sd === 0 ? lerp(-W, xa0, enterAt(kt)) - 35 : lerp(vw + W, xb0, enterAt(kt)) + 35;
+      props.push({ id: `pf${sd}${k}`, type: 'fxpuff', x: px, y: F - 8 - u * 0.03, w: 34, h: 26, sc: 0.5 + (u / 420) * 1.5, op: 0.75 * (1 - u / 420) });
+    }
+  }
+
+  // giao đấu
+  hits.forEach((h, i) => {
+    if (on(t, h.t - 170, h.t + 150)) {
+      const l = Math.sin(Math.PI * seg(t, h.t - 170, h.t + 150)) * 72;
+      if (h.by === 'b') {
+        bx -= l;
+        bPose = h.pose;
+      } else {
+        ax += l;
+        aPose = h.pose;
+      }
+    }
+    if (on(t, h.t, h.t + 300)) {
+      const kb = Math.sin(Math.PI * seg(t, h.t, h.t + 300)) * (h.combo ? 18 : 42);
       if (h.by === 'b') {
         ax -= kb;
         aPose = 'pull';
-        shake = Math.sin((t - h.t) / 14) * 12 * (1 - seg(t, h.t, h.t + 200));
       } else {
         bx += kb;
         bPose = 'pull';
       }
     }
-    props.push(...burst(`hb${i}`, i === 1 ? 'WHACK!' : 'POW!', (ax + bx) / 2, F - H * 0.62, t, h.t, h.t + 260));
+    const u = t - h.t;
+    if (u >= 0 && u < 260) {
+      const dec = 1 - u / 260;
+      shake += Math.sin(u / 13) * 8 * h.mag * dec;
+      shakeY += Math.cos(u / 9) * 5 * h.mag * dec;
+      kick += 0.03 * h.mag * dec;
+      flash = Math.max(flash, (h.mag > 1.25 ? 0.35 : 0.12) * dec);
+    }
+    const mid = (ax + bx) / 2;
+    props.push(...impact(`hi${i}`, mid, chest, u, R, h.mag));
+    props.push(...burst(`hb${i}`, h.txt, mid, chest - 100, t, h.t, h.t + 380));
   });
-  // đòn kết liễu
-  let ay = F;
-  let by = F;
-  if (t >= 2450) {
-    const j = bell(t, 2450, 2750);
-    by = F - j * 70;
-    bx = xb0 - seg(t, 2450, 2650) * 50;
-    bPose = on(t, 2500, 2750) ? 'kick' : 'cheer';
+  if (comboN >= 2) {
+    hud.push({ id: 'combo', type: 'fxcombo', x: vw * 0.2, y: vh * 0.42, rot: -6, text: comboN >= 3 ? '3 HIT COMBO!' : `${comboN} HITS!`, sc: 1 + 0.4 * (1 - seg(t, comboT, comboT + 200)), op: 1 - seg(t, 3900, 4100) });
   }
-  if (t >= 2600) {
-    hpA -= hpA * seg(t, 2600, 2800);
-    const u = easeOut(seg(t, 2600, 3000));
-    ax = xa0 - u * vw * 0.3;
-    ay = F - Math.sin(Math.PI * u) * 120;
+
+  // mở màn: ROUND 1 → FIGHT!
+  if (on(t, 650, 1750)) {
+    const fight = t >= 1250;
+    const a0 = fight ? 1250 : 650;
+    hud.push({ id: 'fight', type: 'big', x: vw / 2, y: vh * 0.34, text: fight ? 'FIGHT!' : 'ROUND 1', sc: 1 + (fight ? 1.4 : 2) * (1 - easeOut(seg(t, a0, a0 + 230))), op: 1 - seg(t, fight ? 1550 : 1100, fight ? 1750 : 1250) });
+    props.push(...impact('rd', vw / 2, vh * 0.34, t - 650, R, 1.6), ...impact('fi', vw / 2, vh * 0.34, t - 1250, R, 1.8));
+  }
+  if (t >= 1250) flash = Math.max(flash, 0.5 * (1 - seg(t, 1250, 1500)));
+
+  // chiêu cuối: gồng khí → lao tới
+  if (t >= 3900 && t < KO) {
+    ax = axBase + Math.sin(t / 38) * 3;
+    aPose = 'pull';
+    bx = t < 4400 ? bxBase : lerp(bxBase, axBase + 105, easeIn(seg(t, 4400, KO)));
+    bPose = t < 4400 ? 'cheer' : 'kick';
+    props.push({ id: 'aura', type: 'fxaura', x: bx, y: F - H * 0.9, w: 340, h: 340, sc: 1 + 0.12 * Math.sin(t / 55), op: 0.9 * seg(t, 3900, 4100) });
+    for (let k = 0; k < 3; k++) {
+      const u = t - (3900 + k * 190);
+      if (u >= 0 && u < 480) props.push({ id: `ch${k}`, type: 'fxring', x: bx, y: F - H * 0.9, w: 120, h: 120, sc: 0.4 + 2.4 * (1 - easeOut(u / 480)), op: 0.2 + 0.8 * (u / 480) });
+    }
+    props.push(...burst('sk', 'SUPER KICK!', vw / 2, vh * 0.26, t, 3950, KO));
+  }
+
+  // K.O.
+  if (t >= KO) {
+    const u = easeOut(seg(t, KO, KO + 740));
+    const kx = axBase + 55;
+    ax = axBase - u * vw * 0.17;
+    ay = F - Math.sin(Math.PI * u) * 230;
     aPose = 'fall';
+    bx = lerp(axBase + 105, axBase + 40, easeOut(seg(t, KO, KO + 200)));
+    bPose = t < KO + 250 ? 'kick' : 'cheer';
+    by = t > KO + 350 ? F - 20 * Math.abs(Math.sin((t - KO - 350) / 110)) : F;
+    hpA -= hpA * seg(t, KO - 30, KO + 170);
+    props.push(...impact('ko', kx, chest, t - KO, R, 2.3), ...impact('ko2', kx, chest, t - KO - 90, R, 1.6));
+    flash = Math.max(flash, 1 - seg(t, KO, KO + 420));
+    const k = t - KO;
+    if (k < 600) {
+      const dec = 1 - k / 600;
+      shake += Math.sin(k / 12) * 26 * dec;
+      shakeY += Math.cos(k / 8) * 16 * dec;
+    }
+    if (t >= KO + 740) {
+      props.push(...impact('ld', ax + 30, F - 12, t - KO - 740, R, 0.8));
+      const kl = t - KO - 740;
+      if (kl < 300) shakeY += Math.sin(kl / 9) * 8 * (1 - kl / 300);
+    }
+    if (on(t, KO + 30, 5400)) hud.push({ id: 'ko', type: 'big ko', x: vw / 2, y: vh * 0.34, text: 'K.O.!', sc: 1 + 1.3 * (1 - easeOut(seg(t, KO + 30, KO + 300))) + 0.04 * Math.sin(t / 90), op: 1 - seg(t, 5100, 5400) });
+    if (on(t, KO + 700, 5800)) props.push(...burst('win', `SLIDE ${to + 1} WINS!`, vw / 2, vh * 0.56, t, KO + 700, 5800));
+    if (on(t, KO + 800, 5800)) props.push(...stars('ks', ax + 55, F - 30, t));
   }
-  const fadeAll = 1 - seg(t, 3300, 3700);
-  const drop = easeOut(seg(t, 0, 400));
+
+  // tia tốc độ
+  let sp = 0;
+  if (on(t, 1250, 1600)) sp = Math.max(sp, bell(t, 1250, 1600) * 0.9);
+  if (on(t, 3950, KO)) sp = Math.max(sp, seg(t, 3950, KO) * 0.8);
+  if (on(t, KO, KO + 240)) sp = Math.max(sp, (1 - seg(t, KO, KO + 240)) * 0.9);
+  if (sp > 0) props.push({ id: 'speed', type: 'fxspeed', x: vw / 2, y: chest, w: Math.max(vw, vh) * 2, h: Math.max(vw, vh) * 2, rot: Math.floor(t / 50) * 7, op: sp });
+
+  // camera
+  let s = 1 + kick + 0.1 * easeOut(seg(t, 700, 1150)) * (1 - easeOut(seg(t, 1300, 1700)));
+  let cx = vw / 2;
+  if (t >= KO) {
+    s = 1 + 0.3 * (1 - easeOut(seg(t, KO, KO + 850)));
+    cx = lerp(axBase + 55, vw / 2, seg(t, KO + 300, KO + 850));
+  } else if (t >= 3900) {
+    s += 0.12 * easeOut(seg(t, 3900, 4400));
+    if (t >= 4400) s = lerp(1.12, 1.3, easeIn(seg(t, 4400, KO))) + kick;
+    cx = lerp(vw / 2, axBase + 55, seg(t, 4400, KO));
+  }
+  const cy = chest;
+  const cam = { s, cx, cy, dx: shake, dy: shakeY };
+  // HUD không bị zoom/rung theo camera: quy ngược toạ độ + tỉ lệ
+  const hudP = (p: Prop): Prop => ({ ...p, x: cx + (p.x - cx - shake) / s, y: cy + (p.y - cy - shakeY) / s, sc: (p.sc ?? 1) / s });
+
+  const fadeAll = 1 - seg(t, 5500, 6100);
+  const drop = easeOut(seg(t, 0, 450));
   const barY = lerp(-80, 104, drop);
-  props.push(
+  hud.push(
     { id: 'hpa', type: 'hp', x: vw * 0.27, y: barY, w: vw * 0.38, h: 56, val: Math.max(0, hpA), text: `SLIDE ${from + 1}`, op: fadeAll },
     { id: 'hpb', type: 'hp hp-r', x: vw * 0.73, y: barY, w: vw * 0.38, h: 56, val: Math.max(0, hpB), text: `SLIDE ${to + 1}`, op: fadeAll },
     { id: 'vs', type: 'vs', x: vw / 2, y: barY, w: 70, h: 50, op: fadeAll, text: 'VS' },
+    { id: 'vig', type: 'fxvig', x: vw / 2, y: vh / 2, w: vw, h: vh, op: seg(t, 0, 500) * fadeAll },
   );
-  if (on(t, 400, 950)) props.push({ id: 'fight', type: 'big', x: vw / 2, y: vh * 0.36, text: t < 700 ? 'ROUND 1' : 'FIGHT!', sc: backOut(seg(t, t < 700 ? 400 : 700, (t < 700 ? 400 : 700) + 200)) });
-  if (on(t, 2650, 3400)) props.push({ id: 'ko', type: 'big ko', x: vw / 2, y: vh * 0.36, text: 'K.O.!', sc: backOut(seg(t, 2650, 2900)) });
-  if (on(t, 2900, 3400)) props.push(...stars('ks', ax + 55, F - 22, t));
+  if (flash > 0.01) hud.push({ id: 'flash', type: 'fxflash', x: vw / 2, y: vh / 2, w: vw, h: vh, op: Math.min(1, flash) });
+  props.push(...hud.map(hudP));
+
+  const bri = t < 3850 ? lerp(1, 0.6, seg(t, 0, 500)) : lerp(0.6, 0.32, seg(t, 3850, 4300));
   return {
-    old: { tf: `translateX(${shake.toFixed(1)}px)`, op: t < 2650 ? 1 : 0 },
+    old: { tf: `translate(${shake.toFixed(1)}px, ${shakeY.toFixed(1)}px) scale(${s.toFixed(4)})`, origin: `${cx.toFixed(1)}px ${cy.toFixed(1)}px`, filter: `brightness(${bri.toFixed(3)})`, op: t < KO ? 1 : 0 },
     pieces:
-      t >= 2650
+      t >= KO
         ? grid('old', (c, r, i) => {
-            const u = easeOut(seg(t, 2650, 3350));
+            const u = easeOut(seg(t, KO, KO + 700));
             const dx = (c - 1.5) / 1.5;
             const dy = (r - 1) / 1;
-            return { tf: `translate(${(u * dx * (40 + R[i] * 20)).toFixed(2)}vw, ${(u * (dy * 40 + 30 * u)).toFixed(2)}vh) rotate(${(u * (R[i + 12] - 0.5) * 300).toFixed(1)}deg) scale(${(1 - u * 0.4).toFixed(3)})`, op: 1 - seg(t, 2900, 3350) };
+            return { tf: `translate(${(u * dx * (40 + R[i] * 20)).toFixed(2)}vw, ${(u * (dy * 40 + 30 * u)).toFixed(2)}vh) rotate(${(u * (R[i + 12] - 0.5) * 300).toFixed(1)}deg) scale(${(1 - u * 0.4).toFixed(3)})`, op: 1 - seg(t, KO + 250, KO + 700) };
           })
         : [],
     a: { x: ax, y: ay, face: 1, pose: aPose, op: fadeAll },
-    b: { x: bx, y: by, face: -1, pose: t >= 2800 && t < 3300 ? 'cheer' : bPose, op: fadeAll },
+    b: { x: bx, y: by, face: -1, pose: bPose, op: fadeAll },
     props,
+    cam,
   };
 };
 
@@ -996,7 +1123,16 @@ const SCENES: Record<CharKind, Scene> = {
 };
 
 // ---------------------------------------------------------------- đồ vật (HTML tĩnh, không chứa dữ liệu người dùng)
+const starPts = (n: number, r1: number, r2: number) =>
+  Array.from({ length: n * 2 }, (_, i) => {
+    const an = (i * Math.PI) / n;
+    const r = i % 2 ? r2 : r1;
+    return `${(Math.cos(an) * r).toFixed(1)},${(Math.sin(an) * r).toFixed(1)}`;
+  }).join(' ');
+
 const PROP_HTML: Record<string, string> = {
+  fxspark: `<svg viewBox="-50 -50 100 100"><polygon points="${starPts(10, 48, 20)}" fill="#fff3a0" stroke="#ff6a00" stroke-width="4" stroke-linejoin="round"/><polygon points="${starPts(10, 27, 11)}" fill="#fff"/></svg>`,
+  fxcombo: '<span class="t"></span>',
   burst: '<span class="t"></span>',
   bubble: '<span class="t"></span>',
   big: '<span class="t"></span>',
@@ -1035,7 +1171,8 @@ export default function CharTransition({ kind, fromIndex, toIndex }: { kind: Cha
     const th = rt.current;
     const pl = layer.current;
     const pp = propLayer.current;
-    if (!oldEl || !newEl || !a || !b || !th || !pl || !pp) return;
+    const root = pl?.parentElement;
+    if (!oldEl || !newEl || !a || !b || !th || !pl || !pp || !root) return;
     const vw = window.innerWidth;
     const vh = window.innerHeight;
     const ctx: Ctx = { vw, vh, F: vh - 26, R: Array.from({ length: 80 }, () => Math.random()), from: fromIndex, to: toIndex };
@@ -1122,6 +1259,12 @@ export default function CharTransition({ kind, fromIndex, toIndex }: { kind: Cha
         el.style.opacity = String(pc.op ?? 1);
       });
       for (let i = pcs.length; i < clones.length; i++) clones[i].style.display = 'none';
+      if (fr.cam) {
+        root.style.transformOrigin = `${fr.cam.cx.toFixed(1)}px ${fr.cam.cy.toFixed(1)}px`;
+        root.style.transform = `translate(${fr.cam.dx.toFixed(1)}px, ${fr.cam.dy.toFixed(1)}px) scale(${fr.cam.s.toFixed(4)})`;
+      } else if (root.style.transform) {
+        root.style.transform = '';
+      }
       put(a, fr.a);
       put(b, fr.b);
       put(th, fr.thief);
@@ -1157,6 +1300,7 @@ export default function CharTransition({ kind, fromIndex, toIndex }: { kind: Cha
       newAnim?.cancel();
       clones.forEach((c) => c.remove());
       props.forEach((p) => p.remove());
+      root.style.transform = '';
     };
   }, [kind, fromIndex, toIndex]);
 
