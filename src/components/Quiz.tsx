@@ -12,7 +12,7 @@ interface Question {
 const QUESTIONS: Question[] = [
   { img: 'gao-tam.webp', q: 'What is “broken rice”?', options: ['Rice grains broken during milling', 'Grilled pork ribs', 'Fish sauce'], answer: 0, explain: 'Broken rice is made from grains that break during milling.' },
   { img: 'suon-cay.webp', q: 'Which ingredient makes the grilled ribs tender, sweet and golden?', options: ['Soy sauce', 'Condensed milk', 'Vinegar'], answer: 1, explain: 'Condensed milk tenderizes the meat and gives it a glossy golden-brown color.' },
-  { img: 'com-tam-ve.webp', q: 'How do you ask for more rice?', options: ['“Thêm trứng” (Add an egg)', '“Nhiều mỡ hành” (More scallion oil)', '“Cơm thêm” (More rice)'], answer: 2, explain: '“Cơm thêm” is the usual way to ask for another serving of rice.' },
+  { img: 'com-tam-ve.webp', q: 'How do you ask for more rice?', options: ['“Add an egg”', '“More scallion oil”', '“Extra rice, please”'], answer: 2, explain: '“Extra rice, please” is the usual way to ask for another serving of rice.' },
 ];
 
 type Props = { style?: CSSProperties; 'data-st'?: string };
@@ -61,7 +61,7 @@ export default function Quiz(props: Props) {
       <p className="score" aria-live="polite">
         {done ? (
           <>
-            Điểm số: {score} / {QUESTIONS.length}
+            Score: {score} / {QUESTIONS.length}
             <button
               type="button"
               onClick={() => {

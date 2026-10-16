@@ -15,20 +15,16 @@ export default function Slide29() {
         </div>
         <div className="bubbles" data-st="pop" style={{ "--base": "1.2s" } as CSSProperties}>
           <div className="bubble" style={{ "--i": "0" } as CSSProperties}>
-            <b>“Cho em một dĩa sườn bì chả.”</b>
-            <span>One plate with ribs, pork skin and egg meatloaf, please.</span>
+            <b>“One plate with ribs, pork skin and egg meatloaf, please.”</b>
           </div>
           <div className="bubble r" style={{ "--i": "1" } as CSSProperties}>
-            <b>“Thêm trứng ốp la.”</b>
-            <span>Add a fried egg with a runny yolk.</span>
+            <b>“Add a fried egg with a runny yolk.”</b>
           </div>
           <div className="bubble" style={{ "--i": "2" } as CSSProperties}>
-            <b>“Nhiều mỡ hành tóp mỡ!”</b>
-            <span>Extra scallion oil and crispy pork crackling.</span>
+            <b>“Extra scallion oil and crispy pork crackling!”</b>
           </div>
           <div className="bubble r" style={{ "--i": "3" } as CSSProperties}>
-            <b>“Cho dĩa cơm thêm nha!”</b>
-            <span>It is so good, I want another serving of rice!</span>
+            <b>“It is so good, I want another serving of rice!”</b>
           </div>
         </div>
       </div>

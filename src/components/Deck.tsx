@@ -240,7 +240,7 @@ export default function Deck() {
           <p className="hd">
             Slide {current + 1} · {who.name} · {who.part}
           </p>
-          <p className="en">{notes[current]?.[0]}</p>
+          <p className="en">{notes[current]}</p>
         </div>
       </aside>
 

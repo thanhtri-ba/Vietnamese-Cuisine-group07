@@ -76,7 +76,7 @@ export default function VideoLoader({ note, src: initialSrc = '', ...rest }: Pro
             className="file-btn"
             onClick={() => setIsOpen((o) => !o)}
           >
-            {isOpen ? '⏹ Ẩn video minh họa' : '▶ Mở video minh họa'}
+            {isOpen ? '⏹ Hide demo video' : '▶ Open demo video'}
           </button>
         ) : (
           <button
@@ -84,7 +84,7 @@ export default function VideoLoader({ note, src: initialSrc = '', ...rest }: Pro
             className="file-btn"
             onClick={() => setShowInput((s) => !s)}
           >
-            ▶ Mở video minh họa
+            ▶ Open demo video
           </button>
         )}
 
@@ -93,17 +93,17 @@ export default function VideoLoader({ note, src: initialSrc = '', ...rest }: Pro
           className="file-btn"
           style={{ background: 'transparent', border: '1.5px solid var(--leaf)', color: 'inherit' }}
           onClick={() => setShowInput((s) => !s)}
-          title="Ghép link video trực tiếp"
+          title="Paste a direct video link"
         >
-          🔗 {showInput ? 'Đóng nhập link' : 'Ghép link video'}
+          🔗 {showInput ? 'Close link input' : 'Paste video link'}
         </button>
 
         <label
           className="file-btn"
           style={{ background: 'transparent', border: '1.5px dashed var(--muted)', color: 'inherit', fontSize: '.85rem', padding: '8px 12px' }}
-          title="Hoặc chọn tệp từ máy tính"
+          title="Or choose a file from your computer"
         >
-          📁 Tải tệp lên
+          📁 Upload a file
           <input
             type="file"
             accept="video/*,image/*"
@@ -117,7 +117,7 @@ export default function VideoLoader({ note, src: initialSrc = '', ...rest }: Pro
         <div style={{ display: 'flex', gap: '8px', alignItems: 'center', width: '100%', maxWidth: '520px', marginTop: '6px' }}>
           <input
             type="text"
-            placeholder="Dán link video (YouTube / MP4 / WebM)..."
+            placeholder="Paste a video link (YouTube / MP4 / WebM)..."
             value={inputUrl}
             onChange={(e) => setInputUrl(e.target.value)}
             onKeyDown={(e) => e.key === 'Enter' && handleApplyLink()}
@@ -150,7 +150,7 @@ export default function VideoLoader({ note, src: initialSrc = '', ...rest }: Pro
           {media.type === 'youtube' ? (
             <iframe
               src={media.embedUrl}
-              title="Video minh họa"
+              title="Demo video"
               style={{
                 width: 'min(100%, 560px)',
                 height: 'clamp(200px, 34vh, 320px)',
@@ -164,7 +164,7 @@ export default function VideoLoader({ note, src: initialSrc = '', ...rest }: Pro
           ) : media.type === 'image' ? (
             <img
               src={media.embedUrl}
-              alt="Hình ảnh minh họa"
+              alt="Demo image"
               style={{ maxHeight: '34vh', maxWidth: '100%', borderRadius: '8px', border: '2px solid var(--leaf)', objectFit: 'contain' }}
             />
           ) : (

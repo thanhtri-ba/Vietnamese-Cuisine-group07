@@ -1,7 +1,7 @@
 import type { CSSProperties } from 'react';
 import Slide from '../components/Slide';
 
-/** Slide 28: Choose your sườn */
+/** Slide 28: Choose your ribs */
 export default function Slide28() {
   return (
     <Slide index={27} className="band cream" t="blinds" who={5} labelledBy="t24c">
