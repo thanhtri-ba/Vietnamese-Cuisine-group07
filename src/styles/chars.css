@@ -143,7 +143,7 @@
 .k-hp .yy-runner.chaser.fall .yr-spr{background-image:url('../assets/chars/wmas-fall.webp')}
 
 /* ---- đối kháng: nhân vật to hơn + hiệu ứng ---- */
-.k-hp .yr-flip{scale:1.4;transform-origin:50% 100%}
+.k-hp .yr-flip{scale:1.15;transform-origin:50% 100%}
 .ctx .cp-fxspark svg{width:100%;height:100%;display:block;filter:drop-shadow(0 0 10px rgba(255,200,60,.9))}
 .ctx .cp-fxring{border:7px solid #fff;border-radius:50%;box-shadow:0 0 20px #ffd23f,inset 0 0 20px #ffd23f}
 .ctx .cp-fxdot{border-radius:50%;background:#ffd23f;box-shadow:0 0 8px #ff9d2e}
