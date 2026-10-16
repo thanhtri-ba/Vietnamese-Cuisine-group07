@@ -35,7 +35,8 @@ export type CharKind =
   | 'plate'
   | 'dust'
   | 'hp'
-  | 'food';
+  | 'food'
+  | 'heist';
 
 export const CHAR_TOTAL: Record<CharKind, number> = {
   'shove-left': 2500,
@@ -60,6 +61,7 @@ export const CHAR_TOTAL: Record<CharKind, number> = {
   dust: 3000,
   hp: 3700,
   food: 3100,
+  heist: 3800,
 };
 
 /**
@@ -86,7 +88,7 @@ const FORWARD: (CharKind | null)[] = [
   'curtain', // 17→18
   'carry', // 18→19
   'pancake', // 19→20
-  'wipe', // 20→21
+  'heist', // 20→21 (kẻ trộm đu dây)
   'hp', // 21→22 Khoa → Liên
   'zipper', // 22→23
   'blow', // 23→24
@@ -159,6 +161,8 @@ interface Frame {
   pieces?: Piece[];
   a?: Pose;
   b?: Pose;
+  /** kẻ trộm (cảnh heist) — treo ngược trên dây */
+  thief?: Pose;
   props?: Prop[];
 }
 interface Ctx {
@@ -931,6 +935,40 @@ const food: Scene = (t, { vw, vh, F }) => {
   };
 };
 
+// 22. heist — ống kính lấy nét vào giữa màn hình, kẻ trộm đu dây xuống "cuỗm" nguyên slide
+const heist: Scene = (t, { vw, vh }) => {
+  const cx = vw / 2;
+  const fy = vh * 0.44; // điểm lấy nét
+  const zoom = 1 + 0.16 * inOut(seg(t, 150, 1000));
+  const drop = easeOut(seg(t, 900, 1950));
+  const grab = inOut(seg(t, 2050, 2750));
+  const up = easeIn(seg(t, 2800, 3700));
+  const sway = t > 900 ? Math.sin(t / 240) * 16 * (1 - drop) : 0;
+  const tx = cx + sway;
+  // treo ngược: chỗ buộc dây là bàn chân (phía TRÊN); tay ôm slide ở phía dưới.
+  // TS = cỡ phóng to của nhân vật, scale quanh tâm hộp nên phải bù lại hai mốc này.
+  const TS = 1.35;
+  const boxTop = lerp(-H * 1.4, fy - H * 0.46, drop) - up * (vh + H * 2);
+  const ropeY = boxTop - ((TS - 1) * H) / 2;
+  const hands = boxTop + H / 2 + 0.35 * H * TS;
+  const sc = lerp(zoom, 0.2, grab);
+  const ccx = lerp(cx, tx, grab);
+  const ccy = lerp(fy + (vh / 2 - fy) * zoom, hands + vh * 0.1 + 14, grab);
+  const fade = 1 - seg(t, 3150, 3650);
+  const props: Prop[] = [
+    { id: 'fx', type: 'focus', x: vw / 2, y: vh / 2, w: vw, h: vh, val: (fy / vh) * 100, op: Math.min(seg(t, 150, 800), fade) },
+    { id: 'rt', type: 'reticle', x: cx, y: fy, w: 330, h: 330, sc: lerp(2.6, 1, inOut(seg(t, 150, 900))), op: Math.min(seg(t, 150, 600), 1 - seg(t, 1500, 1900)) },
+  ];
+  if (t > 820 && up < 1) props.push(line('rp', 'rope', tx, -20, tx, ropeY + 8, 6));
+  props.push(...burst('sn', 'SNATCH!', tx + 170, hands + 40, t, 2050, 2500));
+  props.push(...bubble('mn', 'Mine now!', tx + 150, ropeY + 70, t, 2850, 3450));
+  return {
+    old: { tf: scaleTo(vw, vh, ccx, ccy, sc), shadow: grab > 0.2 ? '0 12px 30px rgba(0,0,0,.45)' : 'none', op: up < 1 ? 1 : 0 },
+    thief: t > 820 && up < 1 ? { x: tx, y: boxTop + H, face: 1, pose: 'hang' } : undefined,
+    props,
+  };
+};
+
 const SCENES: Record<CharKind, Scene> = {
   'shove-left': shove(true),
   'shove-right': shove(false),
@@ -954,6 +992,7 @@ const SCENES: Record<CharKind, Scene> = {
   dust,
   hp,
   food,
+  heist,
 };
 
 // ---------------------------------------------------------------- đồ vật (HTML tĩnh, không chứa dữ liệu người dùng)
@@ -963,6 +1002,9 @@ const PROP_HTML: Record<string, string> = {
   big: '<span class="t"></span>',
   vs: '<span class="t"></span>',
   hp: '<span class="t"></span><b><i></i></b>',
+  focus: '',
+  reticle:
+    '<svg viewBox="0 0 200 200"><path class="br" d="M8 58 V8 H58 M142 8 H192 V58 M192 142 V192 H142 M58 192 H8 V142"/><circle class="ring" cx="100" cy="100" r="54"/><path class="cr" d="M100 32 V60 M100 140 V168 M32 100 H60 M140 100 H168"/></svg>',
   bin: '<svg viewBox="0 0 96 116"><path d="M10 26 L18 112 L78 112 L86 26 Z" fill="#6f927d" stroke="#165D3A" stroke-width="4"/><path d="M4 16 H92 V28 H4 Z" fill="#165D3A"/><path d="M36 8 H60 V16 H36 Z" fill="#165D3A"/><path d="M34 40 L38 100 M48 40 V100 M62 40 L58 100" stroke="#165D3A" stroke-width="4" opacity=".5"/></svg>',
   pan: '<svg viewBox="0 0 400 90"><path d="M0 46 H170" stroke="#3b2a1e" stroke-width="16" stroke-linecap="round"/><ellipse cx="290" cy="46" rx="108" ry="30" fill="#2b2b2b" stroke="#111" stroke-width="5"/><ellipse cx="290" cy="40" rx="92" ry="20" fill="#444"/></svg>',
   scissors:
@@ -980,6 +1022,7 @@ const PROP_HTML: Record<string, string> = {
 export default function CharTransition({ kind, fromIndex, toIndex }: { kind: CharKind; fromIndex: number; toIndex: number }) {
   const ra = useRef<HTMLDivElement>(null);
   const rb = useRef<HTMLDivElement>(null);
+  const rt = useRef<HTMLDivElement>(null);
   const layer = useRef<HTMLDivElement>(null);
   const propLayer = useRef<HTMLDivElement>(null);
 
@@ -989,9 +1032,10 @@ export default function CharTransition({ kind, fromIndex, toIndex }: { kind: Cha
     const newEl = bands[toIndex];
     const a = ra.current;
     const b = rb.current;
+    const th = rt.current;
     const pl = layer.current;
     const pp = propLayer.current;
-    if (!oldEl || !newEl || !a || !b || !pl || !pp) return;
+    if (!oldEl || !newEl || !a || !b || !th || !pl || !pp) return;
     const vw = window.innerWidth;
     const vh = window.innerHeight;
     const ctx: Ctx = { vw, vh, F: vh - 26, R: Array.from({ length: 80 }, () => Math.random()), from: fromIndex, to: toIndex };
@@ -1051,8 +1095,9 @@ export default function CharTransition({ kind, fromIndex, toIndex }: { kind: Cha
       el.style.opacity = String(p.op ?? 1);
       el.style.transform = `translate(${(p.x - W / 2).toFixed(1)}px, ${(p.y - H).toFixed(1)}px)`;
       const f = el.querySelector<HTMLElement>('.yr-flip');
-      if (f) f.style.transform = p.face < 0 ? 'scaleX(-1)' : 'none';
-      el.className = `yy-runner show shove-runner ${el === a ? 'pusher' : 'chaser'} ${p.pose}`;
+      // pose "hang" = treo ngược (đu dây)
+      if (f) f.style.transform = `${p.face < 0 ? 'scaleX(-1)' : ''}${p.pose === 'hang' ? ' rotate(180deg) scale(1.35)' : ''}`.trim() || 'none';
+      el.className = `yy-runner show shove-runner ${el === a ? 'pusher' : el === th ? 'thief' : 'chaser'} ${p.pose}`;
     };
 
     let raf = 0;
@@ -1079,6 +1124,7 @@ export default function CharTransition({ kind, fromIndex, toIndex }: { kind: Cha
       for (let i = pcs.length; i < clones.length; i++) clones[i].style.display = 'none';
       put(a, fr.a);
       put(b, fr.b);
+      put(th, fr.thief);
       const seen = new Set<string>();
       (fr.props ?? []).forEach((p) => {
         seen.add(p.id);
@@ -1122,6 +1168,9 @@ export default function CharTransition({ kind, fromIndex, toIndex }: { kind: Cha
       </div>
       <div className="yy-runner show shove-runner chaser" ref={rb}>
         <RunnerFigure width={W} height={H} cargo={null} />
+      </div>
+      <div className="yy-runner show shove-runner thief" ref={rt} style={{ display: 'none' }}>
+        <RunnerFigure width={W} height={H} cargo={null} hat="thief" />
       </div>
       <div className="ctx-props" ref={propLayer} />
     </div>

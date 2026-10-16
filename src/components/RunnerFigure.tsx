@@ -6,7 +6,7 @@ import type { ReactNode } from 'react';
  * `cargo` = vật vác trên đầu, vẽ trong hệ toạ độ 64×100, tâm khoảng (32, 13) — được nâng lên trên chóp nón lá.
  * Nhân vật đội nón lá; màu quai nón theo class .pusher (cam) / .chaser (xanh).
  */
-export default function RunnerFigure({ cargo, width, height, hat = 'nonla' }: { cargo: ReactNode; width: number; height: number; hat?: 'nonla' | 'police' }) {
+export default function RunnerFigure({ cargo, width, height, hat = 'nonla' }: { cargo: ReactNode; width: number; height: number; hat?: 'nonla' | 'police' | 'thief' }) {
   return (
     <div className="yr-flip">
       <svg viewBox="0 0 64 100" width={width} height={height}>
@@ -38,7 +38,14 @@ export default function RunnerFigure({ cargo, width, height, hat = 'nonla' }: { 
           <circle className="yr-head" cx="32" cy="36" r="8" />
           <circle cx="35" cy="37" r="1.2" fill="var(--forest)" />
           <path className="yr-band" d="M25.5 31 Q32 48 38.5 31" />
-          {hat === 'police' ? (
+          {hat === 'thief' ? (
+            /* mũ len + khăn bịt mắt của kẻ trộm */
+            <g className="yr-cap thief-cap">
+              <path className="beanie" d="M23.6 33.4 Q23 23.6 32 23.6 Q41 23.6 40.4 33.4 Z" />
+              <path className="brim" d="M22.4 33.6 H41.6" />
+              <path className="mask" d="M24.3 36.6 H39.7" />
+            </g>
+          ) : hat === 'police' ? (
             /* mũ kê-pi công an */
             <g className="yr-cap">
               <path className="crown" d="M21 31 Q19 20 32 20.5 Q47 21 45 29 L44 31 Z" />

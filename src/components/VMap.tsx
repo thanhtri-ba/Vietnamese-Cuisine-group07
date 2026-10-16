@@ -9,7 +9,7 @@ export type City = 'hn' | 'hue' | 'hcm';
 export const CITY: Record<City | 'sea', { x: number; y: number; name: string }> = {
   hn: { x: 122.4, y: 83.1, name: 'Hanoi' },
   hue: { x: 172.2, y: 220.2, name: 'Hue' },
-  hcm: { x: 146.9, y: 390.6, name: 'HCMC' },
+  hcm: { x: 146.9, y: 390.6, name: 'HCM' },
   sea: { x: 250, y: 150, name: '' },
 };
 

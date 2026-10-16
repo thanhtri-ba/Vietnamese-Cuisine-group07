@@ -1,7 +1,7 @@
 // Speaker notes: [English script, Vietnamese translation] for each slide, in order.
 export const notes: [string, string][] = [
   [
-    "Good morning, teacher and everyone! We are Group 7, and our members are Hòa, Hải, Trung, Khoa, Liên, Trí, and Đức. Today, we are going to take you on a short food trip to Vietnam. We will introduce Vietnamese cuisine, with a special focus on one famous dish from Saigon: cơm tấm, or broken rice. You will hear about its history, its flavors, how to cook it, and even how to order it like a local. So if you feel a little hungry during our presentation, that is perfectly normal. Let’s get started!",
+    "Good evening, teacher and everyone! We are Group 7, and our members are Hòa, Hải, Trung, Khoa, Liên, Trí, and Đức. Today, we are going to take you on a short food trip to Vietnam. We will introduce Vietnamese cuisine, with a special focus on one famous dish from Saigon: cơm tấm, or broken rice. You will hear about its history, its flavors, how to cook it, and even how to order it like a local. So if you feel a little hungry during our presentation, that is perfectly normal. Let’s get started!",
     "Chào thầy và các bạn. Nhóm 7 gồm Hòa, Hải, Trung, Khoa, Liên, Trí và Đức sẽ đưa mọi người đi một chuyến du lịch ẩm thực ngắn, tập trung vào món cơm tấm Sài Gòn: lịch sử, hương vị, cách nấu và cả cách gọi món như người địa phương."
   ],
   [
