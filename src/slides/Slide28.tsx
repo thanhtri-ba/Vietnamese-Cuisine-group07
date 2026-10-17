@@ -31,6 +31,7 @@ export default function Slide28() {
           <span className="chip" style={{ "--i": "1" } as CSSProperties}>Grilled chicken<small>honey-marinated grilled chicken thigh</small></span>
           <span className="chip" style={{ "--i": "2" } as CSSProperties}>Fried egg<small>with a rich, runny yolk</small></span>
           <span className="chip" style={{ "--i": "3" } as CSSProperties}>Egg meatloaf<small>steamed until golden, soft and fragrant</small></span>
+          <span className="chip" style={{ "--i": "4" } as CSSProperties}>Shredded pork skin<small>thin strips with toasted rice powder</small></span>
         </div>
       </div>
     </Slide>

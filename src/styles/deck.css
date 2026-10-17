@@ -1167,3 +1167,13 @@ h1,h2,h3{line-height:1.1}
 .ctx .yy-runner.hang .yr-leg.a{transform:rotate(-13deg)}
 .ctx .yy-runner.hang .yr-leg.b{transform:rotate(11deg)}
 .ctx .yy-runner.hang .yr-body{animation:yrBob .6s ease-in-out infinite alternate}
+
+/* slide 27: video next to the controls so the whole slide fits one screen */
+.video-box:not(.split) .vb-ctl{display:contents}
+.video-box.split{display:grid;grid-template-columns:minmax(0,1.7fr) minmax(0,1fr);gap:clamp(18px,3vw,40px);align-items:start;margin-top:clamp(10px,2vh,18px)}
+.video-box.split .vb-ctl{display:flex;flex-wrap:wrap;gap:10px;align-content:flex-start}
+.video-box.split .vb-media{margin-top:0!important}
+@media (max-width:820px){.video-box.split{grid-template-columns:1fr}}
+.marinade-grid{margin-top:clamp(8px,2vh,22px)}
+.marinade-grid .roles{margin-top:0}
+.video-box.split{margin-top:clamp(8px,1.6vh,16px)}

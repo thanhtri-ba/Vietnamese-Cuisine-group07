@@ -31,16 +31,21 @@ export default function Slide27() {
           </div>
           <div style={{ "--i": "2" } as CSSProperties}>
             <b>Sugar & honey</b>
-            <span>a gentle sweetness that caramelizes to gold on the grill</span>
+            <span>gentle sweetness and a golden-brown color on the grill</span>
           </div>
           <div style={{ "--i": "3" } as CSSProperties}>
             <b>Sweetened condensed milk</b>
-            <span>makes the meat tender and juicy with a deep golden-brown color</span>
+            <span>in some recipes, adds a mild creaminess and a glossy glaze</span>
           </div>
         </div>
-        <Photo src="uop-suon.webp" alt="Pork ribs marinating in a bowl with garlic, lemongrass and spices" caption="Marinating the ribs" sub="left overnight to soak in" h="30vh" tilt="r" tape delay=".8s" />
+        <Photo src="uop-suon.webp" alt="Pork ribs marinating in a bowl with garlic, lemongrass and spices" caption="Marinating the ribs" sub="left overnight to soak in" h="23vh" tilt="r" tape delay=".8s" />
         </div>
-        <VideoLoader data-a="fadeUp" style={{ "--d": "1.8s" } as CSSProperties} note="Honey and condensed milk are the secret to tender, sweet ribs with that glossy, golden-brown Saigon style." />
+        <VideoLoader
+          split
+          data-a="fadeUp"
+          style={{ "--d": "1.8s" } as CSSProperties}
+          note="Every stall has its own recipe: honey and condensed milk add sweetness, richness and a glossy, golden-brown finish."
+        />
       </div>
     </Slide>
   );

@@ -6,6 +6,8 @@ type Props = {
   src?: string;
   style?: CSSProperties;
   'data-a'?: string;
+  /** controls + note on the left, video on the right (fits one screen next to other content) */
+  split?: boolean;
 };
 
 function parseMediaUrl(url: string): { type: 'youtube' | 'video' | 'image'; embedUrl: string } {
@@ -22,8 +24,10 @@ function parseMediaUrl(url: string): { type: 'youtube' | 'video' | 'image'; embe
   return { type: 'video', embedUrl: url };
 }
 
+const DEFAULT_SRC = 'https://youtu.be/q-ZH8pb5XuA?si=zAgaZ9ibb0eiKIAZ';
+
 /** Lets the presenter paste a video/media link (YouTube, MP4, etc.), pass src via prop, or pick a local file. */
-export default function VideoLoader({ note, src: initialSrc = '', ...rest }: Props) {
+export default function VideoLoader({ note, src: initialSrc = DEFAULT_SRC, split = false, ...rest }: Props) {
   const [currentUrl, setCurrentUrl] = useState<string>(initialSrc);
   const [inputUrl, setInputUrl] = useState<string>('');
   const [showInput, setShowInput] = useState<boolean>(false);
@@ -68,7 +72,8 @@ export default function VideoLoader({ note, src: initialSrc = '', ...rest }: Pro
   const media = currentUrl ? parseMediaUrl(currentUrl) : null;
 
   return (
-    <div className="video-box" {...rest}>
+    <div className={`video-box${split ? ' split' : ''}`} {...rest}>
+      <div className="vb-ctl">
       <div style={{ display: 'flex', flexWrap: 'wrap', gap: '8px', alignItems: 'center' }}>
         {currentUrl ? (
           <button
@@ -144,16 +149,17 @@ export default function VideoLoader({ note, src: initialSrc = '', ...rest }: Pro
       )}
 
       {note && <span style={{ fontSize: '.9rem', color: 'var(--sage)', display: 'block', width: '100%' }}>{note}</span>}
+      </div>
 
-      {isOpen && media && (
-        <div style={{ marginTop: '10px', width: '100%' }}>
+      {isOpen && active && media && (
+        <div className="vb-media" style={{ marginTop: '10px', width: '100%' }}>
           {media.type === 'youtube' ? (
             <iframe
               src={media.embedUrl}
               title="Demo video"
               style={{
-                width: 'min(100%, 560px)',
-                height: 'clamp(200px, 34vh, 320px)',
+                width: split ? '100%' : 'min(100%, 560px)',
+                height: split ? 'clamp(120px, 24vh, 220px)' : 'clamp(200px, 34vh, 320px)',
                 border: '2px solid var(--leaf)',
                 borderRadius: '8px',
                 display: 'block',
