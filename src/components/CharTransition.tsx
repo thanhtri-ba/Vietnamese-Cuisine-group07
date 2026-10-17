@@ -36,7 +36,15 @@ export type CharKind =
   | 'dust'
   | 'hp'
   | 'food'
-  | 'heist';
+  | 'heist'
+  | 'domino'
+  | 'boom'
+  | 'polaroid'
+  | 'seesaw'
+  | 'ufo'
+  | 'slash'
+  | 'bowling'
+  | 'bubbleT';
 
 export const CHAR_TOTAL: Record<CharKind, number> = {
   'shove-left': 2500,
@@ -62,6 +70,14 @@ export const CHAR_TOTAL: Record<CharKind, number> = {
   hp: 6200,
   food: 3100,
   heist: 3800,
+  domino: 3100,
+  boom: 3000,
+  polaroid: 3400,
+  seesaw: 3200,
+  ufo: 3700,
+  slash: 3100,
+  bowling: 3300,
+  bubbleT: 3500,
 };
 
 /**
@@ -71,23 +87,23 @@ export const CHAR_TOTAL: Record<CharKind, number> = {
 const FORWARD: (CharKind | null)[] = [
   'shove-left', // 1→2
   'lift', // 2→3
-  'kick', // 3→4
-  'stomp', // 4→5
+  'domino', // 3→4
+  'boom', // 4→5
   'hp', // 5→6  Hòa → Hải
-  'tug', // 6→7
-  'tear', // 7→8
-  'tape', // 8→9
-  'roll', // 9→10
+  'ufo', // 6→7
+  'slash', // 7→8
+  'bowling', // 8→9
+  'bubbleT', // 9→10
   'hp', // 10→11 Hải → Trung
   null, // 11→12 bay
   null, // 12→13 bay
   null, // 13→14 bay
   null, // 14→15 bay
   'hp', // 15→16 Trung → Khoa
-  'crumple', // 16→17
+  'seesaw', // 16→17
   'curtain', // 17→18
   'carry', // 18→19
-  'pancake', // 19→20
+  'polaroid', // 19→20
   'heist', // 20→21 (kẻ trộm đu dây)
   'hp', // 21→22 Khoa → Liên
   'zipper', // 22→23
@@ -1096,6 +1112,443 @@ const heist: Scene = (t, { vw, vh }) => {
   };
 };
 
+// ---------------------------------------------------------------- cảnh mới (đợt 1)
+const rotPt = (px: number, py: number, lx: number, ly: number, deg: number) => {
+  const r = (deg * Math.PI) / 180;
+  return { x: px + lx * Math.cos(r) - ly * Math.sin(r), y: py + lx * Math.sin(r) + ly * Math.cos(r) };
+};
+
+/** domino: slide cũ chia 6 tấm dọc, nhân vật đẩy tấm đầu → đổ lần lượt */
+const domino: Scene = (t, { vw, vh, F, R }) => {
+  const N = 6;
+  const sw = vw / N;
+  const T0 = 1000;
+  const STEP = 190;
+  const pieces: Piece[] = [];
+  const props: Prop[] = [];
+  let shake = 0;
+  for (let i = 0; i < N; i++) {
+    const s0 = T0 + i * STEP;
+    const k = easeIn(seg(t, s0, s0 + 420));
+    const px = (i + 1) * sw - vw / 2;
+    const py = vh / 2;
+    const ang = k * 86;
+    const wob = t < s0 && t > T0 - 200 ? Math.sin(t / 30 + i) * 0.5 : 0;
+    pieces.push({
+      src: 'old',
+      clip: `inset(0 ${(100 - ((i + 1) / N) * 100).toFixed(3)}% 0 ${((i / N) * 100).toFixed(3)}%)`,
+      tf: `translate(${px}px, ${py}px) rotate(${(ang + wob).toFixed(2)}deg) translate(${-px}px, ${-py}px)`,
+      op: 1 - seg(t, s0 + 380, s0 + 760),
+    });
+    const land = s0 + 420;
+    if (t >= land && t < land + 700) {
+      props.push(...impact(`dm${i}`, (i + 1.7) * sw > vw ? vw - 20 : (i + 1) * sw + 30, F - 14, t - land, R, 0.55 + (i === N - 1 ? 0.5 : 0)));
+      if (t - land < 200) shake = Math.max(shake, 5 * (1 - (t - land) / 200));
+    }
+  }
+  props.push(...burst('tb', 'TIMBER!', vw * 0.5, vh * 0.3, t, 1500, 2150));
+  props.push(...bubble('hm', 'Careful…', W * 0.9, F - H - 30, t, 350, 950));
+  const enter = easeOut(seg(t, 0, 500));
+  const leave = easeIn(seg(t, 2300, 2900));
+  const ax = lerp(-W, W * 0.2, enter) + leave * (vw + W * 2);
+  const bxs = lerp(vw + W, vw - W * 0.5, enter);
+  const bx = bxs + leave * W * 2;
+  const dx = shake ? Math.sin(t / 11) * shake : 0;
+  const dy = shake ? Math.cos(t / 8) * shake * 0.5 : 0;
+  return {
+    old: { op: t < T0 - 250 ? 1 : 0, shadow: '0 20px 60px rgba(0,0,0,.3)' },
+    pieces: t >= T0 - 250 ? pieces : [],
+    a: { x: ax, y: F, face: 1, pose: t < 500 ? 'run' : t < 1100 ? 'push' : t < 2300 ? 'cheer' : 'run' },
+    b: { x: bx, y: F, face: -1, pose: t < 500 ? 'run' : t < 2300 ? 'cheer' : 'run' },
+    props,
+    cam: shake ? { s: 1, cx: vw / 2, cy: vh / 2, dx, dy } : undefined,
+  };
+};
+
+/** boom: slide thành quả pháo, kẻ trộm châm ngòi, nổ tung thành mảnh */
+const boom: Scene = (t, { vw, vh, F, R }) => {
+  const BOOM = 1700;
+  const s = 0.5;
+  const cx = vw / 2;
+  const cy = F - 70 - (vh * s) / 2;
+  const topY = cy - (vh * s) / 2;
+  const props: Prop[] = [];
+  let shake = 0;
+  let old: SlideFx;
+  let neu: SlideFx | undefined;
+  let pieces: Piece[] = [];
+  const shrink = inOut(seg(t, 150, 650));
+  if (t < BOOM) {
+    const sc = lerp(1, s, shrink);
+    const ccy = lerp(vh / 2, cy, shrink);
+    const jit = t > 1100 ? Math.sin(t / 18) * (t - 1100) * 0.006 : 0;
+    old = { tf: scaleTo(vw, vh, cx + jit, ccy, sc, sc), shadow: '0 0 0 6px #c62828, 0 14px 30px rgba(0,0,0,.35)', radius: '6px' };
+    neu = { op: 0 };
+    if (t >= 650) {
+      const fl = 150;
+      const burn = seg(t, 800, BOOM);
+      props.push({ id: 'fz', type: 'fuse', x: cx, y: topY - (fl * (1 - burn)) / 2, w: 5, h: fl * (1 - burn) });
+      props.push({ id: 'fs', type: 'fxspark', x: cx, y: topY - fl * (1 - burn), w: 46, h: 46, rot: t * 0.6, sc: 0.8 + Math.sin(t / 40) * 0.2 });
+      for (let i = 0; i < 3; i++) props.push({ id: `fd${i}`, type: 'fxdot', x: cx + Math.sin(t / 50 + i * 2) * 18, y: topY - fl * (1 - burn) - 10 - ((t / 6 + i * 20) % 40), w: 8, h: 8, op: 0.9 });
+    }
+  } else {
+    const u = t - BOOM;
+    old = { op: 0 };
+    const pop = backOut(seg(t, BOOM + 150, BOOM + 650));
+    neu = { tf: scaleTo(vw, vh, vw / 2, vh / 2, 0.8 + 0.2 * pop), op: seg(t, BOOM, BOOM + 250) };
+    const e = easeOut(seg(u, 0, 900));
+    pieces = grid('old', (c, r, i) => {
+      const gx = (c + 0.5) / 4 - 0.5;
+      const gy = (r + 0.5) / 3 - 0.5;
+      const ang = Math.atan2(gy * 0.7, gx);
+      const d = (0.5 + R[i + 30]) * vw * 0.75 * e;
+      const px = Math.cos(ang) * d;
+      const py = Math.sin(ang) * d - 160 * Math.sin(Math.PI * Math.min(1, e)) + 520 * e * e * 0.4;
+      return { tf: `translate(${px.toFixed(1)}px, ${py.toFixed(1)}px) rotate(${(e * (R[i] - 0.5) * 540).toFixed(1)}deg) ${scaleTo(vw, vh, cx, cy, s, s)}`, op: 1 - seg(u, 500, 1000) };
+    });
+    props.push(...impact('bm', cx, cy, u, R, 2));
+    props.push({ id: 'bm2', type: 'fxring', x: cx, y: cy, w: 120, h: 120, sc: 0.3 + easeOut(seg(u, 120, 800)) * 6, op: 1 - seg(u, 120, 800) });
+    props.push(...burst('bk', 'BOOM!', cx, cy - 20, t, BOOM, BOOM + 650));
+    if (u < 350) {
+      shake = 16 * (1 - u / 350);
+      props.push({ id: 'bfl', type: 'fxflash', x: vw / 2, y: vh / 2, w: vw, h: vh, op: 0.75 * (1 - u / 350) });
+    }
+  }
+  const run = easeIn(seg(t, 900, 1500));
+  const ax = t < 700 ? lerp(-W, vw * 0.3, easeOut(seg(t, 0, 700))) : vw * 0.3 - run * (vw * 0.3 + W * 2);
+  const fell = t >= BOOM;
+  const bx = lerp(vw + W, vw * 0.78, easeOut(seg(t, 200, 900))) + (t > 2400 ? easeIn(seg(t, 2400, 3000)) * (vw * 0.3) : 0) + (fell ? seg(t, BOOM, BOOM + 300) * 40 : 0);
+  const dx = shake ? Math.sin(t / 10) * shake : 0;
+  const dy = shake ? Math.cos(t / 7) * shake * 0.6 : 0;
+  return {
+    old,
+    neu,
+    pieces,
+    a: { x: ax, y: F, face: t < 700 ? 1 : -1, pose: t < 700 ? 'run' : t < 900 ? 'stand' : 'run' },
+    b: { x: bx, y: fell && t < BOOM + 1000 ? F : F, face: -1, pose: fell && t < BOOM + 1000 ? 'fall' : t < 2400 ? 'stand' : 'run' },
+    props,
+    cam: shake ? { s: 1, cx: vw / 2, cy: vh / 2, dx, dy } : undefined,
+  };
+};
+
+/** polaroid: chụp ảnh slide, ảnh trượt ra, "rửa" ảnh ra slide mới */
+const polaroid: Scene = (t, { vw, vh, F }) => {
+  const s = 0.5;
+  const FR = '0 0 0 16px #fffdf6, 0 0 0 17px rgba(0,0,0,.12), 0 28px 40px rgba(0,0,0,.35)';
+  const FLASH = 1000;
+  const props: Prop[] = [];
+  const enter = easeOut(seg(t, 0, 500));
+  const leave = easeIn(seg(t, 2800, 3300));
+  const ax = lerp(-W, vw * 0.14, enter) - leave * (vw * 0.14 + W * 2);
+  const bx = lerp(vw + W, vw * 0.86, enter) + leave * (vw * 0.14 + W * 2);
+  props.push(...bubble('ch', t < 800 ? 'Everybody ready?' : 'Say cheese!', ax, F - H - 34, t, 450, 1200));
+  const slide = (cx: number, cy: number, sc: number, rot: number) => scaleTo(vw, vh, cx, cy, sc, sc, `rotate(${rot.toFixed(2)}deg)`);
+  // ảnh: ra khỏi khung ở giữa, rơi xuống rồi nằm nghiêng
+  const out = inOut(seg(t, FLASH + 150, FLASH + 850));
+  const px = lerp(vw / 2, vw * 0.5, out);
+  const py = lerp(vh / 2, vh * 0.46, out);
+  const sc = lerp(1, s, out);
+  const rot = lerp(0, -5, out);
+  const dev = seg(t, 1950, 2750);
+  const grow = inOut(seg(t, 2750, 3300));
+  const swap = t >= 1900;
+  const fl = t >= FLASH && t < FLASH + 450 ? 1 - (t - FLASH) / 450 : 0;
+  if (fl > 0) props.push({ id: 'pf', type: 'fxflash', x: vw / 2, y: vh / 2, w: vw, h: vh, op: fl });
+  if (t >= FLASH && t < FLASH + 300) props.push({ id: 'ps', type: 'fxspark', x: vw / 2, y: vh / 2, w: 220, h: 220, rot: 20, sc: 0.3 + easeOut((t - FLASH) / 300) * 1.4, op: 1 - (t - FLASH) / 300 });
+  props.push(...burst('cl', 'CLICK!', vw * 0.5, vh * 0.2, t, FLASH, FLASH + 600));
+  const gx = lerp(px, vw / 2, grow);
+  const gy = lerp(py, vh / 2, grow);
+  const gs = lerp(sc, 1, grow);
+  const gr = lerp(rot, 0, grow);
+  const frame = grow < 1 ? FR : 'none';
+  return {
+    old: swap ? { op: 0 } : { tf: slide(px, py, sc, rot), shadow: out > 0 ? FR : '0 20px 60px rgba(0,0,0,.3)', radius: out > 0 ? '4px' : '0px' },
+    neu: swap ? { tf: slide(gx, gy, gs, gr), shadow: frame, op: 1, radius: grow < 1 ? '4px' : '0px', filter: dev < 1 ? `grayscale(${(1 - dev).toFixed(2)}) brightness(${(1 + (1 - dev) * 1.6).toFixed(2)}) blur(${((1 - dev) * 8).toFixed(1)}px) sepia(${(1 - dev).toFixed(2)})` : 'none' } : { op: 0 },
+    a: { x: ax, y: F, face: 1, pose: t < 500 ? 'run' : t < 2800 ? 'cheer' : 'run' },
+    b: { x: bx, y: F, face: -1, pose: t < 500 ? 'run' : t < 2800 ? 'cheer' : 'run' },
+    props,
+  };
+};
+
+/** seesaw: nhân vật nhảy xuống bập bênh phóng slide cũ lên trời, slide mới rơi xuống */
+const seesaw: Scene = (t, { vw, vh, F, R }) => {
+  const PX = vw / 2;
+  const PY = F - 40;
+  const L = 270;
+  const s = 0.2;
+  const HIT = 1250;
+  const props: Prop[] = [];
+  const ang =
+    t < HIT ? -14 : -14 + 28 * easeOut(seg(t, HIT, HIT + 150)) + (t > HIT + 150 ? Math.sin((t - HIT - 150) / 70) * 3 * Math.max(0, 1 - (t - HIT - 150) / 700) : 0);
+  props.push({ id: 'fu', type: 'fulcrum', x: PX, y: F - 18, w: 90, h: 38 });
+  props.push({ id: 'pl', type: 'plank', x: PX, y: PY, w: L * 2, h: 16, rot: ang });
+  const slot = (a: number) => rotPt(PX, PY, -L * 0.52, -8 - (vh * s) / 2, a);
+  const enter = easeOut(seg(t, 0, 500));
+  const settle = inOut(seg(t, 350, 850));
+  let old: SlideFx;
+  let neu: SlideFx | undefined = { op: 0 };
+  const sl0 = slot(-14);
+  if (t < HIT) {
+    const sc = lerp(1, s, settle);
+    const cxx = lerp(vw / 2, sl0.x, settle);
+    const cyy = lerp(vh / 2, sl0.y, settle);
+    old = { tf: scaleTo(vw, vh, cxx, cyy, sc, sc, `rotate(${(-14 * settle).toFixed(2)}deg)`), shadow: '0 8px 16px rgba(0,0,0,.3)' };
+  } else {
+    const u = seg(t, HIT, HIT + 950);
+    const cxx = lerp(sl0.x, vw * 0.38, u);
+    const cyy = sl0.y - u * vh * 1.75 + u * u * vh * 0.35;
+    old = u >= 1 ? { op: 0 } : { tf: scaleTo(vw, vh, cxx, cyy, s, s, `rotate(${(-14 + u * 720).toFixed(1)}deg)`) };
+  }
+  const sl1 = slot(14);
+  if (t >= 1900) {
+    const dropK = easeIn(seg(t, 1900, 2350));
+    const yy = lerp(-vh * 0.3, sl1.y, dropK);
+    const xx = lerp(sl1.x + 40, sl1.x, dropK);
+    const grow = inOut(seg(t, 2500, 3100));
+    const gx = lerp(xx, vw / 2, grow);
+    const gy = lerp(yy, vh / 2, grow);
+    const gs = lerp(s, 1, grow);
+    neu = { tf: scaleTo(vw, vh, gx, gy, gs, gs, `rotate(${lerp(lerp(300, 14, dropK), 0, grow).toFixed(1)}deg)`), op: 1, shadow: grow < 1 ? '0 8px 16px rgba(0,0,0,.3)' : 'none' };
+    if (t >= 2350 && t < 2900) props.push(...impact('sw2', sl1.x, sl1.y + 40, t - 2350, R, 0.6));
+  }
+  // người nhảy
+  const jumpK = seg(t, 650, HIT);
+  const rEnd = rotPt(PX, PY, L - 18, -8, -14);
+  const rEnd2 = rotPt(PX, PY, L - 18, -8, ang);
+  let a: Pose;
+  if (t < 650) a = { x: lerp(vw + W, rEnd.x, enter), y: lerp(F, F, enter), face: -1, pose: 'run' };
+  else if (t < HIT) a = { x: rEnd.x, y: lerp(-H - 120, rEnd.y, easeIn(jumpK)), face: -1, pose: 'cheer' };
+  else if (t < 2700) a = { x: rEnd2.x, y: rEnd2.y, face: -1, pose: 'cheer' };
+  else a = { x: lerp(rEnd2.x, vw + W * 2, easeIn(seg(t, 2700, 3100))), y: F, face: 1, pose: 'run' };
+  if (t >= 650 && t < 700) a = { ...a, y: -H - 120 };
+  if (t < 650) a = { ...a, x: lerp(vw + W, rEnd.x + 160, enter) , y: F };
+  if (t >= 650 && t < HIT) a = { x: rEnd.x, y: lerp(-H - 120, rEnd.y, easeIn(jumpK)), face: -1, pose: 'cheer' };
+  // người xem
+  const bx = lerp(-W, vw * 0.12, enter) - easeIn(seg(t, 2800, 3100)) * (vw * 0.12 + W * 2);
+  const b: Pose = { x: bx, y: F, face: 1, pose: t < 500 ? 'run' : 'cheer' };
+  if (t >= HIT && t < HIT + 600) props.push(...impact('sw', rEnd.x, rEnd.y, t - HIT, R, 1.2));
+  props.push(...burst('bg', 'BOING!', PX, F - 190, t, HIT, HIT + 600));
+  const sh = t >= HIT && t < HIT + 250 ? 8 * (1 - (t - HIT) / 250) : 0;
+  return {
+    old,
+    neu,
+    a,
+    b,
+    props,
+    cam: sh ? { s: 1, cx: vw / 2, cy: vh / 2, dx: Math.sin(t / 11) * sh, dy: Math.cos(t / 8) * sh * 0.6 } : undefined,
+  };
+};
+
+// ---------------------------------------------------------------- cảnh mới (đợt 2)
+/** ufo: đĩa bay hút slide cũ lên, nhả slide mới xuống */
+const ufo: Scene = (t, { vw, vh, F, R }) => {
+  const UY = vh * 0.17;
+  const hover = Math.sin(t / 260) * 8;
+  const ux = t < 3000 ? lerp(vw + 260, vw / 2, easeOut(seg(t, 0, 800))) : vw / 2 - easeIn(seg(t, 3000, 3600)) * (vw * 0.7);
+  const uy = UY + hover - (t > 3000 ? easeIn(seg(t, 3000, 3600)) * vh * 0.4 : 0);
+  const props: Prop[] = [{ id: 'uf', type: 'ufo', x: ux, y: uy, w: 240, h: 110, rot: Math.sin(t / 200) * 3 }];
+  const beam1 = on(t, 800, 2000);
+  const beam2 = on(t, 2000, 2800);
+  const bOp = beam1 ? seg(t, 800, 1000) * (1 - seg(t, 1850, 2000)) : beam2 ? seg(t, 2000, 2150) * (1 - seg(t, 2650, 2800)) : 0;
+  if (bOp > 0) props.splice(0, 0, { id: 'bm', type: 'beam', x: ux, y: (uy + 40 + F) / 2, w: 520, h: F - uy - 40, op: bOp * (0.8 + Math.sin(t / 50) * 0.1) });
+  let old: SlideFx;
+  let neu: SlideFx | undefined = { op: 0 };
+  if (t < 800) old = { tf: 'none', shadow: '0 20px 60px rgba(0,0,0,.3)' };
+  else if (t < 1900) {
+    const k = easeIn(seg(t, 900, 1900));
+    const wob = Math.sin(t / 90) * 5 * (1 - k);
+    old = { tf: scaleTo(vw, vh, lerp(vw / 2, ux, k), lerp(vh / 2, uy + 50, k), lerp(1, 0.1, k), lerp(1, 0.1, k), `rotate(${(wob + k * 25).toFixed(1)}deg)`), op: 1 - seg(t, 1750, 1900), shadow: '0 10px 20px rgba(0,0,0,.3)' };
+  } else old = { op: 0 };
+  if (t >= 2000) {
+    const k = easeOut(seg(t, 2000, 2900));
+    const back = t >= 2000 ? 1 : 0;
+    neu = { tf: scaleTo(vw, vh, lerp(ux, vw / 2, k), lerp(uy + 50, vh / 2, k), lerp(0.1, 1, k), lerp(0.1, 1, k), `rotate(${(back * (1 - k) * -20).toFixed(1)}deg)`), op: seg(t, 2000, 2150), shadow: k < 1 ? '0 10px 20px rgba(0,0,0,.3)' : 'none' };
+  }
+  const enter = easeOut(seg(t, 0, 600));
+  const leave = easeIn(seg(t, 3000, 3600));
+  const hop = (a: number) => (on(t, a, a + 400) ? bell(t, a, a + 400) * 26 : 0);
+  props.push(...bubble('uh', 'What is THAT?!', vw * 0.14 + 40, F - H - 36, t, 700, 1500));
+  if (t >= 1900 && t < 2200) props.push(...impact('uu', ux, uy + 60, t - 1900, R, 0.7));
+  return {
+    old,
+    neu,
+    a: { x: lerp(-W, vw * 0.14, enter) - leave * (vw * 0.14 + W * 2), y: F - hop(900) - hop(2050), face: 1, pose: t < 600 ? 'run' : t < 3000 ? 'cheer' : 'run' },
+    b: { x: lerp(vw + W, vw * 0.86, enter) + leave * (vw * 0.14 + W * 2), y: F - hop(1100) - hop(2250), face: -1, pose: t < 600 ? 'run' : t < 3000 ? 'cheer' : 'run' },
+    props,
+  };
+};
+
+/** slash: nhát chém hình chữ X cắt slide thành 4 mảnh tam giác */
+const slash: Scene = (t, { vw, vh, F, R }) => {
+  const C = { x: vw / 2, y: vh / 2 };
+  const props: Prop[] = [];
+  const cutLine = (id: string, x1: number, y1: number, x2: number, y2: number, a: number) => {
+    const u = easeOut(seg(t, a, a + 140));
+    const fade = 1 - seg(t, a + 300, a + 700);
+    if (u <= 0 || fade <= 0) return;
+    const ex = lerp(x1, x2, u);
+    const ey = lerp(y1, y2, u);
+    props.push({ id, type: 'slashln', x: (x1 + ex) / 2, y: (y1 + ey) / 2, w: Math.hypot(ex - x1, ey - y1), h: 10, rot: (Math.atan2(y2 - y1, x2 - x1) * 180) / Math.PI, op: fade });
+  };
+  cutLine('s1', 0, 0, vw, vh, 700);
+  cutLine('s2', vw, 0, 0, vh, 1000);
+  props.push(...burst('sl', 'SLASH!', vw * 0.5, vh * 0.2, t, 700, 1100));
+  props.push(...burst('sl2', 'SLASH!', vw * 0.5, vh * 0.8, t, 1000, 1400));
+  let shake = 0;
+  [700, 1000].forEach((c, i) => {
+    if (t >= c && t < c + 600) props.push(...impact(`si${i}`, C.x, C.y, t - c, R, 1.1));
+    if (t >= c && t < c + 220) shake = Math.max(shake, 9 * (1 - (t - c) / 220));
+  });
+  const SEP = 1300;
+  const k = easeIn(seg(t, SEP, SEP + 800));
+  const tri = (pts: string) => `polygon(${pts})`;
+  const clips = [
+    tri('0 0, 100% 0, 50% 50%'),
+    tri('100% 0, 100% 100%, 50% 50%'),
+    tri('100% 100%, 0 100%, 50% 50%'),
+    tri('0 100%, 0 0, 50% 50%'),
+  ];
+  const dirs = [[0, -1], [1, 0], [0, 1], [-1, 0]];
+  const pieces: Piece[] = clips.map((clip, i) => ({
+    src: 'old',
+    clip,
+    tf: `translate(${(dirs[i][0] * k * vw * 0.75).toFixed(1)}px, ${(dirs[i][1] * k * vh * 0.8).toFixed(1)}px) rotate(${((i % 2 ? 1 : -1) * k * 35).toFixed(1)}deg)`,
+    op: 1 - seg(t, SEP + 500, SEP + 900),
+  }));
+  const enter = easeOut(seg(t, 0, 450));
+  const dash = easeIn(seg(t, 520, 900));
+  const ax = t < 520 ? lerp(-W, W * 0.2, enter) : lerp(W * 0.2, vw * 0.84, dash);
+  const leave = easeIn(seg(t, 2400, 3000));
+  const lax = t >= 2400 ? vw * 0.84 + leave * (vw * 0.3) : ax;
+  return {
+    old: t < SEP ? { tf: shake ? `translate(${(Math.sin(t / 9) * shake).toFixed(1)}px, ${(Math.cos(t / 7) * shake * 0.5).toFixed(1)}px)` : 'none' } : { op: 0 },
+    pieces: t >= SEP ? pieces : [],
+    a: { x: lax, y: F, face: 1, pose: t < 520 ? 'run' : t < 900 ? 'run' : t < 1300 ? 'punch' : t < 2400 ? 'cheer' : 'run' },
+    b: { x: lerp(vw + W, vw * 0.1, enter) - easeIn(seg(t, 2400, 3000)) * vw * 0.3, y: F - (on(t, 700, 1000) ? bell(t, 700, 1000) * 24 : 0), face: 1, pose: t < 450 ? 'run' : 'cheer' },
+    props,
+    cam: shake ? { s: 1, cx: vw / 2, cy: vh / 2, dx: Math.sin(t / 10) * shake, dy: Math.cos(t / 8) * shake * 0.5 } : undefined,
+  };
+};
+
+/** bowling: ném bóng, slide cũ là 12 chai bị đánh bay */
+const bowling: Scene = (t, { vw, vh, F, R }) => {
+  const BX0 = W * 1.2;
+  const BX1 = vw + 160;
+  const T0 = 850;
+  const T1 = 2000;
+  const hitU = (vw / 2 - BX0) / (BX1 - BX0);
+  const HIT = T0 + (T1 - T0) * hitU;
+  const props: Prop[] = [];
+  const bx = lerp(BX0, BX1, seg(t, T0, T1));
+  if (t >= T0 && t < T1) props.push({ id: 'ball', type: 'ball', x: bx, y: F - 30, w: 64, h: 64, rot: bx * 0.9 });
+  let shake = 0;
+  const e = easeOut(seg(t, HIT, HIT + 950));
+  const pieces = grid('old', (c, r, i) => {
+    if (t < HIT) return { tf: 'none', op: 1 };
+    const gx = (c + 0.5) / 4 - 0.5;
+    const gy = (r + 0.5) / 3 - 0.5;
+    const dx = (gx * 2 + (R[i] - 0.5) * 0.8) * vw * 0.8 * e;
+    const up = -(0.25 + R[i + 12] * 0.6) * vh * Math.sin(Math.PI * Math.min(1, e * 0.95)) * 1.2;
+    const fall = (1 - gy) * 0 + e * e * vh * 0.45;
+    return { tf: `translate(${dx.toFixed(1)}px, ${(up + fall).toFixed(1)}px) rotate(${(e * (R[i + 24] - 0.5) * 900).toFixed(0)}deg)`, op: 1 - seg(t, HIT + 550, HIT + 1100) };
+  });
+  if (t >= HIT && t < HIT + 700) {
+    props.push(...impact('bw', vw / 2, F - 70, t - HIT, R, 1.8));
+    props.push(...burst('st', 'STRIKE!', vw * 0.5, vh * 0.22, t, HIT + 100, HIT + 900));
+    if (t - HIT < 280) shake = 14 * (1 - (t - HIT) / 280);
+  }
+  const enter = easeOut(seg(t, 0, 500));
+  const leave = easeIn(seg(t, 2500, 3100));
+  return {
+    old: { op: t < HIT ? 1 : 0, shadow: '0 20px 60px rgba(0,0,0,.3)' },
+    pieces: t >= HIT ? pieces : [],
+    a: { x: lerp(-W, W * 0.35, enter) - leave * (W * 3), y: F, face: 1, pose: t < 500 ? 'run' : t < 1250 ? 'punch' : t < 2500 ? 'cheer' : 'run' },
+    b: { x: lerp(vw + W, vw - W * 0.6, enter) + leave * (W * 3), y: F - (on(t, HIT, HIT + 450) ? bell(t, HIT, HIT + 450) * 50 : 0), face: -1, pose: t < 500 ? 'run' : t < HIT ? 'stand' : t < 2500 ? 'cheer' : 'run' },
+    props,
+    cam: shake ? { s: 1, cx: vw / 2, cy: vh / 2, dx: Math.sin(t / 10) * shake, dy: Math.cos(t / 7) * shake * 0.6 } : undefined,
+  };
+};
+
+/** bubble: thổi bong bóng bọc slide cũ, bay lên rồi "bốp" ra slide mới */
+const bubbleT: Scene = (t, { vw, vh, F, R }) => {
+  const POP = 2350;
+  const props: Prop[] = [];
+  const base = 0.5 * Math.sqrt((vw * vw + vh * vh) / 2);
+  const mk = seg(t, 650, 1350);
+  const s = lerp(1, 0.46, inOut(mk));
+  const bx = lerp(vw / 2, vw * 0.36, inOut(mk)) + (t > 1350 ? easeIn(seg(t, 1350, POP)) * vw * 0.22 + Math.sin(t / 240) * 14 : 0);
+  const by = lerp(vh / 2, vh * 0.52, inOut(mk)) - (t > 1350 ? easeOut(seg(t, 1350, POP)) * vh * 0.2 : 0) + Math.cos(t / 190) * 6;
+  const wob = 1 + Math.sin(t / 110) * 0.025 * mk;
+  const rad = lerp(75, 50, inOut(seg(t, 600, 1000)));
+  let old: SlideFx;
+  let neu: SlideFx | undefined = { op: 0 };
+  if (t < POP) {
+    old = { tf: scaleTo(vw, vh, bx, by, s * wob, s / wob), clip: t < 600 ? 'none' : `circle(${rad.toFixed(1)}% at 50% 50%)` };
+    if (t >= 650) props.push({ id: 'bg', type: 'bubbleglass', x: bx, y: by, w: 2 * base * s * wob, h: 2 * base * s / wob, op: 0.9 });
+  } else {
+    old = { op: 0 };
+    const pop = backOut(seg(t, POP, POP + 500));
+    neu = { tf: scaleTo(vw, vh, vw / 2, vh / 2, 0.85 + 0.15 * pop), op: seg(t, POP, POP + 160) };
+    const u = t - POP;
+    props.push(...impact('bp', bx, by, u, R, 1.4));
+    props.push(...burst('po', 'POP!', bx, by - 40, t, POP, POP + 650));
+    for (let i = 0; i < 8; i++) {
+      const an = (i / 8) * Math.PI * 2 + R[i];
+      const d = easeOut(seg(u, 0, 600)) * base * s * 1.15;
+      props.push({ id: `pd${i}`, type: 'bubbleglass', x: bx + Math.cos(an) * d, y: by + Math.sin(an) * d + u * u * 0.0004, w: 40, h: 40, op: 1 - seg(u, 150, 650) });
+    }
+  }
+  const enter = easeOut(seg(t, 0, 400));
+  const leave = easeIn(seg(t, 2900, 3400));
+  const ax = lerp(-W, vw * 0.1, enter) - leave * (vw * 0.1 + W * 2);
+  const bxx = lerp(vw + W, vw * 0.88, enter) + leave * (W * 3);
+  return {
+    old,
+    neu,
+    a: { x: ax, y: F, face: 1, pose: t < 400 ? 'run' : t < 650 ? 'inhale' : t < 1400 ? 'blow' : t < 2900 ? 'cheer' : 'run' },
+    b: { x: bxx, y: F - (on(t, POP, POP + 400) ? bell(t, POP, POP + 400) * 30 : 0), face: -1, pose: t < 400 ? 'run' : t < 2900 ? 'cheer' : 'run' },
+    props,
+  };
+};
+
+interface FxEv {
+  t: number;
+  x: number;
+  y: number;
+  mag: number;
+  shake?: number;
+}
+/** thêm tia sáng / sóng xung kích / rung màn hình vào một cảnh có sẵn tại các thời điểm va chạm */
+const withFx =
+  (scene: Scene, evs: (c: Ctx) => FxEv[]): Scene =>
+  (t, c) => {
+    const fr = scene(t, c);
+    let dx = 0;
+    let dy = 0;
+    let flash = 0;
+    const props = [...(fr.props ?? [])];
+    evs(c).forEach((e, i) => {
+      const u = t - e.t;
+      if (u < 0 || u > 700) return;
+      props.push(...impact(`fx${i}`, e.x, e.y, u, c.R, e.mag));
+      if (u < 280) {
+        const a = (e.shake ?? 8) * (1 - u / 280);
+        dx += Math.sin(u / 13) * a;
+        dy += Math.cos(u / 9) * a * 0.6;
+        if (e.mag >= 1.4) flash = Math.max(flash, 0.3 * (1 - u / 280));
+      }
+    });
+    if (flash > 0.01) props.push({ id: 'fxfl', type: 'fxflash', x: c.vw / 2, y: c.vh / 2, w: c.vw, h: c.vh, op: flash });
+    const shaking = Math.abs(dx) + Math.abs(dy) > 0.01;
+    return {
+      ...fr,
+      old: shaking ? { ...fr.old, tf: `translate(${dx.toFixed(1)}px, ${dy.toFixed(1)}px) ${fr.old.tf ?? ''}` } : fr.old,
+      props,
+      cam: shaking ? { s: 1, cx: c.vw / 2, cy: c.vh / 2, dx, dy } : undefined,
+    };
+  };
+const FOOD_HITS: [number, number, number, number][] = [[720, 0.46, 0.34, 0.9], [1070, 0.6, 0.52, 0.9], [1420, 0.34, 0.6, 0.9], [1770, 0.56, 0.26, 0.9], [2120, 0.42, 0.46, 0.9], [2450, 0.5, 0.42, 1.5]];
+
 const SCENES: Record<CharKind, Scene> = {
   'shove-left': shove(true),
   'shove-right': shove(false),
@@ -1118,8 +1571,16 @@ const SCENES: Record<CharKind, Scene> = {
   plate,
   dust,
   hp,
-  food,
+  food: withFx(food, ({ vw, vh }) => FOOD_HITS.map(([t, tx, ty, mag]) => ({ t, x: tx * vw, y: ty * vh, mag, shake: mag > 1 ? 12 : 5 }))),
   heist,
+  domino,
+  boom,
+  polaroid,
+  seesaw,
+  ufo,
+  slash,
+  bowling,
+  bubbleT,
 };
 
 // ---------------------------------------------------------------- đồ vật (HTML tĩnh, không chứa dữ liệu người dùng)
@@ -1148,6 +1609,14 @@ const PROP_HTML: Record<string, string> = {
   zip: '<svg viewBox="0 0 44 68"><rect x="8" y="0" width="28" height="22" rx="4" fill="#cfd8dc" stroke="#37474f" stroke-width="3"/><path d="M14 22 L12 60 Q22 70 32 60 L30 22" fill="#ED7843" stroke="#37474f" stroke-width="3"/><circle cx="22" cy="54" r="5" fill="#FFFAEE" stroke="#37474f" stroke-width="2"/></svg>',
   grill:
     '<svg viewBox="0 0 240 76"><rect x="10" y="10" width="220" height="36" rx="6" fill="#2b2b2b" stroke="#111" stroke-width="4"/><g fill="#ff7a2f"><circle cx="40" cy="28" r="9"/><circle cx="80" cy="30" r="8"/><circle cx="120" cy="26" r="10"/><circle cx="160" cy="30" r="8"/><circle cx="200" cy="28" r="9"/></g><path d="M20 12 V46 M60 12 V46 M100 12 V46 M140 12 V46 M180 12 V46 M220 12 V46" stroke="#777" stroke-width="3"/><path d="M40 46 L30 76 M200 46 L210 76" stroke="#2b2b2b" stroke-width="6"/></svg>',
+  fuse: '',
+  ufo: '<svg viewBox="0 0 240 110"><ellipse cx="120" cy="40" rx="52" ry="36" fill="#9fe6ff" fill-opacity=".75" stroke="#2c6f8a" stroke-width="4"/><ellipse cx="120" cy="66" rx="112" ry="30" fill="#b9c2cc" stroke="#4a5560" stroke-width="5"/><ellipse cx="120" cy="58" rx="104" ry="18" fill="#dfe5ea"/><g fill="#ffd23f" stroke="#a87b00" stroke-width="2"><circle cx="36" cy="72" r="7"/><circle cx="78" cy="82" r="7"/><circle cx="120" cy="86" r="7"/><circle cx="162" cy="82" r="7"/><circle cx="204" cy="72" r="7"/></g></svg>',
+  ball: '<svg viewBox="0 0 64 64"><circle cx="32" cy="32" r="30" fill="#1f2a44" stroke="#0b1020" stroke-width="3"/><ellipse cx="22" cy="20" rx="8" ry="5" fill="#fff" opacity=".35"/><circle cx="36" cy="38" r="3.5" fill="#05070f"/><circle cx="45" cy="33" r="3.5" fill="#05070f"/><circle cx="41" cy="46" r="3.5" fill="#05070f"/></svg>',
+  beam: '',
+  slashln: '',
+  bubbleglass: '',
+  fulcrum: '<svg viewBox="0 0 90 38"><path d="M45 2 L88 36 H2 Z" fill="#8e6430" stroke="#3b2a1e" stroke-width="3"/></svg>',
+  plank: '',
   fan: '<svg viewBox="0 0 50 50"><path d="M25 48 L4 10 Q25 -4 46 10 Z" fill="#E9D59A" stroke="#165D3A" stroke-width="2.5"/><path d="M25 48 L15 6 M25 48 L25 3 M25 48 L35 6" stroke="#165D3A" stroke-width="1.5"/></svg>',
   'food-egg': '<svg viewBox="0 0 46 46"><path d="M8 24 Q4 8 22 6 Q42 4 40 22 Q42 40 22 40 Q4 42 8 24Z" fill="#fff" stroke="#165D3A" stroke-width="2"/><circle cx="23" cy="23" r="8" fill="#f2b632"/></svg>',
   'food-rib': '<svg viewBox="0 0 46 46"><path d="M6 28 Q4 12 24 10 Q44 10 40 26 Q36 38 20 38 Q8 38 6 28Z" fill="#8a3b1d" stroke="#4a1d0c" stroke-width="2"/><path d="M14 22 L32 18 M14 30 L32 26" stroke="#c9692f" stroke-width="3"/></svg>',
