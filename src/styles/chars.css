@@ -153,3 +153,120 @@
 .ctx .cp-fxspeed{border-radius:50%;background:repeating-conic-gradient(from 0deg,rgba(255,255,255,.9) 0 .9deg,transparent .9deg 5.5deg);-webkit-mask-image:radial-gradient(circle,transparent 22%,#000 55%);mask-image:radial-gradient(circle,transparent 22%,#000 55%)}
 .ctx .cp-fxaura{border-radius:50%;background:radial-gradient(circle,rgba(255,240,150,.95) 0,rgba(255,170,40,.55) 40%,rgba(255,120,0,0) 70%);mix-blend-mode:screen}
 .ctx .cp-fxcombo{font-family:var(--display);font-size:clamp(2rem,4.6vw,4rem);color:#fff;-webkit-text-stroke:3px #c62828;paint-order:stroke fill;text-shadow:4px 4px 0 #7a1010;white-space:nowrap;letter-spacing:.03em}
+
+/* ---- cặp nhân vật riêng cho từng cảnh ---- */
+.k-food .yy-runner.pusher .yr-spr{background-image:url('../assets/chars/bandit-stand.webp')}
+.k-food .yy-runner.pusher.run .yr-spr{background-image:url('../assets/chars/bandit-run.webp')}
+.k-food .yy-runner.pusher.cheer .yr-spr{background-image:url('../assets/chars/bandit-cheer.webp')}
+.k-food .yy-runner.pusher.stand .yr-spr{background-image:url('../assets/chars/bandit-stand.webp')}
+.k-food .yy-runner.pusher.fall .yr-spr{background-image:url('../assets/chars/bandit-fall.webp')}
+.k-food .yy-runner.pusher.carry .yr-spr{background-image:url('../assets/chars/bandit-carry.webp')}
+.k-food .yy-runner.pusher.lift .yr-spr{background-image:url('../assets/chars/bandit-lift.webp')}
+.k-food .yy-runner.pusher.push .yr-spr{background-image:url('../assets/chars/bandit-push.webp')}
+.k-food .yy-runner.pusher.punch .yr-spr{background-image:url('../assets/chars/bandit-punch.webp')}
+.k-food .yy-runner.chaser .yr-spr{background-image:url('../assets/chars/cop-stand.webp')}
+.k-food .yy-runner.chaser.run .yr-spr{background-image:url('../assets/chars/cop-run.webp')}
+.k-food .yy-runner.chaser.stand .yr-spr{background-image:url('../assets/chars/cop-stand.webp')}
+.k-food .yy-runner.chaser.cheer .yr-spr{background-image:url('../assets/chars/cop-cheer.webp')}
+.k-food .yy-runner.chaser.punch .yr-spr{background-image:url('../assets/chars/cop-punch.webp')}
+.k-food .yy-runner.chaser.fall .yr-spr{background-image:url('../assets/chars/cop-fall.webp')}
+.ctx .cp-fuse{background:repeating-linear-gradient(0deg,#6b4a2b 0 6px,#a47a46 6px 9px);border-radius:3px}
+.ctx .cp-plank{background:linear-gradient(#d9a45b,#a8742f);border:3px solid #3b2a1e;border-radius:6px;box-shadow:0 4px 0 rgba(0,0,0,.25)}
+.ctx .cp-fulcrum svg{width:100%;height:100%;display:block}
+/* cặp nhân vật cho cảnh mới */
+.k-domino .yy-runner.pusher .yr-spr{background-image:url('../assets/chars/sage-stand.webp')}
+.k-domino .yy-runner.pusher.stand .yr-spr{background-image:url('../assets/chars/sage-stand.webp')}
+.k-domino .yy-runner.pusher.run .yr-spr{background-image:url('../assets/chars/sage-run.webp')}
+.k-domino .yy-runner.pusher.cheer .yr-spr{background-image:url('../assets/chars/sage-cheer.webp')}
+.k-domino .yy-runner.pusher.push .yr-spr{background-image:url('../assets/chars/sage-push.webp')}
+.k-domino .yy-runner.pusher.punch .yr-spr{background-image:url('../assets/chars/sage-punch.webp')}
+.k-domino .yy-runner.pusher.sit .yr-spr{background-image:url('../assets/chars/sage-sit.webp')}
+.k-domino .yy-runner.chaser .yr-spr{background-image:url('../assets/chars/lad-stand.webp')}
+.k-domino .yy-runner.chaser.stand .yr-spr{background-image:url('../assets/chars/lad-stand.webp')}
+.k-domino .yy-runner.chaser.run .yr-spr{background-image:url('../assets/chars/lad-run.webp')}
+.k-domino .yy-runner.chaser.cheer .yr-spr{background-image:url('../assets/chars/lad-cheer.webp')}
+.k-domino .yy-runner.chaser.push .yr-spr{background-image:url('../assets/chars/lad-push.webp')}
+.k-domino .yy-runner.chaser.punch .yr-spr{background-image:url('../assets/chars/lad-punch.webp')}
+.k-domino .yy-runner.chaser.sit .yr-spr{background-image:url('../assets/chars/lad-sit.webp')}
+.k-boom .yy-runner.pusher .yr-spr{background-image:url('../assets/chars/bandit-stand.webp')}
+.k-boom .yy-runner.pusher.stand .yr-spr{background-image:url('../assets/chars/bandit-stand.webp')}
+.k-boom .yy-runner.pusher.run .yr-spr{background-image:url('../assets/chars/bandit-run.webp')}
+.k-boom .yy-runner.pusher.cheer .yr-spr{background-image:url('../assets/chars/bandit-cheer.webp')}
+.k-boom .yy-runner.pusher.push .yr-spr{background-image:url('../assets/chars/bandit-push.webp')}
+.k-boom .yy-runner.pusher.punch .yr-spr{background-image:url('../assets/chars/bandit-punch.webp')}
+.k-boom .yy-runner.pusher.sit .yr-spr{background-image:url('../assets/chars/bandit-sit.webp')}
+.k-boom .yy-runner.pusher.fall .yr-spr{background-image:url('../assets/chars/bandit-fall.webp')}
+.k-boom .yy-runner.chaser .yr-spr{background-image:url('../assets/chars/cop-stand.webp')}
+.k-boom .yy-runner.chaser.run .yr-spr{background-image:url('../assets/chars/cop-run.webp')}
+.k-boom .yy-runner.chaser.cheer .yr-spr{background-image:url('../assets/chars/cop-cheer.webp')}
+.k-boom .yy-runner.chaser.fall .yr-spr{background-image:url('../assets/chars/cop-fall.webp')}
+.k-boom .yy-runner.chaser.stand .yr-spr{background-image:url('../assets/chars/cop-stand.webp')}
+.k-polaroid .yy-runner.pusher .yr-spr{background-image:url('../assets/chars/lad-stand.webp')}
+.k-polaroid .yy-runner.pusher.stand .yr-spr{background-image:url('../assets/chars/lad-stand.webp')}
+.k-polaroid .yy-runner.pusher.run .yr-spr{background-image:url('../assets/chars/lad-run.webp')}
+.k-polaroid .yy-runner.pusher.cheer .yr-spr{background-image:url('../assets/chars/lad-cheer.webp')}
+.k-polaroid .yy-runner.pusher.push .yr-spr{background-image:url('../assets/chars/lad-push.webp')}
+.k-polaroid .yy-runner.pusher.punch .yr-spr{background-image:url('../assets/chars/lad-punch.webp')}
+.k-polaroid .yy-runner.pusher.sit .yr-spr{background-image:url('../assets/chars/lad-sit.webp')}
+.k-polaroid .yy-runner.chaser .yr-spr{background-image:url('../assets/chars/cop-stand.webp')}
+.k-polaroid .yy-runner.chaser.run .yr-spr{background-image:url('../assets/chars/cop-run.webp')}
+.k-polaroid .yy-runner.chaser.cheer .yr-spr{background-image:url('../assets/chars/cop-cheer.webp')}
+.k-polaroid .yy-runner.chaser.fall .yr-spr{background-image:url('../assets/chars/cop-fall.webp')}
+.k-polaroid .yy-runner.chaser.stand .yr-spr{background-image:url('../assets/chars/cop-stand.webp')}
+.k-seesaw .yy-runner.pusher .yr-spr{background-image:url('../assets/chars/lad-stand.webp')}
+.k-seesaw .yy-runner.pusher.stand .yr-spr{background-image:url('../assets/chars/lad-stand.webp')}
+.k-seesaw .yy-runner.pusher.run .yr-spr{background-image:url('../assets/chars/lad-run.webp')}
+.k-seesaw .yy-runner.pusher.cheer .yr-spr{background-image:url('../assets/chars/lad-cheer.webp')}
+.k-seesaw .yy-runner.pusher.push .yr-spr{background-image:url('../assets/chars/lad-push.webp')}
+.k-seesaw .yy-runner.pusher.punch .yr-spr{background-image:url('../assets/chars/lad-punch.webp')}
+.k-seesaw .yy-runner.pusher.sit .yr-spr{background-image:url('../assets/chars/lad-sit.webp')}
+.k-seesaw .yy-runner.chaser .yr-spr{background-image:url('../assets/chars/sage-stand.webp')}
+.k-seesaw .yy-runner.chaser.stand .yr-spr{background-image:url('../assets/chars/sage-stand.webp')}
+.k-seesaw .yy-runner.chaser.run .yr-spr{background-image:url('../assets/chars/sage-run.webp')}
+.k-seesaw .yy-runner.chaser.cheer .yr-spr{background-image:url('../assets/chars/sage-cheer.webp')}
+.k-seesaw .yy-runner.chaser.push .yr-spr{background-image:url('../assets/chars/sage-push.webp')}
+.k-seesaw .yy-runner.chaser.punch .yr-spr{background-image:url('../assets/chars/sage-punch.webp')}
+.k-seesaw .yy-runner.chaser.sit .yr-spr{background-image:url('../assets/chars/sage-sit.webp')}
+
+.ctx .cp-beam{background:linear-gradient(180deg,rgba(190,255,200,.85),rgba(190,255,200,.15));clip-path:polygon(38% 0,62% 0,100% 100%,0 100%);mix-blend-mode:screen;filter:blur(2px)}
+.ctx .cp-slashln{background:linear-gradient(90deg,transparent,#fff 20%,#fff 80%,transparent);box-shadow:0 0 16px 4px #7fe3ff,0 0 4px #fff;border-radius:6px}
+.ctx .cp-bubbleglass{border-radius:50%;background:radial-gradient(circle at 30% 28%,rgba(255,255,255,.85) 0 7%,transparent 14%),radial-gradient(circle,transparent 62%,rgba(160,220,255,.25) 82%,rgba(255,255,255,.75) 100%);border:2px solid rgba(255,255,255,.75);box-shadow:inset 0 0 22px rgba(150,210,255,.55),0 0 10px rgba(255,255,255,.4)}
+.k-ufo .yy-runner.pusher .yr-spr{background-image:url('../assets/chars/bandit-stand.webp')}
+.k-ufo .yy-runner.pusher.stand .yr-spr{background-image:url('../assets/chars/bandit-stand.webp')}
+.k-ufo .yy-runner.pusher.run .yr-spr{background-image:url('../assets/chars/bandit-run.webp')}
+.k-ufo .yy-runner.pusher.cheer .yr-spr{background-image:url('../assets/chars/bandit-cheer.webp')}
+.k-ufo .yy-runner.pusher.push .yr-spr{background-image:url('../assets/chars/bandit-push.webp')}
+.k-ufo .yy-runner.pusher.punch .yr-spr{background-image:url('../assets/chars/bandit-punch.webp')}
+.k-ufo .yy-runner.pusher.sit .yr-spr{background-image:url('../assets/chars/bandit-sit.webp')}
+.k-ufo .yy-runner.chaser .yr-spr{background-image:url('../assets/chars/cop-stand.webp')}
+.k-ufo .yy-runner.chaser.run .yr-spr{background-image:url('../assets/chars/cop-run.webp')}
+.k-ufo .yy-runner.chaser.cheer .yr-spr{background-image:url('../assets/chars/cop-cheer.webp')}
+.k-ufo .yy-runner.chaser.fall .yr-spr{background-image:url('../assets/chars/cop-fall.webp')}
+.k-ufo .yy-runner.chaser.stand .yr-spr{background-image:url('../assets/chars/cop-stand.webp')}
+.k-slash .yy-runner.pusher .yr-spr{background-image:url('../assets/chars/sage-stand.webp')}
+.k-slash .yy-runner.pusher.stand .yr-spr{background-image:url('../assets/chars/sage-stand.webp')}
+.k-slash .yy-runner.pusher.run .yr-spr{background-image:url('../assets/chars/sage-run.webp')}
+.k-slash .yy-runner.pusher.cheer .yr-spr{background-image:url('../assets/chars/sage-cheer.webp')}
+.k-slash .yy-runner.pusher.push .yr-spr{background-image:url('../assets/chars/sage-push.webp')}
+.k-slash .yy-runner.pusher.punch .yr-spr{background-image:url('../assets/chars/sage-punch.webp')}
+.k-slash .yy-runner.pusher.sit .yr-spr{background-image:url('../assets/chars/sage-sit.webp')}
+.k-slash .yy-runner.chaser .yr-spr{background-image:url('../assets/chars/cop-stand.webp')}
+.k-slash .yy-runner.chaser.run .yr-spr{background-image:url('../assets/chars/cop-run.webp')}
+.k-slash .yy-runner.chaser.cheer .yr-spr{background-image:url('../assets/chars/cop-cheer.webp')}
+.k-slash .yy-runner.chaser.fall .yr-spr{background-image:url('../assets/chars/cop-fall.webp')}
+.k-slash .yy-runner.chaser.stand .yr-spr{background-image:url('../assets/chars/cop-stand.webp')}
+.k-bowling .yy-runner.pusher .yr-spr{background-image:url('../assets/chars/lad-stand.webp')}
+.k-bowling .yy-runner.pusher.stand .yr-spr{background-image:url('../assets/chars/lad-stand.webp')}
+.k-bowling .yy-runner.pusher.run .yr-spr{background-image:url('../assets/chars/lad-run.webp')}
+.k-bowling .yy-runner.pusher.cheer .yr-spr{background-image:url('../assets/chars/lad-cheer.webp')}
+.k-bowling .yy-runner.pusher.push .yr-spr{background-image:url('../assets/chars/lad-push.webp')}
+.k-bowling .yy-runner.pusher.punch .yr-spr{background-image:url('../assets/chars/lad-punch.webp')}
+.k-bowling .yy-runner.pusher.sit .yr-spr{background-image:url('../assets/chars/lad-sit.webp')}
+.k-bowling .yy-runner.chaser .yr-spr{background-image:url('../assets/chars/bandit-stand.webp')}
+.k-bowling .yy-runner.chaser.stand .yr-spr{background-image:url('../assets/chars/bandit-stand.webp')}
+.k-bowling .yy-runner.chaser.run .yr-spr{background-image:url('../assets/chars/bandit-run.webp')}
+.k-bowling .yy-runner.chaser.cheer .yr-spr{background-image:url('../assets/chars/bandit-cheer.webp')}
+.k-bowling .yy-runner.chaser.push .yr-spr{background-image:url('../assets/chars/bandit-push.webp')}
+.k-bowling .yy-runner.chaser.punch .yr-spr{background-image:url('../assets/chars/bandit-punch.webp')}
+.k-bowling .yy-runner.chaser.sit .yr-spr{background-image:url('../assets/chars/bandit-sit.webp')}
+.k-bowling .yy-runner.chaser.fall .yr-spr{background-image:url('../assets/chars/bandit-fall.webp')}
