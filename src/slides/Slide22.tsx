@@ -5,7 +5,7 @@ import Photo from '../components/Photo';
 /** Slide 22: Balance on one plate */
 export default function Slide22() {
   return (
-    <Slide index={21} className="band cream" t="slide" who={4} labelledBy="t21">
+    <Slide index={21} className="band cream viet viet-giay tiles" t="slide" who={4} labelledBy="t21">
       <div className="inner">
         <h2 id="t21" data-a="fadeDown" style={{ "--d": ".2s" } as CSSProperties}>Balance on a plate of broken rice</h2>
         <div className="balance-grid">

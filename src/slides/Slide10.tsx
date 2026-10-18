@@ -4,7 +4,7 @@ import Slide from '../components/Slide';
 /** Slide 10: Fresh herbs and vegetables */
 export default function Slide10() {
   return (
-    <Slide index={9} className="band leaf" t="slide" who={1} labelledBy="t9">
+    <Slide index={9} className="band leaf viet viet-nghe tiles" t="slide" who={1} labelledBy="t9">
       <div className="inner split">
         <div className="kb" data-a="wipe" style={{ "--d": ".4s", height: "clamp(240px,62vh,560px)" } as CSSProperties}>
           <img src="img/i14.webp" alt="Fresh greens being placed carefully into a bamboo basket at the market" />

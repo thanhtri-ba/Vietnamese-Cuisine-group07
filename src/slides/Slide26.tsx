@@ -4,7 +4,7 @@ import Slide from '../components/Slide';
 /** Slide 26: Grilled pork ribs in four steps */
 export default function Slide26() {
   return (
-    <Slide index={25} className="band forest" t="circle" who={5} labelledBy="t24">
+    <Slide index={25} className="band viet viet-son v26" t="circle" who={5} labelledBy="t24">
       <div className="ask-bg" aria-hidden="true">
         <img src="img/photos/nuong-suon.webp" alt="" />
       </div>
@@ -20,24 +20,30 @@ export default function Slide26() {
         <span className="flame" style={{ "--i": "8" } as CSSProperties}></span>
       </div>
       <div className="inner">
-        <p className="eyebrow accent" data-a="fadeDown" style={{ "--d": ".6s" } as CSSProperties}>The star of broken rice</p>
-        <h2 id="t24" data-a="zoomOut" style={{ "--d": ".7s", marginTop: "8px" } as CSSProperties}>4 steps to perfect grilled ribs</h2>
-        <ol className="steps4" data-st="flipX" style={{ "--base": "1.2s" } as CSSProperties}>
+        <div className="v26-head">
+          <h2 id="t24" data-a="fadeUp" style={{ "--d": ".5s" } as CSSProperties}>4 steps to perfect grilled ribs</h2>
+          <span className="vi-word" lang="vi" data-a="fadeUp" style={{ "--d": ".7s" } as CSSProperties}>Sườn nướng than hồng, linh hồn của dĩa cơm tấm</span>
+        </div>
+        <ol className="v26-steps" data-st="fadeUp" style={{ "--base": "1s" } as CSSProperties}>
           <li style={{ "--i": "0" } as CSSProperties}>
+            <span className="vi-word" lang="vi">Dần thịt</span>
             <b>Tenderize</b>
-            <span>Prepare the pork and pound it gently so it isn’t too chewy and absorbs the marinade.</span>
+            <span>Pound the pork gently so it stays tender and absorbs the marinade.</span>
           </li>
           <li style={{ "--i": "1" } as CSSProperties}>
+            <span className="vi-word" lang="vi">Ướp</span>
             <b>Marinate</b>
-            <span>Garlic, shallots, lemongrass, fish sauce, sugar, honey and condensed milk. A few hours or overnight in the fridge.</span>
+            <span>Garlic, shallots, lemongrass, fish sauce, sugar, honey and condensed milk. Rest a few hours or overnight.</span>
           </li>
           <li style={{ "--i": "2" } as CSSProperties}>
+            <span className="vi-word" lang="vi">Nướng than</span>
             <b>Grill over charcoal</b>
-            <span>Grill over charcoal, turning often, until cooked through with golden-brown, slightly charred edges.</span>
+            <span>Turn often until cooked through, golden brown and slightly charred at the edges.</span>
           </li>
           <li style={{ "--i": "3" } as CSSProperties}>
+            <span className="vi-word" lang="vi">Phết sốt</span>
             <b>Glaze</b>
-            <span>Brush on the glaze for a shiny surface and fragrant, caramelized edges.</span>
+            <span>Brush on the glaze for a shiny surface and caramelized edges.</span>
           </li>
         </ol>
       </div>

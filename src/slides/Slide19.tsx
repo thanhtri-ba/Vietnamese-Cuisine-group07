@@ -5,7 +5,7 @@ import Plate from '../components/Plate';
 /** Slide 19: What’s on a plate of broken rice? */
 export default function Slide19() {
   return (
-    <Slide index={18} className="band leaf" t="zoom" who={3} labelledBy="t18">
+    <Slide index={18} className="band leaf viet viet-nghe tiles" t="zoom" who={3} labelledBy="t18">
       <div className="inner">
         <h2 id="t18" data-a="fadeDown" style={{ "--d": ".2s", fontSize: "clamp(2rem,min(5vw,8.5vh),4rem)" } as CSSProperties}>What's on a plate of broken rice?</h2>
         <div className="plate-split" style={{ marginTop: "clamp(12px,3vh,28px)" } as CSSProperties}>

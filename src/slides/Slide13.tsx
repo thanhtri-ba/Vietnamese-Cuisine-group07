@@ -6,7 +6,7 @@ import VMap from '../components/VMap';
 /** Slide 13: Bold and spicy */
 export default function Slide13() {
   return (
-    <Slide index={12} className="band forest" t="up" who={2} labelledBy="t12">
+    <Slide index={12} className="band forest viet viet-son tiles" t="up" who={2} labelledBy="t12">
       <div className="wm-box" aria-hidden="true">
         <div className="watermark" aria-hidden="true" data-a="zoomOut" style={{ "--d": ".2s", color: "var(--leaf)" } as CSSProperties}>Central</div>
       </div>

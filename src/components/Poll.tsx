@@ -2,6 +2,12 @@ import { createContext, useContext, type CSSProperties, type ReactNode } from 'r
 import { useLocalStorage } from '../hooks/useLocalStorage';
 
 const DISHES = ['Pho', 'Banh mi', 'Broken rice'] as const;
+/** ảnh & tên tiếng Việt có dấu cho từng món (chỉ để trình bày, giá trị lưu vẫn là tên tiếng Anh) */
+const LOOK: Record<(typeof DISHES)[number], { img: string; vi: string }> = {
+  Pho: { img: 'img/photos/pho.webp', vi: 'Phở' },
+  'Banh mi': { img: 'img/photos/banh-mi.webp', vi: 'Bánh mì' },
+  'Broken rice': { img: 'img/photos/com-tam.webp', vi: 'Cơm tấm' },
+};
 
 type PickState = [string | null, (v: string | null) => void];
 const PickContext = createContext<PickState>([null, () => {}]);
@@ -27,7 +33,12 @@ export function PollPicks(props: Extra) {
           style={{ '--i': i } as CSSProperties}
           onClick={() => setPick(dish)}
         >
-          {dish}
+          <span className="pick-dia" aria-hidden="true">
+            <img src={LOOK[dish].img} alt="" />
+          </span>
+          <span className="pick-en">{dish}</span>
+          <span className="pick-vi" lang="vi">{LOOK[dish].vi}</span>
+          <span className="pick-seal" aria-hidden="true">Chọn</span>
         </button>
       ))}
     </div>

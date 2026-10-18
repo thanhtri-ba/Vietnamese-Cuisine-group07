@@ -5,7 +5,7 @@ import Photo from '../components/Photo';
 /** Slide 17: Why is it called “broken rice”? */
 export default function Slide17() {
   return (
-    <Slide index={16} className="band forest" t="fade" who={3} labelledBy="t16">
+    <Slide index={16} className="band forest viet viet-lam tiles" t="fade" who={3} labelledBy="t16">
       <div className="inner" style={{ textAlign: "center" } as CSSProperties}>
         <h2 id="t16" data-a="fadeDown" style={{ "--d": ".3s" } as CSSProperties}>Why is it called “broken rice”?</h2>
         <div className="rice-pair">

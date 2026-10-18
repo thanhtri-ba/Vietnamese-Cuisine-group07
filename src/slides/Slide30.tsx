@@ -4,7 +4,7 @@ import Slide from '../components/Slide';
 /** Slide 30: Broken rice, all day long */
 export default function Slide30() {
   return (
-    <Slide index={29} className="band forest scene" t="fade" who={6} labelledBy="t24e">
+    <Slide index={29} className="band forest viet viet-son tiles scene" t="fade" who={6} labelledBy="t24e">
       <div className="ask-bg" aria-hidden="true">
         <img src="img/street-shop.webp" alt="" />
       </div>

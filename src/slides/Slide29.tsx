@@ -5,7 +5,7 @@ import Photo from '../components/Photo';
 /** Slide 29: Order like a local */
 export default function Slide29() {
   return (
-    <Slide index={28} className="band leaf" t="circle" who={6} labelledBy="t24d">
+    <Slide index={28} className="band leaf viet viet-nghe tiles" t="circle" who={6} labelledBy="t24d">
       <div className="inner split">
         <div className="copy">
           <p className="eyebrow accent" data-a="fadeDown" style={{ "--d": ".6s" } as CSSProperties}>At the broken rice stall</p>

@@ -6,7 +6,7 @@ import SplitText from '../components/SplitText';
 /** Slide 6: The philosophy of balance */
 export default function Slide06() {
   return (
-    <Slide index={5} className="band cream" t="up" who={1} labelledBy="t6">
+    <Slide index={5} className="band cream viet viet-giay tiles" t="up" who={1} labelledBy="t6">
       <img className="sil" src="img/i12.webp" alt="" style={{ left: "2%", top: "40px" } as CSSProperties} />
       <div className="inner split split-photo">
         <Photo src="bun-cha.webp" alt="Grilled pork noodles: grilled pork in dipping sauce with rice noodles and herbs" caption="Hanoi grilled pork noodles" h="60vh" tilt="l" tape delay=".4s" />

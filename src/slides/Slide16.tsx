@@ -6,7 +6,7 @@ import SplitText from '../components/SplitText';
 /** Slide 16: Meet broken rice */
 export default function Slide16() {
   return (
-    <Slide index={15} className="band forest" t="circle" who={3} labelledBy="t15">
+    <Slide index={15} className="band forest viet viet-son tiles" t="circle" who={3} labelledBy="t15">
       <div className="inner split">
         <div className="copy">
           <p className="eyebrow accent" data-a="fadeDown" style={{ "--d": ".6s" } as CSSProperties}>Saigon's signature dish</p>

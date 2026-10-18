@@ -4,7 +4,7 @@ import Slide from '../components/Slide';
 /** Slide 23: The side dishes */
 export default function Slide23() {
   return (
-    <Slide index={22} className="band cream" t="zoom" who={4} labelledBy="t21b">
+    <Slide index={22} className="band leaf viet viet-nghe tiles" t="zoom" who={4} labelledBy="t21b">
       <img className="sil" src="img/i4.webp" alt="" style={{ right: "2%", top: "20px" } as CSSProperties} />
       <div className="inner">
         <p className="eyebrow accent" data-a="fadeDown" style={{ "--d": ".3s" } as CSSProperties}>Small details, big difference</p>

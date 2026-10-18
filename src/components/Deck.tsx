@@ -21,7 +21,7 @@ export default function Deck() {
   const [current, setCurrent] = useState(slideFromHash);
   const [notesOpen, setNotesOpen] = useState(false);
   /** giao diện nâng cấp (phím U để bật/tắt so sánh) */
-  const [ui2, setUi2] = useState(true);
+  const [ui2, setUi2] = useState(false);
   const whoRef = useRef<HTMLDivElement>(null);
   const prevWho = useRef(owner[current]);
   const lastIndex = useRef(current);

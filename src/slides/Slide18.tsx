@@ -4,7 +4,7 @@ import Slide from '../components/Slide';
 /** Slide 18: From humble meal to Saigon icon */
 export default function Slide18() {
   return (
-    <Slide index={17} className="band cream" t="slide" who={3} labelledBy="t17">
+    <Slide index={17} className="band cream viet viet-giay tiles" t="slide" who={3} labelledBy="t17">
       <img className="sil" src="img/i25.webp" alt="" style={{ right: "2%", top: "20px" } as CSSProperties} />
       <div className="inner">
         <h2 id="t17" data-a="slideL" style={{ "--d": ".3s" } as CSSProperties}>From humble meal to Saigon icon</h2>

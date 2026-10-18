@@ -5,7 +5,7 @@ import Photo from '../components/Photo';
 /** Slide 9: Fish sauce: the soul of Vietnamese cooking */
 export default function Slide09() {
   return (
-    <Slide index={8} className="band forest" t="zoom" who={1} labelledBy="t8">
+    <Slide index={8} className="band forest viet viet-lam tiles" t="zoom" who={1} labelledBy="t8">
       <div className="inner split">
         <Photo src="nuoc-mam-phu-quoc.webp" alt="A bottle of Phu Quoc fish sauce with anchovies and chili by the sea" caption="Phu Quoc fish sauce" h="58vh" tilt="l" tape delay=".3s" />
         <div className="copy">

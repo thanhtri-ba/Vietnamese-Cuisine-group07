@@ -4,7 +4,7 @@ import Slide from '../components/Slide';
 /** Slide 25: Dipping fish sauce & scallion oil */
 export default function Slide25() {
   return (
-    <Slide index={24} className="band leaf" t="wipe" who={4} labelledBy="t23">
+    <Slide index={24} className="band cream viet viet-giay tiles" t="wipe" who={4} labelledBy="t23">
       <div className="inner">
         <h2 id="t23" data-a="slideL" style={{ "--d": ".5s" } as CSSProperties}>Dipping fish sauce & scallion oil</h2>
         <div className="recipe">

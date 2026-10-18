@@ -7,7 +7,7 @@ import YYRunner from '../components/YYRunner';
 /** Slide 8: Yin and yang on the plate */
 export default function Slide08() {
   return (
-    <Slide index={7} className="band leaf" t="wipe" who={1} labelledBy="t7b">
+    <Slide index={7} className="band leaf viet viet-nghe tiles v8" t="wipe" who={1} labelledBy="t7b">
       <div className="inner split">
         <div className="yy-wrap" data-a="spinIn" style={{ "--d": ".5s" } as CSSProperties}>
           <YinYang />

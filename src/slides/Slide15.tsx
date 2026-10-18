@@ -5,7 +5,7 @@ import Photo from '../components/Photo';
 /** Slide 15: Vietnamese food goes global */
 export default function Slide15() {
   return (
-    <Slide index={14} className="band leaf" t="wipe" who={2} labelledBy="t14">
+    <Slide index={14} className="band forest viet viet-lam tiles" t="wipe" who={2} labelledBy="t14">
       <Photo src="banh-mi.webp" alt="A Vietnamese banh mi filled with pork, pickles and herbs" caption="Banh mi" h="25vh" tilt="r" tape delay="1.1s" className="float-tr" />
       <div className="inner">
         <h2 id="t14" data-a="skewIn" style={{ "--d": ".6s" } as CSSProperties}>Vietnamese food goes global</h2>

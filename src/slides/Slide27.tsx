@@ -7,7 +7,7 @@ import VideoLoader from '../components/VideoLoader';
 /** Slide 27: Secrets of the marinade */
 export default function Slide27() {
   return (
-    <Slide index={26} className="band forest" t="slide" who={5} labelledBy="t24b">
+    <Slide index={26} className="band forest viet viet-lam tiles" t="slide" who={5} labelledBy="t24b">
       <div className="flames" aria-hidden="true">
         <span className="flame" style={{ "--i": "0" } as CSSProperties}></span>
         <span className="flame" style={{ "--i": "1" } as CSSProperties}></span>

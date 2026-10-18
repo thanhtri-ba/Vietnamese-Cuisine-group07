@@ -5,7 +5,7 @@ import SplitText from '../components/SplitText';
 /** Slide 24: How to prepare broken rice */
 export default function Slide24() {
   return (
-    <Slide index={23} className="band forest" t="up" who={4} labelledBy="t22">
+    <Slide index={23} className="band forest viet viet-lam tiles" t="up" who={4} labelledBy="t22">
       <div className="inner">
         <h2 id="t22" data-letters style={{ "--d": ".3s" } as CSSProperties} aria-label="How to prepare broken rice"><SplitText text="How to prepare broken rice" start={0} /></h2>
         <ol className="steps4" data-st="dropIn" style={{ "--base": "1.1s" } as CSSProperties}>

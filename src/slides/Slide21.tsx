@@ -5,7 +5,7 @@ import Photo from '../components/Photo';
 /** Slide 21: Com Tam Ba Ghien */
 export default function Slide21() {
   return (
-    <Slide index={20} className="band forest" t="zoom" who={3} labelledBy="t20">
+    <Slide index={20} className="band forest viet viet-son tiles" t="zoom" who={3} labelledBy="t20">
       <div className="inner split">
         <div className="ba-wrap">
           <Photo src="com-tam-ba-ghien.webp" alt="Storefront of Com Tam Ba Ghien with delivery drivers waiting outside" caption="Com Tam Ba Ghien" sub="Phu Nhuan, Saigon" h="42vh" tilt="l" tape delay=".4s" />

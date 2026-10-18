@@ -4,7 +4,7 @@ import Slide from '../components/Slide';
 /** Slide 3: Presentation roadmap */
 export default function Slide03() {
   return (
-    <Slide index={2} className="band cream" t="slide" who={0} labelledBy="t3">
+    <Slide index={2} className="band cream viet viet-giay tiles" t="slide" who={0} labelledBy="t3">
       <div className="inner road-split">
         <div>
           <h2 id="t3" data-a="slideL" style={{ "--d": ".3s", fontSize: "clamp(2rem,min(5vw,8.5vh),4rem)" } as CSSProperties}>Presentation roadmap</h2>

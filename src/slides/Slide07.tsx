@@ -5,7 +5,7 @@ import Photo from '../components/Photo';
 /** Slide 7: Five flavors in one cuisine */
 export default function Slide07() {
   return (
-    <Slide index={6} className="band forest" t="blinds" who={1} labelledBy="t7">
+    <Slide index={6} className="band forest viet viet-son tiles" t="blinds" who={1} labelledBy="t7">
       <div className="inner">
         <h2 id="t7" data-a="blurIn" style={{ "--d": ".5s" } as CSSProperties}>Five flavors in Vietnamese cuisine</h2>
         <div className="flavors" data-st="dropIn" style={{ "--base": ".9s" } as CSSProperties}>

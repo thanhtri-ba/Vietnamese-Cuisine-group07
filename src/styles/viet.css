@@ -1,0 +1,638 @@
+/* ==========================================================================
+   Theme "thuần Việt" — áp cho slide có class `viet` (đang thử ở slide 1, 5, 20, 26)
+   Chất liệu: giấy dó · đỏ son sơn mài · vàng nghệ · men lam (dĩa sứ) · gạch bông Sài Gòn
+   Font nhúng local (OFL) để chiếu offline vẫn đúng chữ, có đủ dấu tiếng Việt.
+   ========================================================================== */
+@font-face{font-family:"Big Shoulders";src:url("../assets/fonts/BigShoulders-Bold.woff") format("woff");font-weight:700;font-display:swap}
+@font-face{font-family:"Lora";src:url("../assets/fonts/Lora-Italic.woff") format("woff");font-style:italic;font-weight:400;font-display:swap}
+@font-face{font-family:"Lora";src:url("../assets/fonts/Lora-BoldItalic.woff") format("woff");font-style:italic;font-weight:700;font-display:swap}
+@font-face{font-family:"Work Sans";src:url("../assets/fonts/WorkSans-Regular.woff") format("woff");font-weight:400;font-display:swap}
+@font-face{font-family:"Work Sans";src:url("../assets/fonts/WorkSans-Italic.woff") format("woff");font-style:italic;font-weight:400;font-display:swap}
+@font-face{font-family:"Work Sans";src:url("../assets/fonts/WorkSans-Bold.woff") format("woff");font-weight:700;font-display:swap}
+
+:root{
+  --v-giay:#F1E4C8;   /* giấy dó */
+  --v-giay2:#E6D3AE;  /* giấy dó đậm, viền */
+  --v-son:#8E2219;    /* đỏ son */
+  --v-son2:#5E150F;   /* son đậm (bóng) */
+  --v-nghe:#EFAE2B;   /* vàng nghệ */
+  --v-lam:#1B3E78;    /* men lam */
+  --v-lam2:#122B55;
+  --v-muc:#2A1A12;    /* mực nâu */
+  --v-la:#4C7A3A;     /* lá chuối */
+  --v-sign:"Big Shoulders","Arial Narrow","Impact",sans-serif;
+  --v-viet:"Lora",Georgia,serif;
+  --v-text:"Work Sans","Segoe UI",Arial,sans-serif;
+  /* thang chữ cho máy chiếu: tính theo cạnh nhỏ của màn hình */
+  --v-fs:clamp(17px,min(1.32vw,2.35vh),27px);
+  --v-h2:clamp(44px,min(5.4vw,9.6vh),118px);
+  --v-h3:clamp(24px,min(2.2vw,3.9vh),46px);
+  /* hoạ tiết gạch bông 80×80: hoa 4 cánh đỏ son, nhuỵ vàng, khung thoi men lam, vòng góc ghép thành hoa thị */
+  --v-tile:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='80' height='80' viewBox='0 0 80 80'%3E%3Crect width='80' height='80' fill='%23F1E4C8'/%3E%3Cg fill='%231B3E78'%3E%3Ccircle r='19'/%3E%3Ccircle cx='80' r='19'/%3E%3Ccircle cy='80' r='19'/%3E%3Ccircle cx='80' cy='80' r='19'/%3E%3C/g%3E%3Cg fill='%23F1E4C8'%3E%3Ccircle r='12'/%3E%3Ccircle cx='80' r='12'/%3E%3Ccircle cy='80' r='12'/%3E%3Ccircle cx='80' cy='80' r='12'/%3E%3C/g%3E%3Cg fill='%238E2219'%3E%3Ccircle r='6'/%3E%3Ccircle cx='80' r='6'/%3E%3Ccircle cy='80' r='6'/%3E%3Ccircle cx='80' cy='80' r='6'/%3E%3C/g%3E%3Cpath d='M40 9 71 40 40 71 9 40Z' fill='none' stroke='%231B3E78' stroke-width='2.4'/%3E%3Cg fill='%238E2219'%3E%3Cellipse cx='40' cy='27' rx='6.5' ry='11'/%3E%3Cellipse cx='40' cy='53' rx='6.5' ry='11'/%3E%3Cellipse cx='27' cy='40' rx='11' ry='6.5'/%3E%3Cellipse cx='53' cy='40' rx='11' ry='6.5'/%3E%3C/g%3E%3Ccircle cx='40' cy='40' r='5' fill='%23EFAE2B'/%3E%3C/svg%3E");
+}
+
+/* ---------- nền & chữ chung ---------- */
+.band.viet{--display:var(--v-sign);--body:var(--v-text);--wrap:min(90vw,1680px);
+  font-family:var(--v-text);font-size:var(--v-fs);line-height:1.5;-webkit-font-smoothing:antialiased}
+.band.viet.viet-giay{background:var(--v-giay);color:var(--v-muc)}
+.band.viet.viet-son{background:radial-gradient(ellipse 90% 80% at 30% 20%,#A12A1F 0,var(--v-son) 55%,var(--v-son2) 100%);color:var(--v-giay)}
+.band.viet.viet-lam{background:radial-gradient(ellipse 90% 80% at 50% 0%,#24508F 0,var(--v-lam) 50%,var(--v-lam2) 100%);color:var(--v-giay)}
+.ui2 .band.viet.viet-son::after,.ui2 .band.viet.viet-lam::after{opacity:.45;mix-blend-mode:soft-light}
+
+.band.viet h1,.band.viet h2{font-family:var(--v-sign);font-weight:700;text-transform:uppercase;letter-spacing:.005em;line-height:.92;text-shadow:none}
+.band.viet h2{font-size:var(--v-h2)}
+.band.viet.viet-giay h2{color:var(--v-son)}
+.band.viet.viet-son h2,.band.viet.viet-lam h2{color:var(--v-nghe)}
+.band.viet .inner{padding-block:clamp(64px,10vh,110px) clamp(56px,9vh,100px)}
+/* tiếng Việt đi kèm: Lora nghiêng, như chữ viết tay trên thực đơn quán */
+.band.viet .vi-word{font-family:var(--v-viet);font-style:italic;font-weight:400;text-transform:none;letter-spacing:0}
+.band.viet .eyebrow{font-family:var(--v-viet);font-style:italic;font-weight:400;text-transform:none;letter-spacing:0;font-size:calc(var(--v-fs)*1.15)}
+.ui2 .band.viet .eyebrow::before{display:none}
+
+/* ---------- dải gạch bông dưới chân slide ---------- */
+/* (đã bỏ dải gạch bông ở chân slide) */
+
+/* ---------- bảng hiệu: nền son, chữ vàng, viền kép kẻ tay ---------- */
+.bang{display:inline-block;position:relative;background:var(--v-son);color:var(--v-nghe);
+  padding:.18em .55em .22em;font-family:var(--v-sign);font-weight:700;text-transform:uppercase;line-height:1;
+  outline:3px solid var(--v-nghe);outline-offset:-.16em;box-shadow:0 0 0 4px var(--v-son),0 10px 0 0 var(--v-son2)}
+
+/* ---------- dĩa sứ men lam: ảnh tròn, vành trắng, hai chỉ xanh ---------- */
+.dia{position:relative;aspect-ratio:1;border-radius:50%;overflow:hidden;background:#FBF7EE;
+  box-shadow:inset 0 0 0 calc(var(--rim,14px) * .45) #FBF7EE,inset 0 0 0 calc(var(--rim,14px) * .45 + 3px) var(--v-lam),
+             0 0 0 var(--rim,14px) #FBF7EE,0 0 0 calc(var(--rim,14px) + 3px) var(--v-lam),0 calc(var(--rim,14px) * .9) 0 calc(var(--rim,14px) - 2px) rgba(42,26,18,.18)}
+.dia img{width:100%;height:100%;object-fit:cover}
+
+/* ---------- chrome: chip người nói, điều khiển, tiến trình ---------- */
+.progress,.ui2 .progress{height:6px;gap:4px}
+.progress .seg,.ui2 .progress .seg{background:rgba(27,62,120,.22)}
+.progress .seg span,.ui2 .progress .seg span{background:var(--v-son);box-shadow:none}
+.who,.ui2 .who{font-family:var(--v-text);background:var(--v-giay);color:var(--v-muc);border:2px solid var(--v-son);box-shadow:none;font-size:clamp(13px,.95vw,17px);padding:4px 14px 4px 4px}
+.who b,.ui2 .who b{background:var(--v-son);color:var(--v-nghe);font-family:var(--v-sign);font-weight:700;letter-spacing:.06em;font-size:1.15em;padding:2px 12px}
+.controls,.ui2 .controls{font-family:var(--v-text);background:var(--v-giay);color:var(--v-muc);border:2px solid var(--v-muc);box-shadow:none}
+.controls button:hover:not(:disabled){background:var(--v-giay2)}
+.controls button[aria-pressed="true"]{background:var(--v-son);color:var(--v-nghe)}
+.controls button.txt{border-left-color:var(--v-giay2)}
+
+/* ==========================================================================
+   Slide 1 — bìa
+   ========================================================================== */
+.vcover .cover-bg{display:none}
+.vcover .inner{display:grid;grid-template-columns:minmax(0,1.05fr) minmax(0,.95fr);align-items:center;gap:clamp(24px,4vw,80px)}
+.vcover .cover-text{max-width:none}
+.vcover .vc-kicker{font-family:var(--v-viet);font-style:italic;font-size:calc(var(--v-fs)*1.25);color:var(--v-lam)}
+.vcover h1{font-size:clamp(64px,min(9.4vw,16.5vh),190px);color:var(--v-muc);line-height:.86!important;margin-top:.12em}
+.vcover h1 > span{display:block}
+.vcover .bang{font-size:clamp(34px,min(4.4vw,7.8vh),92px);margin-top:.42em;letter-spacing:.01em}
+.vcover .sub{font-family:var(--v-viet);font-style:italic;text-transform:none;color:var(--v-son);font-size:calc(var(--v-fs)*1.45);margin-top:.7em!important;line-height:1.2}
+.vcover .members{margin-top:clamp(18px,3.4vh,36px);gap:8px}
+.vcover .members li{font-family:var(--v-text);font-weight:700;font-size:calc(var(--v-fs)*.82);border:2px solid var(--v-muc);color:var(--v-muc);background:transparent;padding:.28em .7em}
+.vcover .members li:first-child{background:var(--v-lam);border-color:var(--v-lam);color:var(--v-giay)}
+.vcover .vc-plate{justify-self:center;width:min(100%,62vh);--rim:clamp(14px,2vh,24px)}
+.vcover .vc-plate img{object-position:50% 56%;transform:scale(1.32)}
+.active.vcover .vc-plate{animation:vcPlate 1.3s var(--ease) .2s both}
+@keyframes vcPlate{from{opacity:0;transform:translateX(18%) rotate(40deg)}}
+@media (max-width:820px){
+  .vcover .inner{grid-template-columns:1fr}
+  .vcover .vc-plate{width:min(70vw,320px);grid-row:1}
+}
+
+/* ==========================================================================
+   Slide 5 — điều làm nên ẩm thực Việt
+   ========================================================================== */
+.v5 .inner{display:grid;grid-template-columns:minmax(0,1.25fr) minmax(0,.75fr);gap:clamp(28px,5vw,96px);align-items:center}
+.v5 .v5-copy{display:grid;gap:clamp(18px,3.4vh,36px)}
+.v5 .v5-three{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));border-top:3px solid var(--v-muc);border-bottom:1px solid var(--v-muc)}
+.v5 .v5-three li{padding:clamp(12px,2.2vh,24px) clamp(12px,1.4vw,24px) clamp(14px,2.4vh,26px) 0;display:grid;gap:.25em;align-content:start}
+.v5 .v5-three li + li{padding-left:clamp(12px,1.4vw,24px);border-left:1px solid var(--v-giay2)}
+.v5 .v5-three b{font-family:var(--v-sign);font-weight:700;text-transform:uppercase;font-size:var(--v-h3);line-height:1;color:var(--v-muc)}
+.v5 .v5-three .vi-word{color:var(--v-son);font-size:calc(var(--v-fs)*1.15)}
+.v5 .v5-three span:last-child{line-height:1.35}
+.v5 .v5-mam{font-size:calc(var(--v-fs)*.9);display:flex;flex-wrap:wrap;align-items:center;gap:.35em .9em;margin:0;padding:0;list-style:none;font-weight:700}
+.v5 .v5-mam li{display:inline-flex;align-items:center;gap:.9em}
+.v5 .v5-mam li + li::before{content:"";width:.5em;height:.5em;background:var(--v-son);transform:rotate(45deg)}
+.v5 .v5-mam-lbl{font-family:var(--v-viet);font-style:italic;font-weight:400;color:var(--v-lam);margin-right:.2em}
+.v5 .v5-balance{display:flex;align-items:baseline;flex-wrap:wrap;gap:.2em .5em}
+.v5 .v5-balance .bang{font-size:clamp(52px,min(7vw,12.5vh),150px)}
+.v5 .v5-balance .vi-word{font-size:calc(var(--v-fs)*1.6);color:var(--v-son);margin-left:.4em}
+.v5 .v5-photo{margin:0;padding:clamp(12px,1.6vw,26px);background:var(--v-tile) 0 0/clamp(48px,4.6vw,84px) auto;border:3px solid var(--v-lam);height:min(68vh,640px)}
+.v5 .v5-photo img{width:100%;height:100%;object-fit:cover;border:3px solid var(--v-lam);display:block}
+@media (max-width:820px){.v5 .inner,.v5 .v5-three{grid-template-columns:1fr}.v5 .v5-three li + li{padding-left:0;border-left:0;border-top:1px solid var(--v-giay2)}.v5 .v5-photo{height:42vh}}
+
+/* ==========================================================================
+   Slide 20 — năm thành phần trên dĩa cơm tấm
+   ========================================================================== */
+.v20 .v20-head{display:flex;align-items:baseline;flex-wrap:wrap;gap:.2em .8em}
+.v20 .v20-head .vi-word{font-size:calc(var(--v-fs)*1.6);color:var(--v-giay)}
+.v20 .v20-list{list-style:none;margin:clamp(40px,8vh,90px) 0 0;padding:0;display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:clamp(18px,2.6vw,52px)}
+.v20 .v20-list li{display:grid;align-content:start;justify-items:center;text-align:center;gap:.35em}
+.v20 .v20-list .dia{width:min(100%,25vh);--rim:clamp(9px,1.3vh,15px);margin-bottom:clamp(18px,3.2vh,34px)}
+.v20 .v20-list .vi-word{color:var(--v-nghe);font-size:calc(var(--v-fs)*1.25);line-height:1.1}
+.v20 .v20-list b{font-family:var(--v-sign);font-weight:700;text-transform:uppercase;font-size:var(--v-h3);line-height:1}
+.v20 .v20-list p{font-size:calc(var(--v-fs)*.88);line-height:1.38;opacity:.9;max-width:22ch}
+@media (max-width:820px){.v20 .v20-list{grid-template-columns:repeat(2,minmax(0,1fr))}}
+
+/* ==========================================================================
+   Slide 26 — 4 bước nướng sườn
+   ========================================================================== */
+.v26 .ask-bg::after{background:linear-gradient(100deg,rgba(62,14,9,.94) 0,rgba(94,21,15,.86) 45%,rgba(94,21,15,.55) 100%)}
+.v26 .flames{opacity:.55}
+.v26 .v26-head .vi-word{display:block;color:var(--v-giay);font-size:calc(var(--v-fs)*1.4);margin-top:.35em}
+.v26 .v26-steps{list-style:none;margin:clamp(36px,7vh,80px) 0 0;padding:0;display:grid;grid-template-columns:repeat(4,minmax(0,1fr));counter-reset:s}
+.v26 .v26-steps li{counter-increment:s;display:grid;gap:.35em;align-content:start;padding:0 clamp(14px,1.8vw,34px);border-left:2px solid rgba(239,174,43,.55)}
+.v26 .v26-steps li:first-child{padding-left:0;border-left:0}
+.v26 .v26-steps li::before{content:counter(s);font-family:var(--v-sign);font-weight:700;font-size:clamp(60px,min(7vw,12vh),140px);line-height:.85;color:var(--v-nghe)}
+.v26 .v26-steps .vi-word{color:var(--v-nghe);font-size:calc(var(--v-fs)*1.2)}
+.v26 .v26-steps b{font-family:var(--v-sign);font-weight:700;text-transform:uppercase;font-size:var(--v-h3);line-height:1;color:#FFF6E4}
+.v26 .v26-steps span:last-child{line-height:1.42;color:rgba(255,246,228,.92)}
+@media (max-width:820px){.v26 .v26-steps{grid-template-columns:1fr 1fr;row-gap:28px}.v26 .v26-steps li:nth-child(3){padding-left:0;border-left:0}}
+
+@media (prefers-reduced-motion:reduce){.active.vcover .vc-plate{animation:none}}
+
+/* ==========================================================================
+   PHẦN CHUNG CHO CẢ 32 SLIDE
+   Bốn nền: giấy dó (giay) · vàng nghệ (nghe) · đỏ son (son) · men lam (lam)
+   Mỗi nền khai báo lại biến cũ (--forest, --cream, --leaf, --carrot…) để CSS cũ tự đổi màu theo,
+   và thêm bộ biến thẻ --card-* dùng chung cho mọi khung nội dung.
+   ========================================================================== */
+.band.viet{--paper:#FFFBF0;--ink:var(--v-muc)}
+.band.viet-giay{--forest:var(--v-lam);--cream:#FBF4E2;--leaf:var(--v-nghe);--carrot:#C2362B;--sage:#E6D3AE;--muted:#6B5A4A;--oat:var(--v-giay2);
+  --card-bg:#FBF4E2;--card-fg:var(--v-muc);--card-ln:var(--v-lam);--card-hd:var(--v-son);--hd:var(--v-son);--rule:var(--v-muc);--soft:var(--v-lam)}
+.band.viet-nghe{background:#F0B23A;color:var(--v-muc);--forest:var(--v-son);--cream:#FFF4D6;--leaf:#F6C24A;--carrot:var(--v-son);--sage:#FFE9B0;--muted:#6B3F12;--oat:#E7A22A;
+  --card-bg:#FFF4D6;--card-fg:var(--v-muc);--card-ln:var(--v-son);--card-hd:var(--v-son);--hd:var(--v-son);--rule:var(--v-muc);--soft:var(--v-son)}
+.band.viet-son{--forest:var(--v-son2);--cream:#F6E9CC;--leaf:var(--v-nghe);--carrot:#F2B632;--sage:#E9CFA0;--muted:#E1B98A;--oat:#7B241B;
+  --card-bg:rgba(60,10,6,.42);--card-fg:#FFF3DC;--card-ln:var(--v-nghe);--card-hd:var(--v-nghe);--hd:var(--v-nghe);--rule:rgba(239,174,43,.6);--soft:var(--v-nghe)}
+.band.viet-lam{--forest:var(--v-lam2);--cream:#F6E9CC;--leaf:var(--v-nghe);--carrot:#F2B632;--sage:#C9D6EE;--muted:#9FB4D8;--oat:#2B4F8C;
+  --card-bg:rgba(8,24,56,.5);--card-fg:#F4ECD8;--card-ln:var(--v-nghe);--card-hd:var(--v-nghe);--hd:var(--v-nghe);--rule:rgba(239,174,43,.55);--soft:var(--v-nghe)}
+.band.viet-nghe{background:#F0B23A}
+.band.viet-giay,.band.viet-nghe{color:var(--v-muc)}
+.band.viet-son,.band.viet-lam{color:#F6EBD2}
+.band.viet h2,.band.viet h1{color:var(--hd)}
+.band.viet.cover h1{color:var(--v-muc)}
+
+/* hạt giấy mịn phủ toàn slide (thay cho lớp "ui2" cũ) */
+.band.viet::after{content:"";position:absolute;inset:0;z-index:0;pointer-events:none;mix-blend-mode:multiply;opacity:.1;
+  background:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.8' numOctaves='3' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 0  0 0 0 0 0  0 0 0 0 0  0 0 0 .5 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E")}
+.band.viet-son::after,.band.viet-lam::after{mix-blend-mode:soft-light;opacity:.5}
+
+/* bỏ hết trang trí cũ: hình bóng, băng keo, ảnh nghiêng, bóng cam */
+.band.viet .sil,.band.viet .tape{display:none}
+.band.viet .inner > *{min-width:0}
+.band.viet h3{font-family:var(--v-sign);font-weight:700;text-transform:uppercase;letter-spacing:.005em;color:var(--card-hd)}
+
+/* ---------- chữ thường dùng ---------- */
+.band.viet .lede{max-width:44ch;font-size:calc(var(--v-fs)*1.02);line-height:1.5}
+.band.viet .accent{color:var(--soft)}
+.band.viet .eyebrow.accent{color:var(--soft)}
+.band.viet .copy{gap:clamp(14px,2.6vh,28px)}
+.band.viet .split{gap:clamp(28px,5vw,96px)}
+.band.viet .split h2,.band.viet .copy h2{font-size:clamp(40px,min(4.8vw,8.6vh),104px)}
+.band.viet .chips{gap:10px 12px}
+.band.viet .chip,.ui2 .band.viet .chip{background:transparent;color:inherit;border:2px solid var(--card-ln);box-shadow:none;
+  padding:.3em .8em;font-size:calc(var(--v-fs)*.88);font-weight:700;line-height:1.2;transition:none}
+.band.viet-son .chip,.band.viet-lam .chip{background:rgba(0,0,0,.16);color:#FFF3DC}
+.band.viet .chip small{font-weight:400;font-style:italic;font-family:var(--v-viet);opacity:.85;font-size:.86em}
+.band.viet .chip:hover{translate:none}
+
+/* ---------- khung ảnh (Photo): ảnh in có viền kép, hết nghiêng ---------- */
+.band.viet .ph,.ui2 .band.viet .ph{background:#FFFBF0;border:3px solid var(--card-ln);box-shadow:0 0 0 6px #FFFBF0,0 0 0 9px var(--card-ln);
+  padding:0;margin:9px;transform:none;translate:none!important;scale:none;transition:none}
+.band.viet .ph:hover{scale:none;box-shadow:0 0 0 6px #FFFBF0,0 0 0 9px var(--card-ln)}
+.band.viet .ph.nocap{padding:0}
+.band.viet .ph img{border:0}
+.band.viet .ph figcaption{font-family:var(--v-viet);font-style:italic;font-weight:400;text-transform:none;letter-spacing:0;
+  color:var(--v-muc);background:#FFFBF0;font-size:calc(var(--v-fs)*.95);padding:.5em .6em .6em;border-top:2px solid var(--card-ln)}
+.band.viet .ph figcaption small{color:#6B5A4A;font-family:var(--v-text);font-style:normal;font-size:.8em}
+.active.viet .ph,.band.viet.active .ph{animation:vFadeUp .8s var(--ease) var(--d,.5s) both}
+@keyframes vFadeUp{from{opacity:0;transform:translateY(26px)}}
+.band.viet .kb{border:3px solid var(--card-ln);box-shadow:0 0 0 6px #FFFBF0,0 0 0 9px var(--card-ln);margin:9px}
+
+/* ---------- thẻ & ô nội dung dùng chung ---------- */
+.band.viet :is(.stat,.sides article,.kinds article,.times article,.roles div,.qz,.oil,.senses div,.bubble,.pair .l,.pair .r,.trio>div,.flip .f){
+  box-shadow:none;border-radius:0;transition:none}
+.ui2 .band.viet :is(.stat,.flips .f,.steps4 li,.sides>*,.kinds>*,.times>*,.senses>*,.trio>*,.pair .l,.pair .r){box-shadow:none}
+.ui2 .band.viet :is(.stat,.flips .f,.steps4 li,.sides>*,.kinds>*,.times>*,.senses>*,.trio>*,.pair .l,.pair .r):hover{translate:none;box-shadow:none}
+.band.viet :is(.sides article,.kinds article,.times article,.oil,.qz){background:var(--card-bg);color:var(--card-fg);border:5px double var(--card-ln)}
+
+/* ---------- slide 2: câu hỏi mở màn ---------- */
+.ask.viet .ask-bg::after{background:linear-gradient(180deg,rgba(62,14,9,.9) 0,rgba(94,21,15,.82) 55%,rgba(62,14,9,.92) 100%)}
+.ask.viet .eyebrow{color:var(--v-nghe);font-size:calc(var(--v-fs)*1.3);text-shadow:none}
+.ask.viet .q{font-family:var(--v-sign);font-weight:700;text-transform:uppercase;color:var(--v-giay);text-shadow:none;
+  font-size:clamp(48px,min(6vw,11vh),130px);line-height:.98;max-width:19ch;margin-inline:auto;min-height:3em}
+.ask.viet .pick{font-family:var(--v-sign);font-weight:700;background:var(--v-giay);color:var(--v-son);border:0;border-radius:0;min-width:0;
+  font-size:clamp(30px,min(3.4vw,6.2vh),68px);padding:.28em .8em;box-shadow:0 0 0 3px var(--v-son),0 0 0 6px var(--v-nghe);margin:6px 10px;transition:none}
+.ask.viet .pick:hover{transform:none;background:#FFF6E0}
+.ask.viet .pick[aria-pressed="true"]{background:var(--v-nghe);color:var(--v-son2);animation:none;border:0}
+.ask.viet .note{font-family:var(--v-viet);font-style:italic;color:var(--v-giay);font-size:calc(var(--v-fs)*1.1);text-shadow:none;margin-top:28px}
+.ask.viet .street{display:none}
+
+/* ---------- slide 3: lộ trình ---------- */
+.band.viet .road-split{grid-template-columns:minmax(0,1.2fr) minmax(0,.8fr);align-items:center}
+.band.viet .road.v{margin-top:clamp(18px,3.4vh,36px);gap:0}
+.band.viet .road.v::after{background:var(--v-lam);left:calc(1.15em - 1px);width:2px}
+.band.viet .road.v li{grid-template-columns:2.3em minmax(0,1fr);column-gap:.9em;padding-block:.35em}
+.band.viet .road.v li::before{content:counter(r);width:2.3em;height:2.3em;border-radius:0;transform:rotate(45deg) scale(.78);background:var(--v-son);color:var(--v-nghe);
+  font-family:var(--v-sign);font-weight:700;font-size:calc(var(--v-fs)*1.05);display:grid;place-items:center;outline:2px solid var(--v-nghe);outline-offset:-5px;box-shadow:0 0 0 4px var(--v-giay)}
+.band.viet .road.v li::before{text-indent:0}
+.band.viet .road.v em{font-family:var(--v-viet);font-style:italic;font-weight:400;text-transform:none;letter-spacing:0;font-size:calc(var(--v-fs)*1);color:var(--v-son)}
+.band.viet .road.v b{font-family:var(--v-sign);font-weight:700;font-size:calc(var(--v-fs)*1.7);color:var(--v-muc);letter-spacing:.005em}
+.band.viet .road.v span{font-size:calc(var(--v-fs)*.92)}
+.band.viet .frame{background:#FFFBF0;border:3px solid var(--v-lam);box-shadow:0 0 0 6px #FFFBF0,0 0 0 9px var(--v-lam);transform:none;animation:vFadeUp .9s var(--ease) .5s both;padding:14px 14px 0;max-width:100%}
+.active.viet .frame{animation:vFadeUp .9s var(--ease) .5s both}
+.band.viet .frame figcaption{font-family:var(--v-viet);font-style:italic;font-weight:400;text-transform:none;color:var(--v-muc);font-size:calc(var(--v-fs)*1);border-top:2px solid var(--v-lam);padding:.5em 0 .6em}
+.band.viet .frame img{max-height:56vh}
+
+/* ---------- slide 4: số liệu Michelin ---------- */
+.flat.viet .flatlay{display:none}
+.flat.viet{background:radial-gradient(ellipse 90% 80% at 50% 0,#24508F 0,var(--v-lam) 50%,var(--v-lam2) 100%)}
+.flat.viet .inner{text-align:left;max-width:none}
+.flat.viet h2{text-shadow:none;font-size:clamp(46px,min(5.6vw,10vh),120px)}
+.flat.viet .eyebrow{font-size:calc(var(--v-fs)*1.15);color:var(--v-giay);opacity:.9}
+.band.viet .stats{gap:0;margin-top:clamp(28px,6vh,64px);border-top:3px solid var(--v-nghe)}
+.flat.viet .stat{background:transparent;padding:clamp(14px,2.6vh,28px) clamp(14px,2vw,40px) 0;border-top:0;justify-items:start}
+.flat.viet .stat + .stat{border-left:1px solid rgba(239,174,43,.5)}
+.flat.viet .stat:first-child{padding-left:0}
+.band.viet .stat .num{font-family:var(--v-sign);font-weight:700;font-size:clamp(76px,min(11vw,19vh),240px);line-height:.9;color:var(--v-nghe)}
+.band.viet .stat .unit{font-family:var(--v-sign);font-weight:700;font-size:var(--v-h3);color:var(--v-giay);letter-spacing:.01em}
+.band.viet .stat p{font-size:calc(var(--v-fs)*.95);max-width:26ch}
+.band.viet .closing-q{font-family:var(--v-viet);font-style:italic;font-size:calc(var(--v-fs)*1.35);color:var(--v-giay);text-shadow:none;margin-top:clamp(24px,5vh,52px)}
+.flat.viet .star-ex.pinned{position:static;max-width:none;margin-top:clamp(18px,3vh,30px);justify-content:flex-start}
+.flat.viet .star-ex p{background:transparent;padding:0;font-size:calc(var(--v-fs)*.95);max-width:44ch}
+.flat.viet .star-ex .ph img{height:12vh!important}
+
+/* ---------- slide 6: bập bênh cân bằng ---------- */
+.band.viet .split-photo{grid-template-columns:minmax(0,.8fr) minmax(0,1.2fr)}
+.band.viet .seesaw{max-width:none;width:100%;padding-top:clamp(120px,20vh,190px);padding-bottom:clamp(30px,5vh,56px)}
+.band.viet .beam{height:12px;background:var(--v-lam);border-radius:0}
+.band.viet .pan{width:47%;gap:8px;bottom:12px}
+.band.viet .pan span{background:var(--v-lam);color:var(--v-giay);padding:.4em .8em;font-size:calc(var(--v-fs)*.88);font-weight:700;border:0}
+.band.viet .pan.r span{background:var(--v-son);color:var(--v-nghe)}
+.band.viet .pivot{border-bottom-color:var(--v-muc);top:auto;bottom:calc(clamp(30px,5vh,56px) - 40px);border-left-width:30px;border-right-width:30px;border-bottom-width:52px}
+.band.viet .split-photo .seesaw{padding-top:clamp(150px,26vh,230px)}
+.band.viet .split-photo .pivot{top:auto}
+.band.viet .example{text-align:left;font-size:calc(var(--v-fs)*.98);margin-top:4px}
+.band.viet .example b{color:var(--v-son)}
+
+/* ---------- slide 7: ngũ vị ---------- */
+.band.viet .flavors{gap:clamp(12px,2vw,34px);margin-top:clamp(28px,6vh,60px)}
+.band.viet .flavor{box-shadow:0 0 0 6px #FFFBF0,0 0 0 9px var(--v-nghe);padding:8%;transition:none;margin:9px}
+.band.viet .flavor:hover{transform:none}
+.band.viet .flavor::after{display:none}
+.band.viet .flavor b{font-family:var(--v-sign);font-weight:700;font-size:clamp(30px,min(3.5vw,6.2vh),72px)}
+.band.viet .flavor small{font-size:calc(var(--v-fs)*.82);font-weight:700;margin-top:.3em;opacity:1}
+.band.viet .flavor i{font-family:var(--v-viet);font-style:italic;font-size:calc(var(--v-fs)*.8);opacity:.95;margin-top:.15em}
+.band.viet .f1{background:#5C8A2E;color:#FFF}.band.viet .f2{background:#C8261C;color:#FFF}.band.viet .f3{background:#B9741A;color:#FFF}.band.viet .f4{background:#F2C14A;color:var(--v-muc)}.band.viet .f5{background:#3F5C34;color:#FFF}
+.band.viet .harmony-row{justify-content:flex-start;gap:clamp(18px,3vw,48px);margin-top:clamp(22px,4vh,44px)}
+.band.viet .harmony{font-size:calc(var(--v-fs)*1.12);max-width:52ch;text-align:left}
+.band.viet .harmony .accent{color:var(--v-nghe)}
+
+/* ---------- slide 8: âm dương ---------- */
+.band.viet .yy-l,.band.viet .yy-r,.ui2 .band.viet .yy-l{font-family:var(--v-sign);font-weight:700;font-size:calc(var(--v-fs)*1.15);border:0;border-radius:0;box-shadow:none;padding:.3em .6em}
+.band.viet .yy-l{background:var(--v-giay);color:var(--v-lam)}
+.band.viet .yy-r{background:var(--v-son);color:var(--v-nghe)}
+.band.viet .yy-l small,.band.viet .yy-r small,.band.viet .pair small{font-family:var(--v-viet);font-size:.78em}
+.band.viet .pair{gap:12px}
+.band.viet .pair .l,.band.viet .pair .r{padding:.7em 1em;font-size:calc(var(--v-fs)*.98);border:0}
+.band.viet .pair .l{background:var(--v-lam);color:var(--v-giay)}
+.band.viet .pair .r{background:#FFF4D6;color:var(--v-muc);border:2px solid var(--v-son)}
+.band.viet .pair .plus{background:var(--v-son)}
+.band.viet-nghe .pair .l{background:var(--v-son);color:var(--v-nghe)}
+.band.viet .yy-row .lede{font-size:calc(var(--v-fs)*.98)}
+
+/* ---------- slide 9: nước mắm ---------- */
+.band.viet .year{font-family:var(--v-sign);font-weight:700;font-size:clamp(96px,min(12vw,22vh),260px);line-height:.85;color:var(--v-nghe)}
+.band.viet-lam .copy h2{color:var(--v-nghe)}
+
+/* ---------- slide 11–14: ba miền ---------- */
+.band.viet .map-wrap{grid-template-columns:minmax(0,.7fr) minmax(0,1.3fr);gap:clamp(28px,5vw,96px)}
+.band.viet .vmap{width:min(100%,clamp(220px,30vw,420px),68vh)}
+.band.viet .vmap .route{stroke:var(--v-son);stroke-width:6}
+.band.viet .vmap text{font-family:var(--v-sign);font-weight:700;font-size:25px;fill:var(--v-muc)}
+.band.viet .vmap .stop circle{fill:var(--v-giay);stroke:var(--v-lam)}
+.band.viet .vmap .stop.on circle{fill:var(--v-son);stroke:var(--v-son)}
+.band.viet .vmap .stop.on text{fill:var(--v-son)}
+.band.viet .map-note{display:none}
+.band.viet .regions{gap:0}
+.band.viet .region{grid-template-columns:minmax(0,10rem) minmax(0,1fr) auto;gap:clamp(14px,2vw,32px);align-items:center;border-bottom:2px solid var(--v-lam);padding:clamp(10px,2vh,22px) 0}
+.band.viet .region b{font-family:var(--v-sign);font-weight:700;font-size:calc(var(--v-h3)*1.25);color:var(--v-son)}
+.band.viet .region span{font-size:calc(var(--v-fs)*1.08)}
+.band.viet .region-thumb{width:clamp(120px,12vw,210px);height:clamp(80px,8.4vw,140px);border:3px solid var(--v-lam);box-shadow:none}
+.band.viet .watermark{font-family:var(--v-sign);font-weight:700;opacity:.07;right:-.02em;bottom:-.12em;font-size:clamp(11rem,min(34vw,60vh),30rem)}
+.band.viet .mini-map{background:#FFFBF0;border:2px solid var(--v-lam);border-radius:0;left:auto;right:-6px;bottom:-6px;width:clamp(70px,7vw,110px)}
+.band.viet .dishes{gap:0}
+.band.viet .dishes li{border-bottom:2px solid currentColor;padding:clamp(10px,1.8vh,18px) 0;gap:clamp(12px,1.6vw,28px);align-items:baseline;flex-wrap:wrap}
+.band.viet .dishes b{font-family:var(--v-sign);font-weight:700;font-size:calc(var(--v-h3)*1.15);color:var(--v-son);flex:0 0 auto}
+.band.viet-son .dishes b,.band.viet-lam .dishes b{color:var(--v-nghe)}
+.band.viet .dishes b.accent{text-decoration:underline;text-decoration-thickness:.1em;text-underline-offset:.12em}
+.band.viet .dishes span{font-size:calc(var(--v-fs)*.98);opacity:1;flex:1 1 14ch}
+.band.viet .region-media{margin:auto}
+
+/* ---------- slide 15: toàn cầu ---------- */
+.band.viet .marquee{font-family:var(--v-sign);font-weight:700;font-size:clamp(64px,min(8vw,15vh),180px);color:var(--v-giay);line-height:1.02;margin-top:clamp(16px,3vh,32px)}
+.band.viet .marquee .row + .row{color:var(--v-nghe)}
+.band.viet .facts{gap:0;margin-top:clamp(22px,4.4vh,48px)}
+.band.viet .facts div{border-top:3px solid var(--v-nghe);padding:clamp(10px,1.8vh,18px) clamp(14px,2vw,36px) 0 0}
+.band.viet .facts div + div{padding-left:clamp(14px,2vw,36px);border-left:1px solid rgba(239,174,43,.5)}
+.band.viet .facts b{font-family:var(--v-sign);font-weight:700;font-size:var(--v-h3);color:var(--v-nghe)}
+.band.viet .facts span{font-size:calc(var(--v-fs)*.95)}
+.band.viet .ph.float-tr{top:clamp(40px,8vh,80px);right:max(24px,4%)}
+
+/* ---------- slide 17: gạo thường / gạo tấm ---------- */
+.band.viet .rice-pair{gap:clamp(36px,7vw,120px);margin-top:clamp(22px,4vh,44px)}
+.band.viet .rice-pair .ph img{height:min(36vh,420px)!important}
+.band.viet .rice-pair + .chips{justify-content:center;margin-top:clamp(18px,3vh,32px)}
+
+/* ---------- slide 18: hành trình ---------- */
+.band.viet .journey{gap:clamp(14px,2vw,34px);margin-top:clamp(28px,5vh,56px)}
+.band.viet .journey::after{background:var(--v-lam);height:2px;top:calc(clamp(56px,10vh,110px) + 24px)}
+.band.viet .journey li{gap:8px}
+.band.viet .journey-thumb{height:clamp(86px,15vh,170px);border:3px solid var(--v-lam)}
+.band.viet .journey li::before{order:2;width:26px;height:26px;border-radius:0;transform:rotate(45deg);background:var(--v-son);border:0;outline:2px solid var(--v-son);outline-offset:3px;box-shadow:none;margin:4px 0 6px 8px}
+.band.viet .journey b{order:3;font-family:var(--v-sign);font-weight:700;font-size:var(--v-h3);color:var(--v-son)}
+.band.viet .journey span{order:4;font-size:calc(var(--v-fs)*.95)}
+.band.viet .senses{gap:0;margin-top:clamp(24px,4.6vh,48px);border-top:3px solid var(--v-muc)}
+.band.viet .senses div{background:transparent;color:inherit;padding:clamp(10px,1.8vh,18px) clamp(12px,1.6vw,28px) 0 0;font-size:calc(var(--v-fs)*.98);border:0}
+.band.viet .senses div + div{padding-left:clamp(12px,1.6vw,28px);border-left:1px solid var(--v-giay2)}
+.band.viet .senses b{font-family:var(--v-viet);font-style:italic;font-weight:700;text-transform:none;color:var(--v-son);font-size:calc(var(--v-fs)*1.3)}
+
+/* ---------- slide 19: dĩa cơm tấm có chú thích ---------- */
+.band.viet .plate-split{gap:clamp(36px,6vw,110px);align-items:center}
+.band.viet .plate-split .plate-wrap{width:min(560px,66vh)}
+.band.viet .legend{gap:clamp(12px,2.2vh,24px)}
+.band.viet .legend h3{font-size:calc(var(--v-h3)*1.1);color:var(--v-son);margin-bottom:.2em}
+.band.viet .legend ol{gap:6px}
+.band.viet .legend li{font-size:calc(var(--v-fs)*1.02);gap:.7em;align-items:center}
+.band.viet .legend li i{width:1.7em;height:1.7em;border-radius:0;transform:rotate(45deg) scale(.82);background:var(--v-son);color:var(--v-nghe);font-size:.8em;display:grid;place-items:center;outline:2px solid var(--v-nghe);outline-offset:-4px;margin:0 .15em}
+.band.viet .legend li i{translate:0 0}
+.band.viet .badge circle{fill:var(--v-son);stroke:#FBF4E2}
+.band.viet .badge text{font-family:var(--v-sign);font-weight:700;fill:var(--v-nghe)}
+
+/* ---------- slide 21: cơm tấm Ba Ghiền ---------- */
+.band.viet .badge-big{width:min(100%,clamp(220px,22vw,360px),46vh)}
+.band.viet .badge-big .ring{border-color:var(--v-nghe);border-width:3px}
+.band.viet .badge-big .disc{background:var(--v-nghe)}
+.band.viet .badge-big .txt{font-family:var(--v-sign);font-weight:700;color:var(--v-son2)}
+.band.viet .badge-big .txt small{font-family:var(--v-viet);font-style:italic;font-weight:400}
+.band.viet .ba-wrap .badge-big{width:clamp(130px,min(14vw,24vh),240px);right:-32px;bottom:-40px}
+.band.viet .ba-wrap .ph img{height:min(46vh,520px)!important}
+.band.viet .copy .lede.accent{color:var(--v-nghe)}
+
+/* ---------- slide 22: cân bằng trên dĩa ---------- */
+.band.viet .balance-grid{grid-template-columns:minmax(0,1.3fr) minmax(0,1fr);gap:clamp(28px,5vw,90px)}
+.band.viet .pairs{gap:clamp(10px,2vh,20px);margin-top:0}
+.band.viet-giay .pair .l{background:var(--v-lam);color:var(--v-giay);text-align:right}
+.band.viet-giay .pair .r{background:#FFFBF0;border:2px solid var(--v-lam)}
+.band.viet .purpose{font-family:var(--v-sign);font-weight:700;color:var(--v-son);font-size:calc(var(--v-h3)*1.4);line-height:1.05;margin-top:clamp(18px,3.4vh,36px)}
+.band.viet .balance-grid .ph img{height:min(50vh,560px)!important}
+
+/* ---------- slide 23: hai món ăn kèm ---------- */
+.band.viet .sides{gap:clamp(20px,3vw,48px);margin-top:clamp(22px,4vh,44px)}
+.band.viet-nghe .sides article{background:var(--v-son);color:#FFF3DC;border-color:var(--v-nghe)}
+.band.viet-nghe .sides h3{color:var(--v-nghe)}
+.band.viet .sides article{padding:clamp(16px,2.6vh,28px) clamp(18px,2vw,34px);gap:12px}
+.band.viet .sides h3{font-size:calc(var(--v-h3)*1.4)}
+.band.viet .sides h3 span{font-family:var(--v-viet);font-style:italic;font-weight:400;text-transform:none;color:#FFE3A0;font-size:calc(var(--v-fs)*1)}
+.band.viet .sides ul{font-size:calc(var(--v-fs)*.98);gap:6px}
+.band.viet .side-photo{height:clamp(110px,22vh,230px);border:3px solid var(--v-nghe)}
+
+/* ---------- slide 24: bốn bước chế biến ---------- */
+.band.viet .steps4{gap:clamp(14px,2vw,36px);margin-top:clamp(26px,5vh,56px)}
+.band.viet .steps4 li,.ui2 .band.viet .steps4 li{background:transparent;color:inherit;padding:0;gap:.45em;border:0;box-shadow:none;counter-increment:s}
+.band.viet .steps4 li::before{content:counter(s);font-family:var(--v-sign);font-weight:700;color:var(--v-nghe);font-size:clamp(54px,min(6vw,10.5vh),120px);line-height:.85;order:3}
+.band.viet .steps4 .step-thumb{order:1;height:clamp(110px,20vh,220px);border:3px solid var(--v-nghe);margin-bottom:.35em}
+.band.viet .steps4 b{order:4;font-family:var(--v-sign);font-weight:700;font-size:var(--v-h3);color:var(--v-giay)}
+.band.viet .steps4 span{order:5;font-size:calc(var(--v-fs)*.95);line-height:1.42}
+.band.viet .secret{font-family:var(--v-viet);font-style:italic;font-size:calc(var(--v-fs)*1.2);margin-top:clamp(22px,4vh,44px)}
+.band.viet .secret b{color:var(--v-nghe);font-weight:700}
+
+/* ---------- slide 25: công thức nước mắm + mỡ hành ---------- */
+.band.viet .recipe{grid-template-columns:minmax(0,.55fr) minmax(0,1.25fr) minmax(0,1fr);gap:clamp(24px,4vw,72px);align-items:center;margin-top:clamp(22px,4vh,44px)}
+.band.viet .glass{width:min(100%,clamp(150px,15vw,240px),46vh)}
+.band.viet .glass path[stroke]{stroke:var(--v-lam)}
+.band.viet .measure{gap:clamp(8px,1.6vh,16px)}
+.band.viet .measure li{font-size:calc(var(--v-fs)*1.02);grid-template-columns:20px 5.4rem minmax(0,1fr);align-items:center}
+.band.viet .measure i{border-radius:0;border:2px solid var(--v-lam);width:20px;height:20px}
+.band.viet .measure b{font-family:var(--v-sign);font-weight:700;font-size:calc(var(--v-fs)*1.3);color:var(--v-son)}
+.band.viet .recipe .eyebrow{color:var(--v-lam)}
+.band.viet-giay .oil{background:var(--v-lam);color:var(--v-giay);border:5px double var(--v-nghe);padding:clamp(16px,2.6vh,28px)}
+.band.viet .oil h3{color:var(--v-nghe);font-size:calc(var(--v-h3)*1.1)}
+.band.viet .oil ol{font-size:calc(var(--v-fs)*.95);gap:8px}
+.band.viet .oil-photo{height:clamp(100px,18vh,190px);border:3px solid var(--v-nghe)}
+
+/* ---------- slide 27: bí quyết ướp ---------- */
+.band.viet .marinade-grid{grid-template-columns:minmax(0,1.6fr) minmax(0,1fr);gap:clamp(24px,4vw,72px)}
+.band.viet .roles{gap:0;margin-top:0;column-gap:clamp(18px,2.6vw,48px)}
+.band.viet .roles div{background:transparent;border-left:0;border-top:2px solid var(--v-nghe);padding:clamp(10px,1.8vh,18px) 0 clamp(12px,2vh,22px)}
+.band.viet .roles b{font-family:var(--v-sign);font-weight:700;color:var(--v-nghe);font-size:calc(var(--v-h3)*.95)}
+.band.viet .roles span{font-size:calc(var(--v-fs)*.95)}
+.band.viet .marinade-grid .ph img{height:min(26vh,300px)!important}
+.band.viet .video-box{margin-top:clamp(12px,2vh,22px)}
+.band.viet .video-box .file-btn{background:var(--v-nghe)!important;color:var(--v-son2)!important;border:0!important;border-radius:0;font-weight:700;font-size:calc(var(--v-fs)*.82)}
+.band.viet .video-box .file-btn[style*="transparent"]{background:transparent!important;color:var(--v-giay)!important;border:2px solid var(--v-nghe)!important}
+.band.viet .video-box video,.band.viet .video-box img{border-radius:0;border:3px solid var(--v-nghe)}
+
+/* ---------- slide 28: chọn miếng sườn ---------- */
+.band.viet .kinds{gap:clamp(18px,2.6vw,44px);margin-top:clamp(22px,4vh,44px)}
+.band.viet-giay .kinds article{background:var(--v-lam);color:var(--v-giay);border-color:var(--v-nghe);padding:clamp(18px,3vh,32px) clamp(18px,2vw,32px);gap:.4em}
+.band.viet .kinds strong{font-family:var(--v-sign);font-weight:700;font-size:calc(var(--v-h3)*1.45);color:var(--v-nghe)}
+.band.viet .kinds em{font-family:var(--v-viet);font-style:italic;font-weight:400;color:#FFE3A0;font-size:calc(var(--v-fs)*1.1)}
+.band.viet .kinds span{font-size:calc(var(--v-fs)*.98)}
+.band.viet .kinds + .eyebrow{margin-top:clamp(22px,4vh,40px);color:var(--v-son)}
+
+/* ---------- slide 29: gọi món như người Sài Gòn ---------- */
+.band.viet .bubbles{gap:clamp(16px,2.6vh,28px)}
+.band.viet .bubble{max-width:100%;padding:clamp(12px,2vh,20px) clamp(16px,1.6vw,26px);box-shadow:none;border:3px solid var(--v-son);background:#FFF9E8;color:var(--v-muc)}
+.band.viet .bubble b{font-family:var(--v-viet);font-style:italic;font-weight:700;font-size:calc(var(--v-fs)*1.28);line-height:1.3}
+.band.viet .bubble.r{background:var(--v-son);color:var(--v-nghe);border-color:var(--v-son2);box-shadow:none}
+.band.viet .bubble::after{border-top-color:var(--v-son);bottom:-14px}
+.band.viet .bubble.r::after{border-top-color:var(--v-son)}
+.band.viet .bubble::before{content:"";position:absolute;left:25px;bottom:-9px;border-left:9px solid transparent;border-right:9px solid transparent;border-top:9px solid #FFF9E8;z-index:1}
+.band.viet .bubble.r::before{display:none}
+.band.viet .bubble.r::after{left:auto;right:22px}
+.band.viet .split .copy .ph img{height:min(28vh,320px)!important}
+
+/* ---------- slide 30: một ngày với cơm tấm ---------- */
+.scene.viet .ask-bg::after{background:linear-gradient(180deg,rgba(62,14,9,.94) 0,rgba(94,21,15,.86) 60%,rgba(62,14,9,.94) 100%)}
+.scene.viet .ask-bg img{object-position:center 60%}
+.scene.viet h2{text-shadow:none}
+.band.viet .times{gap:clamp(18px,2.6vw,44px);margin-top:clamp(22px,4vh,44px)}
+.band.viet .times article{padding:clamp(12px,2vh,22px);background:rgba(40,6,3,.55);border:5px double var(--v-nghe)}
+.band.viet .times b{font-family:var(--v-sign);font-weight:700;font-size:calc(var(--v-h3)*1.2);color:var(--v-nghe)}
+.band.viet .times span{font-size:calc(var(--v-fs)*.95)}
+.band.viet .time-photo{height:clamp(110px,21vh,220px);border:3px solid var(--v-nghe);width:100%}
+.band.viet .scene .chips,.scene.viet .chips{margin-top:clamp(18px,3vh,32px)}
+
+/* ---------- slide 31: quiz ---------- */
+.quiz-slide.viet .inner{max-width:var(--wrap);padding-block:clamp(54px,8vh,90px) clamp(90px,14vh,140px)}
+.quiz-slide.viet h2{font-size:var(--v-h2);text-align:left;line-height:.95;letter-spacing:.005em;padding-top:0}
+.band.viet .quiz{gap:clamp(18px,2.6vw,44px);margin-top:clamp(20px,3.6vh,40px)}
+.band.viet-giay .qz{background:#FFFBF0;color:var(--v-muc);border:5px double var(--v-lam);padding:clamp(12px,2vh,22px);animation-duration:.5s}
+.band.viet .qz p.st{font-family:var(--v-sign);font-weight:700;text-transform:none;font-size:calc(var(--v-fs)*1.28);line-height:1.15;color:var(--v-son);min-height:2.4em}
+.band.viet .qz .opts{gap:10px}
+.band.viet .qz .opts button{border:2px solid var(--v-lam);background:transparent;color:var(--v-muc);border-radius:0;font-size:calc(var(--v-fs)*.95);padding:.55em .8em;font-family:var(--v-text)}
+.band.viet .qz .opts button:hover:not(:disabled){background:var(--v-lam);color:var(--v-giay);transform:none}
+.band.viet .qz .opts button.correct{background:var(--v-la);border-color:var(--v-la);color:#fff;font-weight:700}
+.band.viet .qz .opts button.chosen-wrong{background:var(--v-son);border-color:var(--v-son);color:#fff}
+.band.viet .qz .ans{border-top:2px dashed var(--v-lam);color:var(--v-muc);font-size:calc(var(--v-fs)*.85)}
+.band.viet .qz-img{border-radius:0;border:3px solid var(--v-lam);height:clamp(90px,16vh,170px)}
+.band.viet .score{color:var(--v-muc);font-family:var(--v-viet);font-style:italic;font-size:calc(var(--v-fs)*1.1);text-align:left}
+.band.viet .score button{background:var(--v-son);color:var(--v-nghe);border-radius:0;font-family:var(--v-text);font-style:normal}
+
+/* ---------- slide 32: cảm ơn ---------- */
+.finale.viet .inner{text-align:center}
+.finale.viet .lead{font-family:var(--v-viet);font-style:italic;text-transform:none;color:var(--v-giay);font-size:calc(var(--v-fs)*1.7);max-width:30ch;line-height:1.25}
+.finale.viet .recall{font-family:var(--v-text);color:var(--v-giay);font-size:calc(var(--v-fs)*1.05)}
+.finale.viet h2{font-size:clamp(90px,min(13vw,24vh),300px);line-height:.9;color:var(--v-nghe)}
+.finale.viet .qa{font-family:var(--v-sign);font-weight:700;color:var(--v-giay);font-size:calc(var(--v-h3)*1.1)}
+.finale.viet .credit{font-size:calc(var(--v-fs)*.7);opacity:.7}
+.band.viet .trio-photos .ph{margin:9px}
+.finale.viet .trio-photos .ph img{height:12vh!important;width:12vh!important}
+.finale.viet .ph figcaption{font-size:calc(var(--v-fs)*.8)}
+.finale.viet .finale-party{opacity:.95}
+
+@media (max-width:820px){
+  .band.viet .road-split,.band.viet .balance-grid,.band.viet .marinade-grid,.band.viet .recipe,.band.viet .map-wrap{grid-template-columns:1fr}
+  .band.viet .stats,.band.viet .facts,.band.viet .senses{grid-template-columns:1fr}
+  .flat.viet .stat + .stat,.band.viet .facts div + div,.band.viet .senses div + div{border-left:0;padding-left:0}
+}
+
+/* ================= vòng sửa 1 ================= */
+/* bản đồ nhỏ góc ảnh (slide 12–14) */
+.band.viet .mini-map.corner{left:auto;right:-24px;top:-24px;bottom:auto;height:auto;width:clamp(96px,8.5vw,140px);transform:none;box-shadow:none;border-radius:0;
+  background:#FFFBF0;border:3px solid var(--v-lam);padding:6px;animation:vFadeUp .7s var(--ease) .9s both}
+.active.viet .mini-map.corner{animation:vFadeUp .7s var(--ease) .9s both}
+/* slide 3: tên người trình bày nằm bên phải để danh sách gọn lại */
+.band.viet .road.v li{padding-block:.3em;grid-template-columns:2.3em minmax(0,1fr) auto;align-items:center}
+.band.viet .road.v li > em{grid-column:3;grid-row:1/3;align-self:center;padding-left:1em}
+.band.viet .road.v li > b{grid-column:2;grid-row:1;font-size:calc(var(--v-fs)*1.85);line-height:1.05}
+.band.viet .road.v li > span{grid-column:2;grid-row:2}
+.band.viet .road.v li::before{grid-row:1/3}
+.band.viet .road-split h2{font-size:clamp(40px,min(4.6vw,8vh),96px)}
+/* slide 4 */
+.flat.viet .stat p{margin:0}
+.flat.viet .stat{align-content:start}
+/* slide 8 */
+.band.viet .yy-row{gap:clamp(14px,2vw,28px)}
+.band.viet .yy-row .ph{flex:0 0 auto;max-width:none}
+.band.viet .yy-row .ph img{height:14vh!important;width:22vh!important}
+.band.viet .yy-row .lede{max-width:34ch}
+/* slide 15: ảnh banh mi nằm trong khoảng trống bên phải hai dòng chữ chạy */
+.band.viet .marquee{margin-right:clamp(250px,25vw,430px)}
+.band.viet .ph.float-tr{top:clamp(110px,22vh,230px);right:max(24px,4%)}
+.band.viet .ph.float-tr img{height:min(22vh,250px)!important}
+/* slide 18 */
+.band.viet .journey::after{top:calc(clamp(86px,15vh,170px) + 44px)}
+/* slide 21 */
+.band.viet .ba-wrap .badge-big .txt{font-size:clamp(18px,min(1.9vw,3.4vh),36px)}
+/* slide 25: ô mỡ hành */
+.band.viet.viet-giay .oil{background:var(--v-lam);color:var(--v-giay);border:5px double var(--v-nghe)}
+.band.viet.viet-giay .oil p{color:var(--v-giay);opacity:.95}
+/* chip to hơn cho máy chiếu */
+.band.viet .chip,.ui2 .band.viet .chip{font-size:calc(var(--v-fs)*.98)}
+/* slide 29 */
+.band.viet .copy > .ph img{height:min(34vh,400px)!important}
+/* slide 31: quiz to và rõ hơn */
+.band.viet .quiz{align-items:stretch}
+.band.viet .qz p.st{font-size:calc(var(--v-fs)*1.38);min-height:2.4em}
+.band.viet .qz .opts button{font-size:calc(var(--v-fs)*1.02);padding:.55em .9em}
+.band.viet .qz-img{height:clamp(84px,15vh,170px)}
+.band.viet .qz .ans{font-size:calc(var(--v-fs)*.95)}
+.band.viet .score{font-size:calc(var(--v-fs)*1.25)}
+.band.viet .qz{padding:clamp(14px,2.4vh,26px)}
+
+/* ================= vòng sửa 2: chống tràn xuống dải gạch bông ================= */
+/* slide 2: câu hỏi dài, thu chữ và khoảng cách */
+.ask.viet .q{font-size:clamp(40px,min(5vw,9vh),108px);min-height:0;max-width:21ch}
+.ask.viet .picks{margin-top:clamp(18px,3.4vh,36px)}
+.ask.viet .pick{font-size:clamp(28px,min(3vw,5.4vh),60px)}
+.ask.viet .note{margin-top:14px}
+.ask.viet .inner{padding-block:clamp(44px,7vh,70px) clamp(80px,12vh,120px)}
+/* slide 4 */
+.flat.viet .stats{margin-top:clamp(18px,3.4vh,40px)}
+.flat.viet .stat .num{font-size:clamp(68px,min(9.4vw,16vh),210px)}
+.flat.viet .closing-q{margin-top:clamp(14px,3vh,30px)}
+.flat.viet .inner{padding-block:clamp(44px,7vh,70px) clamp(80px,12vh,120px)}
+.flat.viet .star-ex .ph img{height:10vh!important}
+/* slide 8 */
+.band.viet .split .copy .pairs.yy-pairs{margin-top:0}
+.band.viet .yy-row .ph img{height:11vh!important;width:18vh!important}
+.band.viet .yy-wrap{width:min(100%,clamp(260px,30vw,460px),50vh)}
+.band.viet-nghe .split h2{font-size:clamp(38px,min(4.4vw,7.8vh),92px)}
+/* slide 11 */
+.band.viet .regions .region{padding:clamp(8px,1.5vh,18px) 0}
+.band.viet .region-thumb{height:clamp(70px,7.4vw,124px)}
+/* slide 19, 23, 31 ở màn thấp (720p) */
+@media (max-height:760px){
+  .band.viet .inner{padding-block:clamp(44px,7vh,60px) clamp(70px,11vh,92px)}
+  .band.viet .plate-split .plate-wrap{width:min(420px,56vh)}
+  .band.viet .side-photo{height:clamp(80px,15vh,150px)}
+  .band.viet .qz-img{height:clamp(70px,12vh,120px)}
+  .band.viet .qz p.st{min-height:0}
+  .band.viet .sides article{padding:12px 18px}
+}
+.v8 .copy{gap:clamp(8px,1.6vh,18px)}
+.v8 .copy h2{font-size:clamp(36px,min(4vw,7vh),84px)}
+.v8 .pair .l,.v8 .pair .r{padding:.5em .9em}
+.v8 .yy-row .ph{margin:6px 9px}
+
+/* ===== slide 2: ba lựa chọn thành ba "dĩa" trên bảng thực đơn ===== */
+.ask.viet .picks{gap:clamp(18px,2.4vw,44px);align-items:stretch;margin-top:clamp(14px,2.6vh,34px)}
+.ask.viet .pick{position:relative;display:flex;flex-direction:column;align-items:center;gap:.1em;
+  --dw:clamp(84px,min(9.5vw,15.5vh),176px);width:clamp(150px,14vw,260px);padding:calc(var(--dw)*.5) .6em .7em;margin-top:calc(var(--dw)*.66);
+  background:var(--v-giay);color:var(--v-son);border:0;outline:3px solid var(--v-nghe);outline-offset:-9px;
+  box-shadow:0 0 0 4px var(--v-son2),0 14px 0 0 rgba(0,0,0,.25),0 22px 40px rgba(0,0,0,.35);
+  font-family:var(--v-sign);font-weight:700;font-size:clamp(24px,min(2.3vw,4.2vh),46px);line-height:1;
+  transition:transform .35s cubic-bezier(.2,1.4,.3,1),box-shadow .35s,background .25s}
+.ask.viet .pick-dia{position:absolute;left:50%;top:0;width:var(--dw);aspect-ratio:1;translate:-50% -55%;border-radius:50%;overflow:hidden;
+  background:#fff;border:4px solid var(--v-lam);box-shadow:0 0 0 5px #FFFBF0,0 0 0 8px var(--v-lam),0 12px 24px rgba(0,0,0,.35);transition:transform .6s cubic-bezier(.2,.8,.2,1)}
+.ask.viet .pick-dia img{width:100%;height:100%;object-fit:cover;display:block}
+.ask.viet .pick-en{text-transform:uppercase;letter-spacing:.01em}
+.ask.viet .pick-vi{font-family:var(--v-viet);font-style:italic;font-weight:400;font-size:.62em;color:var(--v-lam);text-transform:none}
+.ask.viet .pick-seal{position:absolute;right:-14px;top:-14px;z-index:2;width:3.1em;aspect-ratio:1;display:grid;place-items:center;border-radius:50%;
+  font-family:var(--v-viet);font-style:italic;font-weight:700;font-size:.5em;color:#FFF3DC;background:var(--v-son);
+  box-shadow:0 0 0 3px #FFF3DC,0 0 0 5px var(--v-son);opacity:0;transform:scale(2.2) rotate(-25deg);transition:opacity .2s,transform .35s cubic-bezier(.2,1.5,.3,1)}
+.ask.viet .pick:hover{transform:translateY(-8px);background:#FFF8E6}
+.ask.viet .pick:hover .pick-dia{transform:rotate(18deg)}
+.ask.viet .pick:focus-visible{outline-color:#fff;outline-width:4px}
+.ask.viet .pick[aria-pressed="true"]{background:var(--v-nghe);color:var(--v-son2);transform:translateY(-10px) scale(1.04);
+  box-shadow:0 0 0 4px var(--v-son2),0 0 0 10px rgba(239,174,43,.35),0 14px 0 0 rgba(0,0,0,.25),0 0 60px rgba(255,214,120,.6)}
+.ask.viet .pick[aria-pressed="true"] .pick-vi{color:var(--v-son2)}
+.ask.viet .pick[aria-pressed="true"] .pick-dia{border-color:var(--v-son);box-shadow:0 0 0 5px #FFFBF0,0 0 0 8px var(--v-son),0 12px 24px rgba(0,0,0,.35)}
+.ask.viet .pick[aria-pressed="true"] .pick-seal{opacity:1;transform:scale(1) rotate(-12deg)}
+.ask.viet .pick:not([aria-pressed="true"]):has(~ .pick[aria-pressed="true"]),.ask.viet .pick[aria-pressed="true"] ~ .pick{opacity:.72}
+@media (prefers-reduced-motion:reduce){.ask.viet .pick,.ask.viet .pick-dia,.ask.viet .pick-seal{transition:none}}
+
+/* ===== slide 32: đêm hội kết thúc — pháo hoa, đèn lồng, chữ vàng ===== */
+.finale.viet{background:radial-gradient(ellipse 80% 70% at 50% 40%,#1E447F 0,#13305E 45%,#08162F 100%)}
+.finale.viet .fireworks{position:absolute;inset:0;width:100%;height:100%;z-index:0;pointer-events:none}
+.fin-halo{position:absolute;left:50%;top:62%;width:min(90vw,1300px);aspect-ratio:2.4;translate:-50% -50%;z-index:0;pointer-events:none;border-radius:50%;
+  background:radial-gradient(ellipse,rgba(239,174,43,.35),rgba(239,174,43,.08) 45%,transparent 70%);opacity:0}
+.finale.active .fin-halo{animation:finHalo 3.6s 1.2s ease-in-out infinite alternate both}
+@keyframes finHalo{from{opacity:.45;scale:.92}to{opacity:1;scale:1.05}}
+/* đèn lồng đỏ treo trên đỉnh, thả xuống rồi đung đưa, toả sáng */
+.fin-lanterns{position:absolute;left:0;right:0;top:0;height:0;z-index:1;pointer-events:none}
+.fin-lantern{--x:calc(2.5% + var(--i) * 7.5% + max(0, var(--i) - 2) * 54%);position:absolute;top:0;left:var(--x);width:clamp(34px,3.6vw,64px);
+  height:calc(clamp(14px,3vh,40px) + mod(var(--i) * 37, 50) * 1px);transform-origin:50% 0;translate:0 -130%;opacity:0}
+.fin-lantern::before{content:"";position:absolute;left:50%;top:0;bottom:0;width:2px;margin-left:-1px;background:linear-gradient(rgba(239,174,43,0),rgba(239,174,43,.9))}
+.fin-lantern i{position:absolute;left:0;right:0;top:100%;aspect-ratio:.82;border-radius:46% 46% 46% 46%/52% 52% 48% 48%;
+  background:radial-gradient(ellipse at 40% 38%,#FF7A55 0,#D62F22 38%,#8E2219 75%,#5E150F 100%);
+  box-shadow:0 0 30px 6px rgba(255,90,40,.45),0 0 80px 20px rgba(255,140,60,.18),inset 0 0 0 1px rgba(255,200,120,.25)}
+.fin-lantern i::before{content:"";position:absolute;inset:0;border-radius:inherit;
+  background:repeating-linear-gradient(90deg,transparent 0 18%,rgba(94,21,15,.35) 18% 20%)}
+.fin-lantern i::after{content:"";position:absolute;left:50%;top:100%;width:44%;height:90%;translate:-50% 0;
+  background:linear-gradient(90deg,transparent 0 46%,#EFAE2B 46% 54%,transparent 54%) top/100% 22% no-repeat,
+    repeating-linear-gradient(90deg,#EFAE2B 0 2px,transparent 2px 5px) bottom/100% 78% no-repeat;border-top:5px solid #EFAE2B;border-radius:2px}
+.finale.active .fin-lantern{animation:finDrop 1.2s calc(.3s + var(--i) * .12s) cubic-bezier(.25,1.4,.4,1) forwards,finSway calc(3.2s + var(--i) * .35s) calc(1.6s + var(--i) * .12s) ease-in-out infinite alternate}
+@keyframes finDrop{to{translate:0 0;opacity:1}}
+@keyframes finSway{from{rotate:-3.5deg}to{rotate:3.5deg}}
+/* chữ THANK YOU! ánh vàng lấp lánh liên tục (gradient chung cho mọi chữ cái nhờ background-attachment: fixed) */
+@property --gx{syntax:'<percentage>';inherits:true;initial-value:120%}
+.finale.viet h2{--gx:120%;filter:drop-shadow(0 6px 0 rgba(94,21,15,.85)) drop-shadow(0 0 28px rgba(255,200,90,.35))}
+.finale.viet h2 .ch{background:linear-gradient(100deg,#D9961A 0,#FFE08A 20%,#EFAE2B 38%,#FFF8D8 50%,#EFAE2B 62%,#FFE08A 80%,#D9961A 100%) fixed;
+  background-size:220vw 100vh;background-position:var(--gx) 0;-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent}
+.finale.viet.active h2{animation:finGold 4.5s 2.2s linear infinite}
+@keyframes finGold{from{--gx:120%}to{--gx:-20%}}
+.fin-camon{display:block;margin:.1em 0 .25em;text-transform:none;letter-spacing:0;line-height:1.1;font-weight:400;-webkit-text-fill-color:#F6E9CC;font-family:var(--v-viet);font-style:italic;font-size:calc(var(--v-h3)*1.15);color:#F6E9CC;opacity:0}
+@keyframes finIn{from{opacity:0;transform:translateY(16px)}to{opacity:1;transform:none}}
+.finale.active .fin-camon{animation:finIn .9s 2.3s var(--ease) both}
+@media (prefers-reduced-motion:reduce){.finale.active .fin-lantern{animation:none;translate:0 0;opacity:1}.finale.viet.active h2,.finale.active .fin-halo{animation:none;opacity:1}.finale.active .fin-camon{animation:none;opacity:1}}

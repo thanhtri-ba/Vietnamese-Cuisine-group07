@@ -4,39 +4,43 @@ import Slide from '../components/Slide';
 /** Slide 5: What makes it special? */
 export default function Slide05() {
   return (
-    <Slide index={4} className="band leaf" t="circle" who={0} labelledBy="t5">
-      <div className="inner split">
-        <div className="copy">
-          <h2 id="t5" data-a="dropIn" style={{ "--d": ".5s" } as CSSProperties}>What makes it special?</h2>
-          <div className="trio" data-st="flipX" style={{ "--base": "1s" } as CSSProperties}>
-            <div style={{ "--i": "0" } as CSSProperties}>
+    <Slide index={4} className="band viet viet-giay tiles v5" t="circle" who={0} labelledBy="t5">
+      <div className="inner">
+        <div className="v5-copy">
+          <h2 id="t5" data-a="fadeUp" style={{ "--d": ".4s" } as CSSProperties}>What makes it special?</h2>
+          <ul className="v5-three" data-st="fadeUp" style={{ "--base": ".8s" } as CSSProperties}>
+            <li style={{ "--i": "0" } as CSSProperties}>
               <b>Fresh</b>
-              <span>fresh ingredients from the market every day</span>
-            </div>
-            <div style={{ "--i": "1" } as CSSProperties}>
+              <span className="vi-word" lang="vi">tươi</span>
+              <span>Ingredients bought at the market every day</span>
+            </li>
+            <li style={{ "--i": "1" } as CSSProperties}>
               <b>Flavorful</b>
-              <span>many flavors blended in one meal</span>
-            </div>
-            <div style={{ "--i": "2" } as CSSProperties}>
+              <span className="vi-word" lang="vi">đậm đà</span>
+              <span>Many flavors blended in one meal</span>
+            </li>
+            <li style={{ "--i": "2" } as CSSProperties}>
               <b>Shared</b>
-              <span>a culture of sharing meals together</span>
-            </div>
-          </div>
-          <div className="chips" data-st="pop" style={{ "--base": "1.5s" } as CSSProperties}>
-            <span className="chip" style={{ "--i": "0" } as CSSProperties}>Rice</span>
-            <span className="chip" style={{ "--i": "1" } as CSSProperties}>Vegetables</span>
-            <span className="chip" style={{ "--i": "2" } as CSSProperties}>Meat / Fish</span>
-            <span className="chip" style={{ "--i": "3" } as CSSProperties}>Hot soup</span>
-            <span className="chip" style={{ "--i": "4" } as CSSProperties}>Dipping sauce</span>
-          </div>
-          <div data-a="zoomOut" style={{ "--d": "2.2s" } as CSSProperties}>
-            <p className="eyebrow">One idea connects them all</p>
-            <p className="big-word">Balance</p>
-          </div>
+              <span className="vi-word" lang="vi">sum vầy</span>
+              <span>Meals are eaten together, family style</span>
+            </li>
+          </ul>
+          <ul className="v5-mam" data-a="fadeUp" style={{ "--d": "1.4s" } as CSSProperties} aria-label="A typical Vietnamese meal">
+            <li className="v5-mam-lbl" lang="vi">Mâm cơm:</li>
+            <li>Rice</li>
+            <li>Vegetables</li>
+            <li>Meat or fish</li>
+            <li>Hot soup</li>
+            <li>Dipping sauce</li>
+          </ul>
+          <p className="v5-balance" data-a="zoomOut" style={{ "--d": "2s" } as CSSProperties}>
+            <span className="bang">Balance</span>
+            <span className="vi-word" lang="vi">cân bằng</span>
+          </p>
         </div>
-        <div className="kb five-photos" data-a="circle" style={{ "--d": ".7s" } as CSSProperties}>
+        <figure className="v5-photo" data-a="fadeUp" style={{ "--d": ".6s" } as CSSProperties}>
           <img src="img/i20.webp" alt="A shopper choosing fresh vegetables at a traditional market stall" />
-        </div>
+        </figure>
       </div>
     </Slide>
   );

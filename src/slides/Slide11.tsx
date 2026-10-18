@@ -5,7 +5,7 @@ import VMap from '../components/VMap';
 /** Slide 11: Three regions, three personalities */
 export default function Slide11() {
   return (
-    <Slide index={10} className="band cream" t="circle" who={2} labelledBy="t10">
+    <Slide index={10} className="band cream viet viet-giay tiles" t="circle" who={2} labelledBy="t10">
       <div className="inner map-wrap">
         <div>
           <div><VMap region="" /></div>

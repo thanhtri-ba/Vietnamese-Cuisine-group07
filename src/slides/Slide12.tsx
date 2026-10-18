@@ -6,7 +6,7 @@ import VMap from '../components/VMap';
 /** Slide 12: Delicate and balanced */
 export default function Slide12() {
   return (
-    <Slide index={11} className="band leaf" t="down" who={2} labelledBy="t11">
+    <Slide index={11} className="band leaf viet viet-nghe tiles" t="down" who={2} labelledBy="t11">
       <div className="wm-box" aria-hidden="true">
         <div className="watermark" aria-hidden="true" data-a="fadeUp" style={{ "--d": ".2s" } as CSSProperties}>North</div>
       </div>

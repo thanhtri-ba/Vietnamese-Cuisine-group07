@@ -6,7 +6,7 @@ import { PollNote, PollPicks } from '../components/Poll';
 /** Slide 2: A question for everyone */
 export default function Slide02() {
   return (
-    <Slide index={1} className="band forest ask" t="zoom" who={0} labelledBy="t2">
+    <Slide index={1} className="band forest viet viet-son tiles ask" t="zoom" who={0} labelledBy="t2">
       <div className="ask-bg" aria-hidden="true">
         <img src="img/street-shop.webp" alt="" />
       </div>
