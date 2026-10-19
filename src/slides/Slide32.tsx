@@ -32,7 +32,7 @@ export default function Slide32() {
         </div>
         <h2 id="t25" className="wave" data-letters aria-label="Thank you!"><SplitText text="Thank you!" start={0} /><span className="fin-camon" lang="vi" aria-hidden="true">Cảm ơn!</span></h2>
         <p className="qa" data-a="fadeUp" style={{ "--d": "2s" } as CSSProperties}>Questions & answers</p>
-        <p className="credit"> Thiết kế : thanhtri.dev   </p>
+        <p className="credit"> Thiết kế : thanhtri  </p>
       </div>
       <FinaleParty />
     </Slide>
