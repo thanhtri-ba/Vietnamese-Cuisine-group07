@@ -165,10 +165,10 @@ export default function FlightOverlay({ flight }: { flight: Flight }) {
             <circle cx="360" cy="412" r="2.2" />
             <circle cx="355" cy="422" r="1.6" />
           </g>
-          <path className="fl-route" d={d} />
-          <path ref={glow} className="fl-glow" d={d} filter="url(#flight-blur)" />
-          <path ref={trail} className="fl-trail" d={d} />
-          <path ref={comet} className="fl-comet" d={d} />
+          <path className="fl-route" fill="none" d={d} />
+          <path ref={glow} className="fl-glow" fill="none" d={d} />
+          <path ref={trail} className="fl-trail" fill="none" d={d} />
+          <path ref={comet} className="fl-comet" fill="none" d={d} />
           {(['hn', 'hue', 'hcm'] as const).map((c) => (
             <g key={c} ref={c === flight.to ? dest : undefined} className={c === flight.to ? 'fl-city to' : c === flight.from ? 'fl-city from' : 'fl-city'}>
               <circle className="ring" cx={CITY[c].x} cy={CITY[c].y} r="9" />

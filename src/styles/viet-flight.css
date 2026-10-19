@@ -90,3 +90,7 @@
 .deck[data-flight] .band.active{animation:none!important;-webkit-mask-image:none!important;mask-image:none!important;clip-path:none!important}
 .deck[data-flight] .band.leaving{visibility:hidden!important}
 .flight svg{overflow:visible}
+
+.flight svg path.fl-glow{filter:none!important;stroke-width:10;opacity:.28}
+.flight .fl-comet{fill:none;stroke:var(--v-son);stroke-width:3.2;stroke-linecap:round;stroke-dasharray:0 9999}
+.flight svg path.fl-route,.flight svg path.fl-glow,.flight svg path.fl-trail,.flight svg path.fl-comet{fill:none!important}
