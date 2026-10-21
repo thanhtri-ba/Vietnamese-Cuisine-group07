@@ -16,19 +16,19 @@ export interface Flight {
   to: Spot;
   /** dòng lớn: tên miền sắp tới */
   title: string;
-  /** tên tiếng Việt, hiện nhỏ bên dưới */
+  /** English subtitle, shown small below the title */
   vi: string;
 }
 
 /** Chuyển cảnh giữa các slide vùng miền: from-to = chỉ số slide (0-based). */
 export const FLIGHTS: Record<string, Flight> = {
-  '10-11': { from: 'sea', to: 'hn', title: 'The North', vi: 'Miền Bắc' },
-  '11-12': { from: 'hn', to: 'hue', title: 'The Center', vi: 'Miền Trung' },
-  '12-13': { from: 'hue', to: 'hcm', title: 'The South', vi: 'Miền Nam' },
-  '13-14': { from: 'hcm', to: 'world', title: 'To the world', vi: 'Ra thế giới' },
-  '12-11': { from: 'hue', to: 'hn', title: 'The North', vi: 'Miền Bắc' },
-  '13-12': { from: 'hcm', to: 'hue', title: 'The Center', vi: 'Miền Trung' },
-  '14-13': { from: 'world', to: 'hcm', title: 'The South', vi: 'Miền Nam' },
+  '10-11': { from: 'sea', to: 'hn', title: 'The North', vi: 'Northern Vietnam' },
+  '11-12': { from: 'hn', to: 'hue', title: 'The Center', vi: 'Central Vietnam' },
+  '12-13': { from: 'hue', to: 'hcm', title: 'The South', vi: 'Southern Vietnam' },
+  '13-14': { from: 'hcm', to: 'world', title: 'To the world', vi: 'Beyond Vietnam' },
+  '12-11': { from: 'hue', to: 'hn', title: 'The North', vi: 'Northern Vietnam' },
+  '13-12': { from: 'hcm', to: 'hue', title: 'The Center', vi: 'Central Vietnam' },
+  '14-13': { from: 'world', to: 'hcm', title: 'The South', vi: 'Southern Vietnam' },
 };
 
 /** Tổng thời gian & thời điểm đổi slide bên dưới (ms) — Deck dùng 2 số này. */
@@ -124,7 +124,7 @@ export default function FlightOverlay({ flight }: { flight: Flight }) {
           {a.name} <span>✈</span> {b.name}
         </small>
         <b className="bang">{flight.title}</b>
-        <i lang="vi">{flight.vi}</i>
+        <i>{flight.vi}</i>
       </div>
       <svg viewBox={`0 0 ${VB.w} ${VB.h}`} preserveAspectRatio="xMidYMid meet">
         <defs>

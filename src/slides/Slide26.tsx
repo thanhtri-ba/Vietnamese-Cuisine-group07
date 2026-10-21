@@ -22,26 +22,22 @@ export default function Slide26() {
       <div className="inner">
         <div className="v26-head">
           <h2 id="t24" data-a="fadeUp" style={{ "--d": ".5s" } as CSSProperties}>4 steps to perfect grilled ribs</h2>
-          <span className="vi-word" lang="vi" data-a="fadeUp" style={{ "--d": ".7s" } as CSSProperties}>Sườn nướng than hồng, linh hồn của dĩa cơm tấm</span>
+          <span className="vi-word" data-a="fadeUp" style={{ "--d": ".7s" } as CSSProperties}>Charcoal-grilled ribs, the soul of a broken rice plate</span>
         </div>
         <ol className="v26-steps" data-st="fadeUp" style={{ "--base": "1s" } as CSSProperties}>
           <li style={{ "--i": "0" } as CSSProperties}>
-            <span className="vi-word" lang="vi">Dần thịt</span>
             <b>Tenderize</b>
             <span>Pound the pork gently so it stays tender and absorbs the marinade.</span>
           </li>
           <li style={{ "--i": "1" } as CSSProperties}>
-            <span className="vi-word" lang="vi">Ướp</span>
             <b>Marinate</b>
             <span>Garlic, shallots, lemongrass, fish sauce, sugar, honey and condensed milk. Rest a few hours or overnight.</span>
           </li>
           <li style={{ "--i": "2" } as CSSProperties}>
-            <span className="vi-word" lang="vi">Nướng than</span>
             <b>Grill over charcoal</b>
             <span>Turn often until cooked through, golden brown and slightly charred at the edges.</span>
           </li>
           <li style={{ "--i": "3" } as CSSProperties}>
-            <span className="vi-word" lang="vi">Phết sốt</span>
             <b>Glaze</b>
             <span>Brush on the glaze for a shiny surface and caramelized edges.</span>
           </li>

@@ -1,0 +1,312 @@
+diff --git a/src/components/FlightOverlay.tsx b/src/components/FlightOverlay.tsx
+index b3520ca..c4d2db0 100644
+--- a/src/components/FlightOverlay.tsx
++++ b/src/components/FlightOverlay.tsx
+@@ -16,19 +16,19 @@ export interface Flight {
+   to: Spot;
+   /** dòng lớn: tên miền sắp tới */
+   title: string;
+-  /** tên tiếng Việt, hiện nhỏ bên dưới */
++  /** English subtitle, shown small below the title */
+   vi: string;
+ }
+ 
+ /** Chuyển cảnh giữa các slide vùng miền: from-to = chỉ số slide (0-based). */
+ export const FLIGHTS: Record<string, Flight> = {
+-  '10-11': { from: 'sea', to: 'hn', title: 'The North', vi: 'Miền Bắc' },
+-  '11-12': { from: 'hn', to: 'hue', title: 'The Center', vi: 'Miền Trung' },
+-  '12-13': { from: 'hue', to: 'hcm', title: 'The South', vi: 'Miền Nam' },
+-  '13-14': { from: 'hcm', to: 'world', title: 'To the world', vi: 'Ra thế giới' },
+-  '12-11': { from: 'hue', to: 'hn', title: 'The North', vi: 'Miền Bắc' },
+-  '13-12': { from: 'hcm', to: 'hue', title: 'The Center', vi: 'Miền Trung' },
+-  '14-13': { from: 'world', to: 'hcm', title: 'The South', vi: 'Miền Nam' },
++  '10-11': { from: 'sea', to: 'hn', title: 'The North', vi: 'Northern Vietnam' },
++  '11-12': { from: 'hn', to: 'hue', title: 'The Center', vi: 'Central Vietnam' },
++  '12-13': { from: 'hue', to: 'hcm', title: 'The South', vi: 'Southern Vietnam' },
++  '13-14': { from: 'hcm', to: 'world', title: 'To the world', vi: 'Beyond Vietnam' },
++  '12-11': { from: 'hue', to: 'hn', title: 'The North', vi: 'Northern Vietnam' },
++  '13-12': { from: 'hcm', to: 'hue', title: 'The Center', vi: 'Central Vietnam' },
++  '14-13': { from: 'world', to: 'hcm', title: 'The South', vi: 'Southern Vietnam' },
+ };
+ 
+ /** Tổng thời gian & thời điểm đổi slide bên dưới (ms) — Deck dùng 2 số này. */
+@@ -124,7 +124,7 @@ export default function FlightOverlay({ flight }: { flight: Flight }) {
+           {a.name} <span>✈</span> {b.name}
+         </small>
+         <b className="bang">{flight.title}</b>
+-        <i lang="vi">{flight.vi}</i>
++        <i>{flight.vi}</i>
+       </div>
+       <svg viewBox={`0 0 ${VB.w} ${VB.h}`} preserveAspectRatio="xMidYMid meet">
+         <defs>
+diff --git a/src/components/Poll.tsx b/src/components/Poll.tsx
+index ebd8608..6e15381 100644
+--- a/src/components/Poll.tsx
++++ b/src/components/Poll.tsx
+@@ -1,12 +1,12 @@
+ import { createContext, useContext, type CSSProperties, type ReactNode } from 'react';
+ import { useLocalStorage } from '../hooks/useLocalStorage';
+ 
+-const DISHES = ['Pho', 'Banh mi', 'Broken rice'] as const;
++const DISHES = ['Beef noodle soup', 'Baguette sandwich', 'Broken rice'] as const;
+ /** ảnh & tên tiếng Việt có dấu cho từng món (chỉ để trình bày, giá trị lưu vẫn là tên tiếng Anh) */
+-const LOOK: Record<(typeof DISHES)[number], { img: string; vi: string }> = {
+-  Pho: { img: 'img/photos/pho.webp', vi: 'Phở' },
+-  'Banh mi': { img: 'img/photos/banh-mi.webp', vi: 'Bánh mì' },
+-  'Broken rice': { img: 'img/photos/com-tam.webp', vi: 'Cơm tấm' },
++const LOOK: Record<(typeof DISHES)[number], { img: string }> = {
++  'Beef noodle soup': { img: 'img/photos/pho.webp' },
++  'Baguette sandwich': { img: 'img/photos/banh-mi.webp' },
++  'Broken rice': { img: 'img/photos/com-tam.webp' },
+ };
+ 
+ type PickState = [string | null, (v: string | null) => void];
+@@ -37,8 +37,7 @@ export function PollPicks(props: Extra) {
+             <img src={LOOK[dish].img} alt="" />
+           </span>
+           <span className="pick-en">{dish}</span>
+-          <span className="pick-vi" lang="vi">{LOOK[dish].vi}</span>
+-          <span className="pick-seal" aria-hidden="true">Chọn</span>
++          <span className="pick-seal" aria-hidden="true">Picked</span>
+         </button>
+       ))}
+     </div>
+@@ -59,8 +58,8 @@ export function PollRecall(props: Extra) {
+   return (
+     <p className="recall" {...props}>
+       {pick
+-        ? `On slide 2 you chose ${pick}. Would you still choose it now: pho, banh mi or broken rice?`
+-        : 'Back to Hòa’s question: pho, banh mi or broken rice?'}
++        ? `On slide 2 you chose ${pick}. Would you still choose it now: beef noodle soup, a baguette sandwich or broken rice?`
++        : 'Back to Hòa’s question: beef noodle soup, a baguette sandwich or broken rice?'}
+     </p>
+   );
+ }
+diff --git a/src/slides/Slide01.tsx b/src/slides/Slide01.tsx
+index 4afe342..4950943 100644
+--- a/src/slides/Slide01.tsx
++++ b/src/slides/Slide01.tsx
+@@ -11,8 +11,7 @@ export default function Slide01() {
+         <div className="cover-text">
+           <p className="vc-kicker" data-a="fadeDown" style={{ "--d": ".2s" } as CSSProperties}>Introducing Vietnam, by Group 7</p>
+           <h1 data-letters style={{ "--d": ".35s", marginTop: "14px" } as CSSProperties} aria-label="Vietnamese Cuisine"><span><SplitText text="Vietnamese" start={0} /></span><span><SplitText text="Cuisine" start={11} /></span></h1>
+-          <p className="bang" data-a="slideL" style={{ "--d": "1.1s" } as CSSProperties} lang="vi">Cơm tấm Sài Gòn</p>
+-          <p className="sub" data-a="fadeUp" style={{ "--d": "1.3s" } as CSSProperties}>Saigon broken rice</p>
++          <p className="bang" data-a="slideL" style={{ "--d": "1.1s" } as CSSProperties} >Saigon Broken Rice</p>
+           <ul className="members" data-st="pop" style={{ "--base": "1.4s" } as CSSProperties}>
+             <li style={{ "--i": "0" } as CSSProperties}>Group 7</li>
+             <li style={{ "--i": "1" } as CSSProperties}>Hòa</li>
+diff --git a/src/slides/Slide05.tsx b/src/slides/Slide05.tsx
+index 9e43ab1..3879b2e 100644
+--- a/src/slides/Slide05.tsx
++++ b/src/slides/Slide05.tsx
+@@ -11,22 +11,19 @@ export default function Slide05() {
+           <ul className="v5-three" data-st="fadeUp" style={{ "--base": ".8s" } as CSSProperties}>
+             <li style={{ "--i": "0" } as CSSProperties}>
+               <b>Fresh</b>
+-              <span className="vi-word" lang="vi">tươi</span>
+               <span>Ingredients bought at the market every day</span>
+             </li>
+             <li style={{ "--i": "1" } as CSSProperties}>
+               <b>Flavorful</b>
+-              <span className="vi-word" lang="vi">đậm đà</span>
+               <span>Many flavors blended in one meal</span>
+             </li>
+             <li style={{ "--i": "2" } as CSSProperties}>
+               <b>Shared</b>
+-              <span className="vi-word" lang="vi">sum vầy</span>
+               <span>Meals are eaten together, family style</span>
+             </li>
+           </ul>
+           <ul className="v5-mam" data-a="fadeUp" style={{ "--d": "1.4s" } as CSSProperties} aria-label="A typical Vietnamese meal">
+-            <li className="v5-mam-lbl" lang="vi">Mâm cơm:</li>
++            <li className="v5-mam-lbl">A typical meal:</li>
+             <li>Rice</li>
+             <li>Vegetables</li>
+             <li>Meat or fish</li>
+@@ -35,7 +32,6 @@ export default function Slide05() {
+           </ul>
+           <p className="v5-balance" data-a="zoomOut" style={{ "--d": "2s" } as CSSProperties}>
+             <span className="bang">Balance</span>
+-            <span className="vi-word" lang="vi">cân bằng</span>
+           </p>
+         </div>
+         <figure className="v5-photo" data-a="fadeUp" style={{ "--d": ".6s" } as CSSProperties}>
+diff --git a/src/slides/Slide10.tsx b/src/slides/Slide10.tsx
+index 1928168..089f42a 100644
+--- a/src/slides/Slide10.tsx
++++ b/src/slides/Slide10.tsx
+@@ -18,7 +18,7 @@ export default function Slide10() {
+             <span className="chip" style={{ "--i": "3" } as CSSProperties}>Bean sprouts<small>fresh and crisp</small></span>
+             <span className="chip" style={{ "--i": "4" } as CSSProperties}>Fresh lime<small>a bright, zesty sourness</small></span>
+           </div>
+-          <p className="lede" data-a="fadeUp" style={{ "--d": "1.8s" } as CSSProperties}>Fresh, fragrant and crunchy. Herbs perfectly balance the richness of grilled and fried dishes. With pho or other noodle soups, everyone can add herbs and squeeze in lime to suit their own taste.</p>
++          <p className="lede" data-a="fadeUp" style={{ "--d": "1.8s" } as CSSProperties}>Fresh, fragrant and crunchy. Herbs perfectly balance the richness of grilled and fried dishes. With beef noodle soup or other noodle soups, everyone can add herbs and squeeze in lime to suit their own taste.</p>
+         </div>
+       </div>
+     </Slide>
+diff --git a/src/slides/Slide11.tsx b/src/slides/Slide11.tsx
+index 6eaafe6..9aed2b3 100644
+--- a/src/slides/Slide11.tsx
++++ b/src/slides/Slide11.tsx
+@@ -17,7 +17,7 @@ export default function Slide11() {
+             <div className="region" style={{ "--i": "0" } as CSSProperties}>
+               <b>The North</b>
+               <span>Light, delicate and balanced</span>
+-              <img className="region-thumb" src="img/photos/pho.webp" alt="A bowl of beef pho" />
++              <img className="region-thumb" src="img/photos/pho.webp" alt="A bowl of beef noodle soup" />
+             </div>
+             <div className="region" style={{ "--i": "1" } as CSSProperties}>
+               <b>The Center</b>
+diff --git a/src/slides/Slide12.tsx b/src/slides/Slide12.tsx
+index 62bce4e..0afeb07 100644
+--- a/src/slides/Slide12.tsx
++++ b/src/slides/Slide12.tsx
+@@ -13,14 +13,14 @@ export default function Slide12() {
+       <div className="inner map-wrap">
+         <div className="region-media">
+           <div className="mini-map corner" aria-hidden="true"><VMap region="n" /></div>
+-          <Photo src="pho.webp" alt="Steaming bowl of beef pho" caption="Hanoi pho" h="46vh" tilt="l" delay=".6s" />
++          <Photo src="pho.webp" alt="Steaming bowl of beef noodle soup" caption="Hanoi beef noodle soup" h="46vh" tilt="l" delay=".6s" />
+         </div>
+         <div className="copy">
+           <p className="eyebrow accent" data-a="fadeDown" style={{ "--d": ".4s" } as CSSProperties}>01 · Northern cuisine</p>
+           <h2 id="t11" data-a="slideL" style={{ "--d": ".5s" } as CSSProperties}>Light and delicate</h2>
+           <ul className="dishes" data-st="fadeUp" style={{ "--base": "1s" } as CSSProperties}>
+             <li style={{ "--i": "0" } as CSSProperties}>
+-              <b>Hanoi pho</b>
++              <b>Hanoi beef noodle soup</b>
+               <span>a clear broth, naturally sweet from slow-simmered bones</span>
+             </li>
+             <li style={{ "--i": "1" } as CSSProperties}>
+diff --git a/src/slides/Slide15.tsx b/src/slides/Slide15.tsx
+index d5fc710..9904820 100644
+--- a/src/slides/Slide15.tsx
++++ b/src/slides/Slide15.tsx
+@@ -6,13 +6,13 @@ import Photo from '../components/Photo';
+ export default function Slide15() {
+   return (
+     <Slide index={14} className="band forest viet viet-lam tiles" t="wipe" who={2} labelledBy="t14">
+-      <Photo src="banh-mi.webp" alt="A Vietnamese banh mi filled with pork, pickles and herbs" caption="Banh mi" h="25vh" tilt="r" tape delay="1.1s" className="float-tr" />
++      <Photo src="banh-mi.webp" alt="A Vietnamese baguette sandwich filled with pork, pickles and herbs" caption="Baguette sandwich" h="25vh" tilt="r" tape delay="1.1s" className="float-tr" />
+       <div className="inner">
+         <h2 id="t14" data-a="skewIn" style={{ "--d": ".6s" } as CSSProperties}>Vietnamese food goes global</h2>
+         <div className="marquee" aria-hidden="true" data-a="blurIn" style={{ "--d": ".9s" } as CSSProperties}>
+           <div className="row">
+-            <span className="track">Pho · Banh mi · Broken rice · Pho · Banh mi · Broken rice ·</span>
+-            <span className="track">Pho · Banh mi · Broken rice · Pho · Banh mi · Broken rice ·</span>
++            <span className="track">Beef noodle soup · Baguette sandwich · Broken rice · Beef noodle soup · Baguette sandwich · Broken rice ·</span>
++            <span className="track">Beef noodle soup · Baguette sandwich · Broken rice · Beef noodle soup · Baguette sandwich · Broken rice ·</span>
+           </div>
+           <div className="row">
+             <span className="track">Grilled pork noodles · Sizzling pancakes · Spring rolls · Grilled pork noodles · Sizzling pancakes · Spring rolls ·</span>
+@@ -22,7 +22,7 @@ export default function Slide15() {
+         <div className="facts" data-st="flipY" style={{ "--base": "1.3s" } as CSSProperties}>
+           <div style={{ "--i": "0" } as CSSProperties}>
+             <b>Found worldwide</b>
+-            <span>Pho, banh mi and broken rice can be found in food capitals all over the world.</span>
++            <span>Beef noodle soup, baguette sandwiches and broken rice can be found in food capitals all over the world.</span>
+           </div>
+           <div style={{ "--i": "1" } as CSSProperties}>
+             <b>In the dictionary</b>
+@@ -30,7 +30,7 @@ export default function Slide15() {
+           </div>
+           <div style={{ "--i": "2" } as CSSProperties}>
+             <b>24.03.2020</b>
+-            <span>A Google Doodle celebrated Vietnamese banh mi on its global search page.</span>
++            <span>A Google Doodle celebrated the Vietnamese baguette sandwich on its global search page.</span>
+           </div>
+         </div>
+       </div>
+diff --git a/src/slides/Slide20.tsx b/src/slides/Slide20.tsx
+index cca2043..6c4cd0f 100644
+--- a/src/slides/Slide20.tsx
++++ b/src/slides/Slide20.tsx
+@@ -2,11 +2,11 @@ import type { CSSProperties } from 'react';
+ import Slide from '../components/Slide';
+ 
+ const items = [
+-  { en: 'Broken rice', vi: 'Cơm tấm', img: 'img/photos/com-nau.webp', alt: 'Broken rice topped with scallion oil', text: 'Small, fluffy grains that soak up fish sauce and scallion oil.' },
+-  { en: 'Grilled ribs', vi: 'Sườn nướng', img: 'img/photos/suon-cay.webp', alt: 'A grilled pork chop', text: 'The star: sweet, salty and smoky from the charcoal.' },
+-  { en: 'Pork skin', vi: 'Bì', img: 'img/photos/bi.webp', alt: 'Shredded pork skin with toasted rice powder', text: 'Chewy strands mixed with golden toasted rice powder.' },
+-  { en: 'Egg meatloaf', vi: 'Chả trứng', img: 'img/photos/cha-trung.webp', alt: 'A slice of egg meatloaf', text: 'Egg, minced pork and glass noodles, steamed until soft.' },
+-  { en: 'Fried egg', vi: 'Trứng ốp la', img: 'img/photos/op-la.webp', alt: 'Fried egg', text: 'A runny yolk that blends into the hot rice.' },
++  { en: 'Broken rice', img: 'img/photos/com-nau.webp', alt: 'Broken rice topped with scallion oil', text: 'Small, fluffy grains that soak up fish sauce and scallion oil.' },
++  { en: 'Grilled ribs', img: 'img/photos/suon-cay.webp', alt: 'A grilled pork chop', text: 'The star: sweet, salty and smoky from the charcoal.' },
++  { en: 'Pork skin', img: 'img/photos/bi.webp', alt: 'Shredded pork skin with toasted rice powder', text: 'Chewy strands mixed with golden toasted rice powder.' },
++  { en: 'Egg meatloaf', img: 'img/photos/cha-trung.webp', alt: 'A slice of egg meatloaf', text: 'Egg, minced pork and glass noodles, steamed until soft.' },
++  { en: 'Fried egg', img: 'img/photos/op-la.webp', alt: 'Fried egg', text: 'A runny yolk that blends into the hot rice.' },
+ ];
+ 
+ /** Slide 20: The main ingredients */
+@@ -16,7 +16,7 @@ export default function Slide20() {
+       <div className="inner">
+         <div className="v20-head">
+           <h2 id="t19" data-a="fadeUp" style={{ "--d": ".4s" } as CSSProperties}>The main ingredients</h2>
+-          <span className="vi-word" lang="vi" data-a="fadeUp" style={{ "--d": ".6s" } as CSSProperties}>trên một dĩa cơm tấm</span>
++          <span className="vi-word" data-a="fadeUp" style={{ "--d": ".6s" } as CSSProperties}>on a plate of broken rice</span>
+         </div>
+         <ul className="v20-list" data-st="fadeUp" style={{ "--base": ".9s" } as CSSProperties}>
+           {items.map((it, i) => (
+@@ -24,7 +24,6 @@ export default function Slide20() {
+               <div className="dia">
+                 <img src={it.img} alt={it.alt} />
+               </div>
+-              <span className="vi-word" lang="vi">{it.vi}</span>
+               <b>{it.en}</b>
+               <p>{it.text}</p>
+             </li>
+diff --git a/src/slides/Slide26.tsx b/src/slides/Slide26.tsx
+index dc3a746..210c063 100644
+--- a/src/slides/Slide26.tsx
++++ b/src/slides/Slide26.tsx
+@@ -22,26 +22,22 @@ export default function Slide26() {
+       <div className="inner">
+         <div className="v26-head">
+           <h2 id="t24" data-a="fadeUp" style={{ "--d": ".5s" } as CSSProperties}>4 steps to perfect grilled ribs</h2>
+-          <span className="vi-word" lang="vi" data-a="fadeUp" style={{ "--d": ".7s" } as CSSProperties}>Sườn nướng than hồng, linh hồn của dĩa cơm tấm</span>
++          <span className="vi-word" data-a="fadeUp" style={{ "--d": ".7s" } as CSSProperties}>Charcoal-grilled ribs, the soul of a broken rice plate</span>
+         </div>
+         <ol className="v26-steps" data-st="fadeUp" style={{ "--base": "1s" } as CSSProperties}>
+           <li style={{ "--i": "0" } as CSSProperties}>
+-            <span className="vi-word" lang="vi">Dần thịt</span>
+             <b>Tenderize</b>
+             <span>Pound the pork gently so it stays tender and absorbs the marinade.</span>
+           </li>
+           <li style={{ "--i": "1" } as CSSProperties}>
+-            <span className="vi-word" lang="vi">Ướp</span>
+             <b>Marinate</b>
+             <span>Garlic, shallots, lemongrass, fish sauce, sugar, honey and condensed milk. Rest a few hours or overnight.</span>
+           </li>
+           <li style={{ "--i": "2" } as CSSProperties}>
+-            <span className="vi-word" lang="vi">Nướng than</span>
+             <b>Grill over charcoal</b>
+             <span>Turn often until cooked through, golden brown and slightly charred at the edges.</span>
+           </li>
+           <li style={{ "--i": "3" } as CSSProperties}>
+-            <span className="vi-word" lang="vi">Phết sốt</span>
+             <b>Glaze</b>
+             <span>Brush on the glaze for a shiny surface and caramelized edges.</span>
+           </li>
+diff --git a/src/slides/Slide32.tsx b/src/slides/Slide32.tsx
+index 5acb947..bb3bb5d 100644
+--- a/src/slides/Slide32.tsx
++++ b/src/slides/Slide32.tsx
+@@ -26,13 +26,13 @@ export default function Slide32() {
+         </div>
+         <PollRecall data-a="fadeUp" style={{ "--d": "1.6s" } as CSSProperties} />
+         <div className="trio-photos">
+-          <Photo src="pho.webp" alt="A bowl of beef pho" caption="Pho" h="13vh" w="13vh" tilt="l" delay="1.8s" />
+-          <Photo src="banh-mi.webp" alt="A banh mi sandwich" caption="Banh mi" h="13vh" w="13vh" tilt="none" delay="2s" />
++          <Photo src="pho.webp" alt="A bowl of beef noodle soup" caption="Beef noodle soup" h="13vh" w="13vh" tilt="l" delay="1.8s" />
++          <Photo src="banh-mi.webp" alt="A baguette sandwich" caption="Baguette sandwich" h="13vh" w="13vh" tilt="none" delay="2s" />
+           <Photo src="com-tam-suon-bi-cha.webp" alt="A plate of broken rice" caption="Broken rice" h="13vh" w="13vh" tilt="r" delay="2.2s" />
+         </div>
+-        <h2 id="t25" className="wave" data-letters aria-label="Thank you!"><SplitText text="Thank you!" start={0} /><span className="fin-camon" lang="vi" aria-hidden="true">Cảm ơn!</span></h2>
++        <h2 id="t25" className="wave" data-letters aria-label="Thank you!"><SplitText text="Thank you!" start={0} /></h2>
+         <p className="qa" data-a="fadeUp" style={{ "--d": "2s" } as CSSProperties}>Questions & answers</p>
+-        <p className="credit"> Thiết kế : thanhtri  </p>
++        <p className="credit">Design: thanhtri</p>
+       </div>
+       <FinaleParty />
+     </Slide>

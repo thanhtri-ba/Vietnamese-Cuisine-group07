@@ -141,6 +141,8 @@ export default function VMap({ region = '' }: { region?: string }) {
         <circle cx="368" cy="420" r="2" />
         <circle cx="346" cy="417" r="1.6" />
         <text x="357" y="444" textAnchor="middle">Truong Sa Is.</text>
+        <text className="vn-claim" x="386" y="474" textAnchor="end">Hoang Sa &amp; Truong Sa</text>
+        <text className="vn-claim" x="386" y="500" textAnchor="end">belong to Vietnam</text>
       </g>
       <text className="vn-sea" x="268" y="330" textAnchor="middle">East Sea</text>
 

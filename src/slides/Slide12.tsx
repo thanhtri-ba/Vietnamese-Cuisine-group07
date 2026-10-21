@@ -13,14 +13,14 @@ export default function Slide12() {
       <div className="inner map-wrap">
         <div className="region-media">
           <div className="mini-map corner" aria-hidden="true"><VMap region="n" /></div>
-          <Photo src="pho.webp" alt="Steaming bowl of beef pho" caption="Hanoi pho" h="46vh" tilt="l" delay=".6s" />
+          <Photo src="pho.webp" alt="Steaming bowl of beef noodle soup" caption="Hanoi beef noodle soup" h="46vh" tilt="l" delay=".6s" />
         </div>
         <div className="copy">
           <p className="eyebrow accent" data-a="fadeDown" style={{ "--d": ".4s" } as CSSProperties}>01 · Northern cuisine</p>
           <h2 id="t11" data-a="slideL" style={{ "--d": ".5s" } as CSSProperties}>Light and delicate</h2>
           <ul className="dishes" data-st="fadeUp" style={{ "--base": "1s" } as CSSProperties}>
             <li style={{ "--i": "0" } as CSSProperties}>
-              <b>Hanoi pho</b>
+              <b>Hanoi beef noodle soup</b>
               <span>a clear broth, naturally sweet from slow-simmered bones</span>
             </li>
             <li style={{ "--i": "1" } as CSSProperties}>

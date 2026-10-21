@@ -26,13 +26,13 @@ export default function Slide32() {
         </div>
         <PollRecall data-a="fadeUp" style={{ "--d": "1.6s" } as CSSProperties} />
         <div className="trio-photos">
-          <Photo src="pho.webp" alt="A bowl of beef pho" caption="Pho" h="13vh" w="13vh" tilt="l" delay="1.8s" />
-          <Photo src="banh-mi.webp" alt="A banh mi sandwich" caption="Banh mi" h="13vh" w="13vh" tilt="none" delay="2s" />
+          <Photo src="pho.webp" alt="A bowl of beef noodle soup" caption="Beef noodle soup" h="13vh" w="13vh" tilt="l" delay="1.8s" />
+          <Photo src="banh-mi.webp" alt="A baguette sandwich" caption="Baguette sandwich" h="13vh" w="13vh" tilt="none" delay="2s" />
           <Photo src="com-tam-suon-bi-cha.webp" alt="A plate of broken rice" caption="Broken rice" h="13vh" w="13vh" tilt="r" delay="2.2s" />
         </div>
-        <h2 id="t25" className="wave" data-letters aria-label="Thank you!"><SplitText text="Thank you!" start={0} /><span className="fin-camon" lang="vi" aria-hidden="true">Cảm ơn!</span></h2>
+        <h2 id="t25" className="wave" data-letters aria-label="Thank you!"><SplitText text="Thank you!" start={0} /></h2>
         <p className="qa" data-a="fadeUp" style={{ "--d": "2s" } as CSSProperties}>Questions & answers</p>
-        <p className="credit"> Thiết kế : thanhtri  </p>
+        <p className="credit">Design: thanhtri</p>
       </div>
       <FinaleParty />
     </Slide>

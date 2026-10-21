@@ -35,25 +35,26 @@ export default function Fireworks() {
     const rockets: Rocket[] = [];
     const sparks: Spark[] = [];
 
-    const launch = (x = rnd(W * 0.12, W * 0.88), ty = rnd(H * 0.12, H * 0.42)) => {
+    const launch = (x = rnd(W * 0.12, W * 0.88), ty = rnd(H * 0.2, H * 0.5)) => {
       rockets.push({ x, y: H + 10, vx: rnd(-0.6, 0.6), vy: -Math.sqrt(2 * 0.06 * (H - ty)) * rnd(0.98, 1.04), ty, c: pick(COLORS) });
     };
     const burst = (x: number, y: number, c: string) => {
       const type = pick(['peony', 'peony', 'ring', 'willow', 'chrys']);
-      const n = type === 'ring' ? 46 : type === 'willow' ? 70 : 90;
+      const K = Math.max(1.5, Math.min(W, H) / 380); // cỡ quả pháo theo kích thước màn hình
+      const n = type === 'ring' ? 64 : type === 'willow' ? 100 : 130;
       const c2 = pick(COLORS);
       for (let i = 0; i < n; i++) {
         const a = type === 'ring' ? (i / n) * Math.PI * 2 : rnd(0, Math.PI * 2);
-        const sp = type === 'ring' ? 3.4 : type === 'willow' ? rnd(1, 3) : rnd(1, 4.6);
+        const sp = (type === 'ring' ? 3.4 : type === 'willow' ? rnd(1, 3) : rnd(1, 4.6)) * K;
         sparks.push({
           x, y, px: x, py: y, vx: Math.cos(a) * sp, vy: Math.sin(a) * sp,
-          life: 0, max: type === 'willow' ? rnd(2.2, 3.2) : rnd(1.1, 1.9),
+          life: 0, max: type === 'willow' ? rnd(2.4, 3.4) : rnd(1.3, 2.1),
           c: type === 'willow' ? '#FFD36B' : type === 'chrys' && i % 2 ? c2 : c,
-          s: type === 'willow' ? 1.4 : rnd(1.4, 2.4), g: type === 'willow' ? 0.035 : 0.05, tw: type === 'chrys' || Math.random() < 0.3,
+          s: (type === 'willow' ? 1.4 : rnd(1.4, 2.4)) * 1.5, g: (type === 'willow' ? 0.035 : 0.05) * (1 + (K - 1) * 0.5), tw: type === 'chrys' || Math.random() < 0.3,
         });
       }
       // chớp sáng tâm nổ
-      sparks.push({ x, y, px: x, py: y, vx: 0, vy: 0, life: 0, max: 0.25, c: '#FFFBF0', s: 26, g: 0, tw: false });
+      sparks.push({ x, y, px: x, py: y, vx: 0, vy: 0, life: 0, max: 0.25, c: '#FFFBF0', s: 26 * K, g: 0, tw: false });
     };
 
     const onDown = (e: PointerEvent) => {

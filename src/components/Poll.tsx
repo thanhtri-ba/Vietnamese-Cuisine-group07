@@ -1,12 +1,12 @@
 import { createContext, useContext, type CSSProperties, type ReactNode } from 'react';
 import { useLocalStorage } from '../hooks/useLocalStorage';
 
-const DISHES = ['Pho', 'Banh mi', 'Broken rice'] as const;
+const DISHES = ['Beef noodle soup', 'Baguette sandwich', 'Broken rice'] as const;
 /** ảnh & tên tiếng Việt có dấu cho từng món (chỉ để trình bày, giá trị lưu vẫn là tên tiếng Anh) */
-const LOOK: Record<(typeof DISHES)[number], { img: string; vi: string }> = {
-  Pho: { img: 'img/photos/pho.webp', vi: 'Phở' },
-  'Banh mi': { img: 'img/photos/banh-mi.webp', vi: 'Bánh mì' },
-  'Broken rice': { img: 'img/photos/com-tam.webp', vi: 'Cơm tấm' },
+const LOOK: Record<(typeof DISHES)[number], { img: string }> = {
+  'Beef noodle soup': { img: 'img/photos/pho.webp' },
+  'Baguette sandwich': { img: 'img/photos/banh-mi.webp' },
+  'Broken rice': { img: 'img/photos/com-tam.webp' },
 };
 
 type PickState = [string | null, (v: string | null) => void];
@@ -37,8 +37,7 @@ export function PollPicks(props: Extra) {
             <img src={LOOK[dish].img} alt="" />
           </span>
           <span className="pick-en">{dish}</span>
-          <span className="pick-vi" lang="vi">{LOOK[dish].vi}</span>
-          <span className="pick-seal" aria-hidden="true">Chọn</span>
+          <span className="pick-seal" aria-hidden="true">Picked</span>
         </button>
       ))}
     </div>
@@ -59,8 +58,8 @@ export function PollRecall(props: Extra) {
   return (
     <p className="recall" {...props}>
       {pick
-        ? `On slide 2 you chose ${pick}. Would you still choose it now: pho, banh mi or broken rice?`
-        : 'Back to Hòa’s question: pho, banh mi or broken rice?'}
+        ? `On slide 2 you chose ${pick}. Would you still choose it now: beef noodle soup, a baguette sandwich or broken rice?`
+        : 'Back to Hòa’s question: beef noodle soup, a baguette sandwich or broken rice?'}
     </p>
   );
 }

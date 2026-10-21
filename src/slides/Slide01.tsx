@@ -11,8 +11,7 @@ export default function Slide01() {
         <div className="cover-text">
           <p className="vc-kicker" data-a="fadeDown" style={{ "--d": ".2s" } as CSSProperties}>Introducing Vietnam, by Group 7</p>
           <h1 data-letters style={{ "--d": ".35s", marginTop: "14px" } as CSSProperties} aria-label="Vietnamese Cuisine"><span><SplitText text="Vietnamese" start={0} /></span><span><SplitText text="Cuisine" start={11} /></span></h1>
-          <p className="bang" data-a="slideL" style={{ "--d": "1.1s" } as CSSProperties} lang="vi">Cơm tấm Sài Gòn</p>
-          <p className="sub" data-a="fadeUp" style={{ "--d": "1.3s" } as CSSProperties}>Saigon broken rice</p>
+          <p className="bang" data-a="slideL" style={{ "--d": "1.1s" } as CSSProperties} >Saigon Broken Rice</p>
           <ul className="members" data-st="pop" style={{ "--base": "1.4s" } as CSSProperties}>
             <li style={{ "--i": "0" } as CSSProperties}>Group 7</li>
             <li style={{ "--i": "1" } as CSSProperties}>Hòa</li>

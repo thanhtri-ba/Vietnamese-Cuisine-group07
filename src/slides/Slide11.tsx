@@ -17,7 +17,7 @@ export default function Slide11() {
             <div className="region" style={{ "--i": "0" } as CSSProperties}>
               <b>The North</b>
               <span>Light, delicate and balanced</span>
-              <img className="region-thumb" src="img/photos/pho.webp" alt="A bowl of beef pho" />
+              <img className="region-thumb" src="img/photos/pho.webp" alt="A bowl of beef noodle soup" />
             </div>
             <div className="region" style={{ "--i": "1" } as CSSProperties}>
               <b>The Center</b>

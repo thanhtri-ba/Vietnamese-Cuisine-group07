@@ -10,7 +10,7 @@ export default function Slide17() {
         <h2 id="t16" data-a="fadeDown" style={{ "--d": ".3s" } as CSSProperties}>Why is it called “broken rice”?</h2>
         <div className="rice-pair">
           <Photo src="gao-thuong.webp" alt="Whole rice grains spilling from a bamboo basket" caption="Regular rice" sub="whole grains" h="40vh" w="min(34vw,40vh)" tilt="l" delay=".6s" />
-          <Photo src="gao-tam.webp" alt="Illustration of a pile of broken rice grains" caption="Broken rice" sub="broken grains" h="40vh" w="min(34vw,40vh)" tilt="r" delay="1s" />
+          <Photo src="gao-tam.webp" alt="A pile of broken rice grains on a ceramic plate" caption="Broken rice" sub="broken grains" h="40vh" w="min(34vw,40vh)" tilt="r" delay="1s" />
         </div>
         <div className="chips" data-st="fadeUp" style={{ "--base": "2.2s", justifyContent: "center", marginTop: "clamp(16px,3vh,28px)" } as CSSProperties}>
           <span className="chip" style={{ "--i": "0" } as CSSProperties}>Grains broken during milling</span>

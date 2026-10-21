@@ -11,22 +11,19 @@ export default function Slide05() {
           <ul className="v5-three" data-st="fadeUp" style={{ "--base": ".8s" } as CSSProperties}>
             <li style={{ "--i": "0" } as CSSProperties}>
               <b>Fresh</b>
-              <span className="vi-word" lang="vi">tươi</span>
               <span>Ingredients bought at the market every day</span>
             </li>
             <li style={{ "--i": "1" } as CSSProperties}>
               <b>Flavorful</b>
-              <span className="vi-word" lang="vi">đậm đà</span>
               <span>Many flavors blended in one meal</span>
             </li>
             <li style={{ "--i": "2" } as CSSProperties}>
               <b>Shared</b>
-              <span className="vi-word" lang="vi">sum vầy</span>
               <span>Meals are eaten together, family style</span>
             </li>
           </ul>
           <ul className="v5-mam" data-a="fadeUp" style={{ "--d": "1.4s" } as CSSProperties} aria-label="A typical Vietnamese meal">
-            <li className="v5-mam-lbl" lang="vi">Mâm cơm:</li>
+            <li className="v5-mam-lbl">A typical meal:</li>
             <li>Rice</li>
             <li>Vegetables</li>
             <li>Meat or fish</li>
@@ -35,7 +32,6 @@ export default function Slide05() {
           </ul>
           <p className="v5-balance" data-a="zoomOut" style={{ "--d": "2s" } as CSSProperties}>
             <span className="bang">Balance</span>
-            <span className="vi-word" lang="vi">cân bằng</span>
           </p>
         </div>
         <figure className="v5-photo" data-a="fadeUp" style={{ "--d": ".6s" } as CSSProperties}>

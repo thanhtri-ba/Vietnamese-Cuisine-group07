@@ -1177,3 +1177,4 @@ h1,h2,h3{line-height:1.1}
 .marinade-grid{margin-top:clamp(8px,2vh,22px)}
 .marinade-grid .roles{margin-top:0}
 .video-box.split{margin-top:clamp(8px,1.6vh,16px)}
+.vmap.vn .vn-claim,.band.viet .vmap.vn .vn-claim{font-size:23px;font-weight:700;font-style:italic;opacity:.95}
